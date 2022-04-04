@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainCategory">
+
+    <TextView
+        android:id="@+id/mainCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="대카테고리 선택"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/activity"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="80dp"
+        android:text="놀거리"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainCategory" />
+
+    <Button
+        android:id="@+id/workOut"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:text="산책"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity" />
+
+    <Button
+        android:id="@+id/courseHistory"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="32dp"
+        android:text="History"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@+id/workOut"
+        app:layout_constraintTop_toBottomOf="@+id/workOut" />
+
+    <Button
+        android:id="@+id/myBest"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="32dp"
+        android:text="내 최고의 코스"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@+id/workOut"
+        app:layout_constraintTop_toBottomOf="@+id/workOut" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
