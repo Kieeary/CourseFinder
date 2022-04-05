@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="1dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -23,7 +23,7 @@
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/course_name"
             android:layout_width="350dp"
             android:layout_height="40dp"
             android:layout_marginTop="30dp"
@@ -32,13 +32,14 @@
             android:gravity="center"
             android:text="1. 코스 이름" />
 
+
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapView"
             android:layout_width="350dp"
             android:layout_height="300dp"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/course_order"
@@ -91,7 +92,7 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="장소이름" />
+                        android:text="장소 이름" />
 
                     <TextView
                         android:id="@+id/textView4"
@@ -137,7 +138,7 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="장소이름" />
+                        android:text="장소 이름" />
 
                     <TextView
                         android:id="@+id/textView4"
@@ -183,7 +184,7 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="장소이름" />
+                        android:text="장소 이름" />
 
                     <TextView
                         android:id="@+id/textView4"
