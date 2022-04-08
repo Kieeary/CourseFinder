@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:verticalScrollbarPosition="right"
-    tools:context=".MainActivity">
+    tools:context=".CourseList">
 
 
     <TextView
@@ -84,7 +84,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
@@ -140,7 +140,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
@@ -196,7 +196,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
@@ -252,7 +252,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
@@ -308,7 +308,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
@@ -364,7 +364,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
