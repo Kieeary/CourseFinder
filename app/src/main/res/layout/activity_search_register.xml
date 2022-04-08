@@ -100,7 +100,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
@@ -212,7 +212,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
@@ -268,7 +268,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
@@ -324,7 +324,7 @@
                     android:layout_width="8dp"
                     android:layout_height="65dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/ic_add" />
+                    android:background="@drawable/btn_add_remove" />
 
 
             </LinearLayout>
