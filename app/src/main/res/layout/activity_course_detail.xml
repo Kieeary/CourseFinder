@@ -21,7 +21,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_weight="1"
-        android:background="@drawable/ic_fav1"
+        android:background="@drawable/btn_heart"
         tools:layout_editor_absoluteX="345dp"
         tools:layout_editor_absoluteY="25dp" />
 
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="주소"
         tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="360dp" />
+        tools:layout_editor_absoluteY="350dp" />
 
     <TextView
         android:id="@+id/textView8"
@@ -48,16 +48,14 @@
         android:layout_height="wrap_content"
         android:text="비용"
         tools:layout_editor_absoluteX="245dp"
-        tools:layout_editor_absoluteY="360dp" />
+        tools:layout_editor_absoluteY="350dp" />
 
-    <TextView
-        android:id="@+id/textView9"
+    <RatingBar
+        android:id="@+id/ratingBar2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="평점"
-
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="400dp" />
+        android:layout_height="40dp"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="370dp" />
 
     <ScrollView
         android:layout_width="412dp"
@@ -283,6 +281,8 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
