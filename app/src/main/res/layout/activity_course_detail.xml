@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".CourseDetail">
 
     <TextView
         android:id="@+id/courseName"
@@ -34,21 +35,42 @@
         tools:layout_editor_absoluteX="30dp"
         tools:layout_editor_absoluteY="90dp" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="주소"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="350dp" />
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="350dp">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="비용" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="주소" />
+
+    </LinearLayout>
+
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비용"
-        tools:layout_editor_absoluteX="245dp"
-        tools:layout_editor_absoluteY="350dp" />
+        android:text="평점"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="382dp" />
 
     <RatingBar
         android:id="@+id/ratingBar2"
@@ -281,8 +303,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

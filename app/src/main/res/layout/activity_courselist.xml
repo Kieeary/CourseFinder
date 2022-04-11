@@ -378,7 +378,7 @@
 
 
     <Button
-        android:id="@+id/next_button"
+        android:id="@+id/next_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -389,7 +389,7 @@
         tools:layout_editor_absoluteY="630dp" />
 
     <Button
-        android:id="@+id/cancel_button"
+        android:id="@+id/cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
