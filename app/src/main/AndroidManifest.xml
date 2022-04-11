@@ -36,6 +36,9 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="53o7d43lub" />
+        <activity android:name=".mycourse.MyCourse" />
+        <activity android:name=".mycourse.CourseReview" />
+        <activity android:name=".smallcategory.SmallCategoryOrder" />
     </application>
 
 </manifest>
