@@ -6,8 +6,8 @@
   >github@
 - 이강원()
   >github@
-- 백승연()
-  > github@
+- 백승연(201811190)
+  > github@seungyeon17
 - 홍다경()
   > github@
 - 김우중(201912039)
