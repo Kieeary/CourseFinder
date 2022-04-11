@@ -19,7 +19,7 @@ public class PlayingRegister extends AppCompatActivity {
             R.drawable.bunsik, R.drawable.yasik};
     String[] categoryNameId = {"한식", "일식", "양식", "중식", "분식", "야식"};
 
-    int[] cafeCategoryImgId = {R.drawable.cafe, R.drawable.bakery, R.drawable.makaron};
+    int[] cafeCategoryImgId = {R.drawable.cafe, R.drawable.bakery, R.drawable.macaron};
     String[] cafeCategoryNameId = {"카페", "베이커리", "마카롱"};
 
     int[] gameCategoryImgId = {R.drawable.pcroom, R.drawable.singingroom, R.drawable.escaperoom,
