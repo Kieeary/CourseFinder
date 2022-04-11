@@ -35,7 +35,7 @@
             android:layout_marginRight="20dp"
             android:id="@+id/gridViewId"
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="500dp"
             android:numColumns="3"/>
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_marginRight="20dp"
             android:id="@+id/gridViewId2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="370dp"
             android:numColumns="3"/>
 
 
