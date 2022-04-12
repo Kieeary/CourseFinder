@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient2 {
+    // 경로 검색 retrofit 객체 생성 클래스 및 메소드
     private static final String BASE_URL = "https://naveropenapi.apigw.ntruss.com/map-direction/";
     private static Retrofit retrofit;
 
