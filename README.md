@@ -4,8 +4,8 @@
 ## 다형성 Developers
 - 정기범()
   >github@
-- 이강원()
-  >github@
+- 이강원(201510155)
+  >github@J1WonLee
 - 백승연(201811190)
   > github@seungyeon17
 - 홍다경()
@@ -25,3 +25,5 @@
   - [이강원] 공용 api 사용 설정
 - 2022.04.11
   - [이강원] json vo클래스 설정
+- 2022.04.12
+  - [이강원] ApiClient 클래스, ApiInterface 예시, MainActivity 코드 메모장 참고
