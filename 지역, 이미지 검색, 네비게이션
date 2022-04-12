@@ -1,0 +1,300 @@
+/*
+적용하실 activity에서 사용하시면 됩니다.
+다만, 코스에서 장소를 불러올 경우 좌표 값이 37.2135213 와 같은 LatLng 값일 경우에는 코드의 변경이 필요합니다
+(네이버 검색 api에서는 Tm128형식으로 좌표값을 주기 때문에 해당 코드에서는 전부다 LatLng클래스의 객체로 저장 시켜놨습니다)
+AsyncTask 에서 onPost()에서는 검색 한 결과값을 받아 온 후에 할 작업들로, 장소 검색 시, getImage class의 onPost()에서 gridview의 리스트들을 채워주는 형식으로 진행하면 될것입니다.
+다만 이미지 검색은 100% 정확한 이미지를 받아오는 것도 아니고, 항상 이미지가 존재하는 하는 것이 아니기 때문에, if else로 처리를 해놧으나, 오류 발생시 말해주세요
+gradle에서 api 설정이 되어있는지 확인해 주세요. manifest 의 <meta-data> / setting gradle의 dependecy의 repositories{} / gradle.properties의 android.enableJetifier=true
+*/
+    private final String TAG= "FC";
+    private PlaceSearchResult placeSearchResult;
+    private ImageSearchResult imageSearchResult;
+
+    private ArrayList<PlaceList> placeLists = new ArrayList<PlaceList>();
+    private List<String> imgLinks = new ArrayList<String>();
+    String imgResults;
+
+    private Map<Integer, ArrayList<PlaceList>> orderschResults = new HashMap<Integer, ArrayList<PlaceList>>();
+    private Map<Integer, ArrayList<ImageList>> orderImageResults = new HashMap<Integer, ArrayList<ImageList>>();
+    private ArrayList<Marker> markers = new ArrayList<Marker>();
+    private ResultPath resultPath = new ResultPath();
+    // 원하는 장소(카테고리)를 입력 받는다
+    String [] schNames = {"한식", "전시회", "영화관"};
+    String results;
+
+    private NaverMap navermap;
+
+    private FusedLocationSource mLocationSource;
+    private static final int PERMISSION_REQUEST_CODE = 100;
+
+
+
+    private static final String[] PERMISSIONS = {
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        FragmentManager fm = getSupportFragmentManager();
+        MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.map);
+        if (mapFragment == null) {
+            mapFragment = MapFragment.newInstance();
+            fm.beginTransaction().add(R.id.map, mapFragment).commit();
+        }
+
+        mapFragment.getMapAsync(this);
+
+        mLocationSource = new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
+
+
+        final int[] num = {1};
+        try{
+            Gson gson = new Gson();
+            // 장소 검색
+            for(int i=0; i<3; i++){
+                results = new GetSchResult(schNames[i]).execute().get();
+                placeSearchResult = gson.fromJson(results, PlaceSearchResult.class);
+                orderschResults.put(i+1, placeSearchResult.getPlaceLists());
+            }
+
+
+
+            /*
+            // 이미지 검색, 초당 10건 제한이 있음 성능 개선 필요하며, 초당 10장이기때문에 5장씩 끊어서 가져오면 가능할듯함. 여기서는 4장씩 가져왔음
+            // 5장씩 가져온다면 밑 부분 new Handler() 제거해도 됨
+            for(int i=0; i<4; i++){
+                imgResults = new GetImgResult(orderschResults.get(1).get(i).getTitle()).execute().get();
+                imageSearchResult = gson.fromJson(imgResults, ImageSearchResult.class);
+	   if(imageSearchResult.getImgResult().get(0).getLink() == null) imgLinks.add("empty");
+                else imgLinks.add(imageSearchResult.getImgResult().get(0).getLink());
+            }
+            */
+            /*
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    for(int i=0; i<4; i++){
+                        try{
+                            imgResults = new GetImgResult(orderschResults.get(2).get(i).getTitle().replaceAll("<b>", "").replaceAll("</b>", "")).execute().get();
+                            imageSearchResult = gson.fromJson(imgResults, ImageSearchResult.class);
+                            imgLinks.add(imageSearchResult.getImgResult().get(0).getLink());
+                        }catch(Exception e){
+                            Log.d(TAG, "2nd sch failed" + e.getMessage());
+                            imgLinks.add("emtpty");
+                        }
+                    }
+                }
+            },1500);
+
+
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    for(int i=0; i<4; i++){
+                        try{
+                            imgResults = new GetImgResult(orderschResults.get(3).get(i).getTitle().replaceAll("<b>", "").replaceAll("</b>", "")).execute().get();
+                            imageSearchResult = gson.fromJson(imgResults, ImageSearchResult.class);
+                            imgLinks.add(imageSearchResult.getImgResult().get(0).getLink());
+                        }catch(Exception e){
+                            Log.d(TAG, "3rd sch failed" + e.getMessage());
+                            imgLinks.add("empty");
+                        }
+                    }
+                }
+            },2500);
+            */
+        }catch(Exception e){
+            Log.d(TAG, "가져오지못함" + e.getMessage());
+        }
+
+
+
+
+        /* 값을 찍어보는 코드인 제거 가능
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                for(int i=0; i<imgLinks.size(); i++){
+                    Log.d(TAG, i +"번째 = " + imgLinks.get(i));
+                }
+                
+
+            }
+        }, 3500);
+        */
+    }
+
+
+
+    @Override
+    public void onMapReady(@NonNull NaverMap naverMap) {
+        this.navermap = naverMap;
+        ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
+        getRoute();
+        setMarkers();
+        setPolyLines();
+        // 현재 위치를 기준으로 지도를 띄울 때
+        navermap.setLocationSource(mLocationSource);
+        // 입력한 장소들 중 첫번째 카테고리(검색)의 처음 장소, 단 실제로 사용할 경우에는 코스의 첫번째 장소가 와야 하기 때문에 new Tm128()안에있는 매개변수들을 변경해줘야 한다.
+        // CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new Tm128(orderschResults.get(1).get(0).getMapx(), orderschResults.get(1).get(0).getMapy()).toLatLng());
+        // naverMap.moveCamera(cameraUpdate);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // request code와 권한획득 여부 확인
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                navermap.setLocationTrackingMode(LocationTrackingMode.Follow);
+            }
+        }
+    }
+
+    public void setMarkers(){
+        Marker marker;
+        for(int i=0; i<3; i++){
+            marker = new Marker();
+            // 마커를 찍는데, TM128()안에 들어가는 매개변수들은, 코스의 장소들의 X,Y 좌표 값으로 가져와야 하며, 
+            // 검색 api 결과와 달리 위도와 경도값을 바로 사용할 수 있는 값이 들어간다면, toLatLng()로 변환하는 과정 제거 가능
+            Tm128 tm = new Tm128(orderschResults.get(i+1).get(0).getMapx(), orderschResults.get(i+1).get(0).getMapy());
+            // tm.toLatLng()이 아니라, 장소의 위도와 경도 값이 39,213214213 << 이런 식으로 저장되면, 위도 경도값 넣어도 된다.
+            marker.setPosition(tm.toLatLng());
+            markers.add(marker);
+            // Text()매개변수는 코스의 장소들의 title이 오면 된다. 여기서는 검색한 장소들의 title이 온것이다
+            markers.get(i).setCaptionText(orderschResults.get(i+1).get(0).getTitle().replaceAll("<b>", " ").replaceAll("</b>", " "));
+            markers.get(i).setCaptionTextSize(20);
+            markers.get(i).setMap(navermap);
+        }
+    }
+
+    public void setPolyLines(){
+        PathOverlay path = new PathOverlay();
+        // setMarkers()와 마찬가지로, LatLng형태로 온다면 path.setCoords()에다가 바로 위도 경도 값을 넣어줘도 된다, 자세한것 네이버 지도 api 폴리라인 문서 참고
+        List<LatLng> latLngList = new ArrayList<LatLng>();
+        for(int i=0; i<markers.size(); i++){
+            latLngList.add(markers.get(i).getPosition());
+        }
+        path.setCoords(latLngList);
+        path.setMap(navermap);
+    }
+
+    
+    // 길찾기 전용 폴리라인 설정으로 역시나 위도 경도 값이 LatLng으로 입력해준다면, 매개변수는 필요없고, 함수 이름만 바꿔서 사용하면 된다. 
+    public void setPolyLines(List<LatLng> latLngList){
+        PathOverlay path = new PathOverlay();
+        // setMarkers()와 마찬가지로, LatLng형태로 온다면 path.setCoords()에다가 바로 위도 경도 값을 넣어줘도 된다, 자세한것 네이버 지도 api 폴리라인 문서 참고
+        path.setCoords(latLngList);
+        path.setWidth(35);
+        path.setColor(Color.YELLOW);
+        path.setMap(navermap);
+    }
+
+    // 장소 검색을 하는 
+    class GetSchResult extends AsyncTask<Void, Void, String>{
+        String keyword;
+
+        public GetSchResult(String keyword) {
+            this.keyword = keyword;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            ApiInterface apiInterface = ApiClient.getInstance().create(ApiInterface.class);
+            Call<String> call = apiInterface.getSearchResult("l0EZZiIpcB0ffOfRU99J", "hu5ESzjw59", "local.json", keyword,5);
+            try{
+                Response<String> response = call.execute();
+                return response.body().toString();
+            }catch(Exception e){
+                Log.d(TAG, "error occured");
+            }
+            return null;
+        }
+    }
+
+
+
+    // 이미지 검색, 클래스 생성자를 통해서 keyword를 입력받는 형식.
+    class GetImgResult extends AsyncTask<Void, Void, String>{
+        String keyword;
+
+        public GetImgResult(String keyword) {
+            this.keyword = keyword;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            ApiInterface apiInterface = ApiClient.getInstance().create(ApiInterface.class);
+            Call<String> call = apiInterface.getImageResult("l0EZZiIpcB0ffOfRU99J", "hu5ESzjw59", "image", keyword,1, "small");
+            try{
+                Response<String> response = call.execute();
+                if(response.isSuccessful()){
+                    return response.body().toString();
+                }else{
+                    Log.d(TAG, "FAIL TO SEARCH IMG" + response.code());
+                    return null;
+                }
+            }catch(Exception e){
+                Log.d(TAG, "error occured");
+            }
+            return null;
+        }
+    }
+
+    public void getRoute(){
+        // goal start도 역시나 LatLng형태로 온다면 toLatLng()할 필요 없이 "위도,경도" 값으로 설정해주면된다
+        String goal = toLatLng(orderschResults.get(1).get(0).getMapx(), orderschResults.get(1).get(0).getMapy());
+        String start = toLatLng(orderschResults.get(2).get(0).getMapx(), orderschResults.get(2).get(0).getMapy());
+        ApiInterface apiInterface = ApiClient2.getInstance().create(ApiInterface.class);
+        Call<ResultPath> call = apiInterface.getRoute("53o7d43lub", "kFF1Zm70tVyOZl2o2hpP1yyol1rxp3Hk51xhbIbr",
+                start, goal);
+        call.enqueue(new Callback<ResultPath>() {
+            @Override
+            public void onResponse(Call<ResultPath> call, Response<ResultPath> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    resultPath = response.body();
+                    PathOverlay path = new PathOverlay();
+                    List<LatLng> latLngList = new ArrayList<LatLng>();
+                    for(int i=0; i<resultPath.getTrackOption().getTraoptimal().get(0).getPath().size(); i++){
+                        double a,b;
+                        a = resultPath.getTrackOption().getTraoptimal().get(0).getPath().get(i).get(0);
+                        b = resultPath.getTrackOption().getTraoptimal().get(0).getPath().get(i).get(1);
+                        latLngList.add(new LatLng(b,a));
+                    }
+                    setPolyLines(latLngList);
+                }
+                else {
+                    Log.d(TAG, "실패 : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultPath> call, Throwable t) {
+                Log.d(TAG, "에러 : " + t.getMessage());
+            }
+        });
+    }
+
+    public String toLatLng(int x, int y){
+        Tm128 tm = new Tm128(x, y);
+        LatLng latLng = tm.toLatLng();
+        return latLng.longitude + "," + latLng.latitude;
+    }
