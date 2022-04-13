@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.R;
 import com.example.coursefinder.mycourse.MyCourse;
 
@@ -62,7 +63,7 @@ public class SmallCategory extends Activity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MyCourse.class);
+                Intent intent = new Intent(getApplicationContext(), MainCategory.class);
                 startActivity(intent);
             }
 

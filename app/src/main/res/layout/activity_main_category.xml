@@ -16,7 +16,7 @@
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/bt_playing"
+        android:id="@+id/courseRecommend"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
@@ -40,7 +40,7 @@
         android:layout_marginTop="10dp">
 
         <Button
-            android:id="@+id/bt_history"
+            android:id="@+id/courseHistory"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:text="History"

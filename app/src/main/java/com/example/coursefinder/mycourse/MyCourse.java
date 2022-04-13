@@ -1,6 +1,7 @@
 package com.example.coursefinder.mycourse;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.R;
 
 public class MyCourse extends Activity {
@@ -66,13 +68,21 @@ public class MyCourse extends Activity {
 
             }
         });
-        Button button1 = (Button)findViewById(R.id.button1);
+        Button nextButton = (Button)findViewById(R.id.next_btn);
+        Button cancelButton = (Button)findViewById(R.id.cancel_btn);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), MyCourseGrid.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), CourseReview.class);
+                startActivity(intent);
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainCategory.class);
+                startActivity(intent);
             }
         });
 
