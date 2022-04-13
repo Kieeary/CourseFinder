@@ -45,7 +45,10 @@
         <activity android:name=".smallcategory.SmallCategoryOrder" />
         <activity android:name=".PlayingRegister"/>
         <activity android:name=".Register"/>
-
+        <activity android:name=".CourseListResult"/>
+        <activity android:name=".CourseDetail"/>
+        <activity android:name=".Review"/>
+        <activity android:name=".ReviewDetail"/>
 
 
     </application>
