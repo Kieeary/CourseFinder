@@ -3,7 +3,7 @@
 
 ## 다형성 Developers
 - 정기범(201512244)
-  >github@
+  >github@KiBeomChung
 - 이강원(201510155)
   >github@J1WonLee
 - 백승연(201811190)
