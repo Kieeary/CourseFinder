@@ -14,6 +14,8 @@
   > github@kimwoojung11
 * * *
 ## History
+- 2022.04.13
+  - [김우중] manifests수정, 화면 연결, layout 폴더 분할
 - 2022.04.12
   - [백승연] 대카테고리 이미지 추가 및 변경
   - [이강원] ApiClient 클래스, ApiInterface 예시, MainActivity 코드 메모장 참고

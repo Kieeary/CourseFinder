@@ -14,6 +14,18 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layout/history',
+                            'src/main/res/layout/playing',
+                            'src/main/res/layout/ranking',
+                            'src/main/res/layout/register',
+                            'src/main/res'
+                    ]
+        }
+    }
 
     buildTypes {
         release {

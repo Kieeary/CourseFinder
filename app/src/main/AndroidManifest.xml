@@ -17,13 +17,13 @@
         android:theme="@style/Theme.CourseFinder"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainCategory"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainCategory"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +42,7 @@
 
         <activity android:name=".mycourse.MyCourse" />
         <activity android:name=".mycourse.CourseReview" />
+        <activity android:name=".smallcategory.SmallCategory" />
         <activity android:name=".smallcategory.SmallCategoryOrder" />
         <activity android:name=".PlayingRegister"/>
         <activity android:name=".Register"/>
