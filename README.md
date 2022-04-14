@@ -14,6 +14,8 @@
   > github@kimwoojung11
 * * *
 ## History
+- 2022.04.14
+  - [백승연] layout 수정
 - 2022.04.13
   - [김우중] manifests수정, 화면 연결, layout 폴더 분할
 - 2022.04.12
