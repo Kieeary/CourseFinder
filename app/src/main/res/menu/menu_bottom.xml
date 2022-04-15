@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/tab_home"
+        app:showAsAction="always"
         android:enabled="true"
-
+        android:icon="@drawable/ic_home"
         android:title="홈"
         />
     <item
         android:id="@+id/tab_review"
         android:enabled="true"
-
+        android:icon="@drawable/ic_review"
         android:title="리뷰"
         />
     <item
         android:id="@+id/tab_bookmark"
         android:enabled="true"
-
+        android:icon="@drawable/ic_bookmark"
         android:title="즐겨찾기"
         />
 
     <item
         android:id="@+id/tab_mypage"
         android:enabled="true"
-
+        android:icon="@drawable/ic_mypage"
         android:title="마이페이지"
         />
 
     <item
         android:id="@+id/tab_setting"
         android:enabled="true"
-
+        android:icon="@drawable/ic_setting"
         android:title="설정"
         />
 </menu>
