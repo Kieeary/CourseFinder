@@ -2,9 +2,17 @@ package com.example.coursefinder.searchapi;
 
 import com.example.coursefinder.searchVo.ResultPath;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -40,8 +48,8 @@ public interface ApiInterface {
     Call<ResultPath> getRoute(
             @Header("X-NCP-APIGW-API-KEY-ID") String id,
             @Header("X-NCP-APIGW-API-KEY") String pw,
-            @Query("start") String start,
-            @Query("goal") String goal
+            @Query("start") String start,   // "x, y"
+            @Query("goal") String goal      // "x, y"
     );
 
     /**
@@ -49,20 +57,32 @@ public interface ApiInterface {
      * db 중에서 select를 통해서 튜플을 받아 오는경우가 아니라면 json으로 받을 일이 거의 없다.
      */
 
-    /*
+
     // DB연결 용 함수
     @FormUrlEncoded     // post일때는 @Field 어노테이션을 이용하는데, @FromUrlEncoded어노테이션을 명시해줘야함
-    @POST("login.php")
-    Call<String> doLogin (                // call.enqueue의 반환 타입은 String으로 지정, 객체로도 반환 가능
-        @Field("컬럼 명") String Id,       // id와 password를 받아온다.
-        @Field("컬럼 명") String password
+    @POST("Login.php")
+    Call<String> doLogin (
+            // call.enqueue의 반환 타입은 String으로 지정, 객체로도 반환 가능
+            @Field("id") String id,
+            @Field("password") String password       // id와 password를 받아온다.
+    );
+
+
+    @FormUrlEncoded
+    @POST("dupchk.php")       // 아이디 중복 확인용
+    Call<String> dupChk(
+            @Field("id") String id
     );
 
     @FormUrlEncoded
     @POST("register.php")       // 회원 가입용
     Call<String> insertMember(
-            @Field("country") String country,
-            @Field("name") String name
+            @Field("id") String id,
+            @Field("password") String password
+//            @Field("name") String name,
+//            @Field("phone") String phone,
+//            @Field("birth") String birth,
+//            @Field("gender") String gender
     );
 
     @GET("query.php")
@@ -82,8 +102,8 @@ public interface ApiInterface {
     @Multipart
     @POST("image.php")
     Call<ResponseBody> postImage(   // 이미지 업로드용 (후기에서 씌일거 같아서 만들어 둠)
-        @Part MultipartBody.Part image, @Part("name") RequestBody name,
-        @Part("idx") RequestBody idx
+                                    @Part MultipartBody.Part image, @Part("name") RequestBody name,
+                                    @Part("idx") RequestBody idx
     );
-    */
+
 }
