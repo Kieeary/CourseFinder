@@ -73,6 +73,11 @@ public class Register extends AppCompatActivity {
                     doRegister(id, pwd, name, phone, birth, gender);
                 }else{
                     Log.d("TAG", ischked+"");
+                    if(!ischked){
+                        Toast.makeText(getApplicationContext(), "중복 체크를 해주세요", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "비밀번호가 다릅니다", Toast.LENGTH_SHORT).show();
+                    }
                     Log.d("TAG", pwd +" , " + pwdChk.getText().toString());
                     Log.d("TAG", "비밀번호가 다릅니다!");
                 }
@@ -92,12 +97,12 @@ public class Register extends AppCompatActivity {
                     // 아이디 이용 가능
                     ischked = true;
                     Log.d("TAG", "SUCESS");
-                    Toast.makeText(getApplicationContext(),"사용가능한 아이디입니다", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),"사용가능한 아이디입니다", Toast.LENGTH_SHORT).show();
                 }else{
                     // 중복 아이디 존재
                     ischked = false;
                     Log.d("TAG", "DUP");
-                    Toast.makeText(getApplicationContext(),"중복된 아이디 입니다", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),"사용가능한 아이디입니다", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -112,14 +117,18 @@ public class Register extends AppCompatActivity {
     // 회원 등록 함수 필요
     public void doRegister(String id, String pwd, String name, String phone, String birth, String gender){
         ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
-        Call<String> call = apiInterface.insertMember(id, pwd);
+        Call<String> call = apiInterface.insertMember(id, pwd, name, phone, birth, gender);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful() && (response.body().equals("1")) ){
                     // 가입 성공
+                    Log.d("TAG", "가입 성공");
+                    Log.d("TAG", response.body());
                  }else{
-                 }
+                    Log.d("TAG", "가입 실패");
+                    Log.d("TAG", response.body());
+                }
             }
 
             @Override

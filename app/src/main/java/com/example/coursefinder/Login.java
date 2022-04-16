@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.coursefinder.MemberVo.MemberInfo;
 import com.example.coursefinder.MemberVo.MemberLogInResults;
@@ -106,6 +107,8 @@ public class Login extends AppCompatActivity {
                     Log.d("TAG", "로그인에 실패");
                     Log.d("TAG", "ID :" + id +", pwd :" + password);
                     Log.d("TAG", response.body()+"임");
+                    Toast toast = Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             }
 

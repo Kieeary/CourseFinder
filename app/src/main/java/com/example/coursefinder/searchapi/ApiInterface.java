@@ -75,14 +75,14 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("register.php")       // 회원 가입용
+    @POST("regitmember.php")       // 회원 가입용
     Call<String> insertMember(
             @Field("id") String id,
-            @Field("password") String password
-//            @Field("name") String name,
-//            @Field("phone") String phone,
-//            @Field("birth") String birth,
-//            @Field("gender") String gender
+            @Field("password") String password,
+            @Field("name") String name,
+            @Field("phone") String phone,
+            @Field("birth") String birth,
+            @Field("gender") String gender
     );
 
     @GET("query.php")
