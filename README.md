@@ -9,7 +9,7 @@
 - 백승연(201811190)
   > github@seungyeon17
 - 홍다경()
-  > github@
+  > github@hdk990425
 - 김우중(201912039)
   > github@kimwoojung11
 * * *
