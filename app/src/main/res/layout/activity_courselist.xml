@@ -1,9 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".smallcategory.SmallCategory">
+    android:background="#FFFFFF"
+    tools:context=".Course.CourseList">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,58 +17,63 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:gravity="center"
-            android:text="소카테고리"
-            android:textAlignment="center" />
+            android:text="놀거리 코스 등록"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
 
         <GridView
 
             android:id="@+id/grid"
             android:layout_width="wrap_content"
-
-            android:layout_height="424dp"
+            android:layout_height="522dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:numColumns="1"
             android:stretchMode="columnWidth" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="74dp"
+            android:gravity="center"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/next_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="25dp"
-                android:layout_weight="1"
-                android:backgroundTint="#B5ACAC"
-                android:text="다 음" />
 
             <Button
                 android:id="@+id/cancel_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:backgroundTint="#B5ACAC"
-                android:text="취 소" />
+                android:layout_gravity="center"
+                android:layout_marginRight="100dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="취소"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="다음"
+                android:textColor="@color/black" />
         </LinearLayout>
+
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/menu_bottom"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:layout_gravity="bottom"
-            app:itemBackground="@drawable/ic_launcher_background"
+            android:background="#D9EAD3"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="674dp" />
     </LinearLayout>
+
+
+
 
 </LinearLayout>

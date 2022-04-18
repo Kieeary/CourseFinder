@@ -10,10 +10,11 @@
     <TextView
         android:id="@+id/tv_firstCategory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:gravity="center"
         android:text="대카테고리 선택"
-        android:textSize="24sp" />
+        android:textAlignment="center"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/courseRecommend"

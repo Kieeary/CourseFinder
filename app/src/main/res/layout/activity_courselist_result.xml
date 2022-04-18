@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".CourseListResult">
+    tools:context=".Course.CourseListResult">
 
 
     <LinearLayout
@@ -59,7 +59,7 @@
 
             android:id="@+id/grid"
             android:layout_width="wrap_content"
-            android:layout_height="159dp"
+            android:layout_height="178dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
@@ -88,9 +88,9 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/menu_bottom"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:layout_gravity="bottom"
-            app:itemBackground="@drawable/ic_launcher_background"
+            android:background="#D9EAD3"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom"
             tools:layout_editor_absoluteX="0dp"

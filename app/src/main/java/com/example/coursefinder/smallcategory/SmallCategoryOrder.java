@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.example.coursefinder.Course.CourseListResult;
 import com.example.coursefinder.R;
-import com.example.coursefinder.mycourse.MyCourse;
 
 public class SmallCategoryOrder extends Activity {
     GridView grid;
@@ -23,6 +23,7 @@ public class SmallCategoryOrder extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.small_category_order);
 
         SmallCategoryOrderGrid adapter = new SmallCategoryOrderGrid(SmallCategoryOrder.this, buttonStr);
@@ -44,7 +45,7 @@ public class SmallCategoryOrder extends Activity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MyCourse.class);
+                Intent intent = new Intent(getApplicationContext(), CourseListResult.class);
                 startActivity(intent);
             }
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".smallcategory.SmallCategoryOrder">
+    tools:context=".mycourse.MyCourse">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:gravity="center"
-            android:text="소카테고리"
+            android:text="내 코스"
+            android:textSize="20dp"
             android:textAlignment="center" />
 
         <GridView
@@ -23,20 +24,21 @@
             android:id="@+id/grid"
             android:layout_width="wrap_content"
 
-            android:layout_height="495dp"
+            android:layout_height="514dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:numColumns="1"
             android:stretchMode="columnWidth" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="81dp"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/next_button"
+                android:id="@+id/next_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -47,7 +49,7 @@
                 android:text="다 음" />
 
             <Button
-                android:id="@+id/cancel_button"
+                android:id="@+id/cancel_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -60,9 +62,9 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/menu_bottom"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:layout_gravity="bottom"
-            app:itemBackground="@drawable/ic_launcher_background"
+            android:background="#D9EAD3"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom"
             tools:layout_editor_absoluteX="0dp"
