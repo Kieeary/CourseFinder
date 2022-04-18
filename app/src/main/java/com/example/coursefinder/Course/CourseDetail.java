@@ -1,4 +1,4 @@
-package com.example.coursefinder;
+package com.example.coursefinder.Course;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.coursefinder.R;
+import com.example.coursefinder.Review.Review;
+import com.example.coursefinder.Review.ReviewDetail;
 
 public class CourseDetail extends AppCompatActivity {
 
@@ -21,7 +25,7 @@ public class CourseDetail extends AppCompatActivity {
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CourseDetail.this, ReviewDetail.class); //현재 액티비티, 이동하고 싶은 액티비티
+                Intent intent = new Intent(getApplicationContext(), ReviewDetail.class); //현재 액티비티, 이동하고 싶은 액티비티
                 startActivity(intent); //액티비티 이동
 
             }
@@ -30,7 +34,7 @@ public class CourseDetail extends AppCompatActivity {
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CourseDetail.this, Review.class); //현재 액티비티, 이동하고 싶은 액티비티
+                Intent intent = new Intent(getApplicationContext(), Review.class); //현재 액티비티, 이동하고 싶은 액티비티
                 startActivity(intent); //액티비티 이동
 
             }

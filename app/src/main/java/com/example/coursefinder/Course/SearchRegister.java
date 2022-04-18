@@ -1,4 +1,4 @@
-package com.example.coursefinder;
+package com.example.coursefinder.Course;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.coursefinder.R;
 
 public class SearchRegister extends AppCompatActivity {
 
