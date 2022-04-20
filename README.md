@@ -14,6 +14,8 @@
   > github@kimwoojung11
 * * *
 ## History
+- 2022.04.20
+  - [정기범] exercise패키지 생성, exercise list 추가
 - 2022.04.17
   - [이강원] result.java 삭제
 - 2022.04.16

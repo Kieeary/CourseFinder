@@ -17,6 +17,15 @@
         android:theme="@style/Theme.CourseFinder"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".exercise.ExerciseUserCourse"
+            android:exported="false" />
+        <activity
+            android:name=".exercise.ExerciseDetailCourse"
+            android:exported="false" />
+        <activity
+            android:name=".exercise.ExerciseCourseList"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
@@ -44,16 +53,14 @@
         <activity android:name=".mycourse.CourseReview" />
         <activity android:name=".smallcategory.SmallCategory" />
         <activity android:name=".smallcategory.SmallCategoryOrder" />
-        <activity android:name=".PlayingRegister"/>
-        <activity android:name=".Register"/>
-        <activity android:name=".Course.CourseDetail"/>
-        <activity android:name=".Course.CourseList"/>
-        <activity android:name=".Course.CourseListResult"/>
-        <activity android:name=".Course.SearchRegister"/>
-        <activity android:name=".Review.Review"/>
-        <activity android:name=".Review.ReviewDetail"/>
-
-
+        <activity android:name=".PlayingRegister" />
+        <activity android:name=".Register" />
+        <activity android:name=".Course.CourseDetail" />
+        <activity android:name=".Course.CourseList" />
+        <activity android:name=".Course.CourseListResult" />
+        <activity android:name=".Course.SearchRegister" />
+        <activity android:name=".Review.Review" />
+        <activity android:name=".Review.ReviewDetail" />
     </application>
 
 </manifest>

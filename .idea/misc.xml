@@ -21,7 +21,11 @@
         <entry key="app/src/main/res/layout/activity_review_detail.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_search_register.xml" value="0.2681320190429688" />
         <entry key="app/src/main/res/layout/course_review.xml" value="0.27794871794871795" />
+        <entry key="app/src/main/res/layout/courselist_grid_single.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/courselist_result_grid_single.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/griditem.xml" value="0.27794871794871795" />
+        <entry key="app/src/main/res/layout/history/layout/activity_exercise_course_list.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/history/layout/exercise_single_item_list.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/history/layout/my_course.xml" value="0.27794871794871795" />
         <entry key="app/src/main/res/layout/history/layout/my_course_grid_single.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/my_course.xml" value="0.13697916666666668" />
