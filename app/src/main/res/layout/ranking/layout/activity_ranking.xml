@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ranking.Ranking">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:text="랭 킹"
+            android:textAlignment="center" />
+
+        <GridView
+
+            android:id="@+id/grid"
+            android:layout_width="wrap_content"
+
+            android:layout_height="501dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:verticalSpacing="10dp"
+            android:numColumns="1"
+            android:stretchMode="columnWidth" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/menu_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="bottom"
+            app:itemBackground="@drawable/ic_launcher_background"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_bottom"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="674dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -61,6 +61,7 @@
         <activity android:name=".Course.SearchRegister" />
         <activity android:name=".Review.Review" />
         <activity android:name=".Review.ReviewDetail" />
+        <activity android:name=".ranking.Ranking" />
     </application>
 
 </manifest>
