@@ -14,46 +14,47 @@
         android:text="식사" />
 
     <LinearLayout
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/xml_border">
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="horizontal"
-            >
-        <RadioButton
-            android:id="@+id/button1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:button="@null"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:background="@drawable/selector_radio_button"
-            android:textColor="@drawable/selector_radio_text"
-            />
+<!--        <RadioGroup-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:orientation="horizontal"-->
+<!--            >-->
+<!--        <RadioButton-->
+<!--            android:id="@+id/button1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:button="@null"-->
+<!--            android:paddingLeft="30dp"-->
+<!--            android:paddingRight="30dp"-->
+<!--            android:background="@drawable/selector_radio_button"-->
+<!--            android:textColor="@drawable/selector_radio_text"-->
+<!--            />-->
 
-        <RadioButton
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:button="@null"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:background="@drawable/selector_radio_button"
-            android:textColor="@drawable/selector_radio_text"
-             />
-        </RadioGroup>
+<!--        <RadioButton-->
+<!--            android:id="@+id/button2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:button="@null"-->
+<!--            android:paddingLeft="30dp"-->
+<!--            android:paddingRight="30dp"-->
+<!--            android:background="@drawable/selector_radio_button"-->
+<!--            android:textColor="@drawable/selector_radio_text"-->
+<!--             />-->
+<!--        </RadioGroup>-->
     </LinearLayout>
 
 

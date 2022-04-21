@@ -29,13 +29,26 @@ public class SmallCategory extends Activity {
             "한식",
             "일식"
     };
-
+    int[] count = {
+            2,
+            3,
+            4,
+            1,
+            2,
+            3,
+            2,
+            3,
+            1,
+            2,
+            4,
+            2
+    }; // db에서 갖고와야할 정보
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.small_category);
 
-        SmallCategoryGrid adapter = new SmallCategoryGrid(SmallCategory.this, buttonStr);
+        SmallCategoryGrid adapter = new SmallCategoryGrid(SmallCategory.this, buttonStr, count);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -14,6 +14,8 @@
   > github@kimwoojung11
 * * *
 ## History
+- 2022.04.21
+  - [김우중] smallcategory 버튼 동적 변환
 - 2022.04.20
   - [정기범] exercise패키지 생성, exercise list 추가
   - [김우중] layout 파일 분할, ranking 추가

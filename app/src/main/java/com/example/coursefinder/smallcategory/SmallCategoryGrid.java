@@ -1,21 +1,27 @@
 package com.example.coursefinder.smallcategory;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.coursefinder.R;
 
 public class SmallCategoryGrid extends BaseAdapter{
     private Context mContext;
     private final String[] buttonStr;
+    private int[] count;
 
-public SmallCategoryGrid(Context c,String[] buttonStr ) {
+public SmallCategoryGrid(Context c,String[] buttonStr, int[] count ) {
         mContext = c;
         this.buttonStr = buttonStr;
+        this.count = count;
     }
 
     @Override
@@ -36,10 +42,15 @@ public SmallCategoryGrid(Context c,String[] buttonStr ) {
         return 0;
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         View grid;
+        int length=count[position];
+        RadioGroup btnGroup = new RadioGroup(mContext.getApplicationContext());
+        btnGroup.setOrientation(LinearLayout.HORIZONTAL);
+        RadioButton[] btnArr=new RadioButton[length];
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -47,10 +58,18 @@ public SmallCategoryGrid(Context c,String[] buttonStr ) {
 
             grid = new View(mContext);
             grid = inflater.inflate(R.layout.small_category_grid_single, null);
-            Button button1 = (Button)grid.findViewById(R.id.button1);
-            Button button2 = (Button)grid.findViewById(R.id.button2);
-            button1.setText(buttonStr[position]);
-            button2.setText(buttonStr[position]);
+
+            LinearLayout layout = (LinearLayout)grid.findViewById(R.id.gridLayout);
+            for(int i=0; i<length; i++){
+                btnArr[i] = new RadioButton(mContext.getApplicationContext());
+                btnArr[i].setText("test" + i);
+                btnArr[i].setId(position+i);
+                btnArr[i].setButtonDrawable(mContext.getResources().getDrawable(R.drawable.selector_radio_button));
+                btnArr[i].setTextColor(mContext.getResources().getColorStateList(R.drawable.selector_radio_text));
+                btnGroup.addView(btnArr[i]);
+            }
+
+            layout.addView(btnGroup);
         } else {
             grid = (View) convertView;
         }
