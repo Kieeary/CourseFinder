@@ -85,6 +85,21 @@ public interface ApiInterface {
             @Field("gender") String gender
     );
 
+    @FormUrlEncoded
+    @POST("courseregit.php")
+    Call<String> insertCourse(
+            @Field("name") String name,
+            @Field("info") String info,
+            @Field("price") int price,
+            @Field("img") String img,
+            @Field("order") int order,
+            @Field("pname") String pname,
+            @Field("la") double la,
+            @Field("lt") double lt,
+            @Field("addr") String addr,
+            @Field("pimg") String pimg
+    );
+
     @GET("query.php")
     Call<String> getSelect(     // select , php에서 $_POST[] 를 $_GET[] 으로 바꿔야함
         @Query("country") String country,

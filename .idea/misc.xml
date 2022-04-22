@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_result.xml" value="0.1125" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_review.xml" value="0.1125" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/activity_result.xml" value="0.1125" />
         <entry key="app/src/main/res/drawable/blue_border.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/btn_heart.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/button_round.xml" value="0.147" />
@@ -20,18 +23,10 @@
         <entry key="app/src/main/res/layout/activity_review.xml" value="0.2660868326822917" />
         <entry key="app/src/main/res/layout/activity_review_detail.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_search_register.xml" value="0.2681320190429688" />
-        <entry key="app/src/main/res/layout/course_detail_grid_single.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/course_review.xml" value="0.27794871794871795" />
-        <entry key="app/src/main/res/layout/courselist_grid_single.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/courselist_result_grid_single.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/griditem.xml" value="0.27794871794871795" />
-        <entry key="app/src/main/res/layout/history/layout/activity_exercise_course_list.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/history/layout/activity_result.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/history/layout/exercise_list_single_item.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/history/layout/exercise_single_item_list.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/history/layout/my_course.xml" value="0.27794871794871795" />
         <entry key="app/src/main/res/layout/history/layout/my_course_grid_single.xml" value="0.13697916666666668" />
-        <entry key="app/src/main/res/layout/history/layout/result_item.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/my_course.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/my_course_grid_single.xml" value="0.335" />
         <entry key="app/src/main/res/layout/playing/layout/activity_courselist.xml" value="0.13697916666666668" />
@@ -40,8 +35,6 @@
         <entry key="app/src/main/res/layout/playing/layout/small_category_order.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/playing/layout/small_category_order_grid_single.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/register/layout/activity_playing_register.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/register/layout/activity_register.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/register/layout/activity_search_register.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/register_course.xml" value="0.3100097181729835" />
         <entry key="app/src/main/res/layout/small_category.xml" value="0.25" />
         <entry key="app/src/main/res/layout/small_category_grid_single.xml" value="0.335" />

@@ -9,14 +9,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.coursefinder.searchVo.ImageList;
+import com.example.coursefinder.searchVo.PlaceList;
+
+import java.util.ArrayList;
 
 public class ResultAdapter extends BaseAdapter {
 
     Context context;
-    int[] image;
-    String[] placeName;
+    int [] image;
+    ArrayList<PlaceList> placeName;
 
-    public ResultAdapter(Context context, int[] image, String[] placeName) {
+    public ResultAdapter(Context context, int [] image, ArrayList<PlaceList> placeName) {
         this.context = context;
         this.image = image;
         this.placeName = placeName;
@@ -26,7 +32,7 @@ public class ResultAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return placeName.length;
+        return placeName.size();
     }
 
     @Override
@@ -52,8 +58,8 @@ public class ResultAdapter extends BaseAdapter {
         ImageView courseimgIv = convertView.findViewById(R.id.courseImg);
         TextView courseNameTv = convertView.findViewById(R.id.courseName);
 
-        courseimgIv.setImageResource(image[i]);
-        courseNameTv.setText(placeName[i]);
+        courseimgIv.setImageResource(image[0]);
+        courseNameTv.setText(placeName.get(i).getTitle());
 
 
         ImageButton imageButton = (ImageButton) convertView.findViewById(R.id.detailBtn);
@@ -61,9 +67,7 @@ public class ResultAdapter extends BaseAdapter {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MainCategory.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                view.getContext().startActivity(intent);
+                Toast.makeText(context, i + "번째 인덱스입니다", Toast.LENGTH_SHORT).show();
             }
         });
         return convertView;

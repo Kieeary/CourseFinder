@@ -50,9 +50,7 @@ public class CourseListGrid extends BaseAdapter{
             Button button1 = (Button)grid.findViewById(R.id.button1);
             Button button2 = (Button)grid.findViewById(R.id.button2);
             Button button3 = (Button)grid.findViewById(R.id.button3);
-            button1.setText(buttonStr[position]);
-            button2.setText(buttonStr[position]);
-            button3.setText(buttonStr[position]);
+
         } else {
             grid = (View) convertView;
         }

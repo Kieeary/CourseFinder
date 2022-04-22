@@ -2,6 +2,7 @@ package com.example.coursefinder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -102,7 +103,7 @@ public class Register extends AppCompatActivity {
                     // 중복 아이디 존재
                     ischked = false;
                     Log.d("TAG", "DUP");
-                    Toast.makeText(getApplicationContext(),"사용가능한 아이디입니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"사용불가능한 아이디입니다", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -125,7 +126,10 @@ public class Register extends AppCompatActivity {
                     // 가입 성공
                     Log.d("TAG", "가입 성공");
                     Log.d("TAG", response.body());
-                 }else{
+                    Intent intent = new Intent(Register.this, Login.class); //현재 액티비티, 이동하고 싶은 액티비티
+                    startActivity(intent); //액티비티 이동
+
+                }else{
                     Log.d("TAG", "가입 실패");
                     Log.d("TAG", response.body());
                 }
