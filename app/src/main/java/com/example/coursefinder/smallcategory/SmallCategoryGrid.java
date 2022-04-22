@@ -18,6 +18,8 @@ public class SmallCategoryGrid extends BaseAdapter{
     private final String[] buttonStr;
     private int[] count;
 
+//    private final String[] foodStr = {"한식", "일식", "중식", "양식"};
+
 public SmallCategoryGrid(Context c,String[] buttonStr, int[] count ) {
         mContext = c;
         this.buttonStr = buttonStr;

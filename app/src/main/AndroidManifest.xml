@@ -17,6 +17,9 @@
         android:theme="@style/Theme.CourseFinder"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Result"
+            android:exported="false" />
+        <activity
             android:name=".exercise.ExerciseUserCourse"
             android:exported="false" />
         <activity

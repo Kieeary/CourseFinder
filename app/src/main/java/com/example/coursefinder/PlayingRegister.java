@@ -2,7 +2,10 @@ package com.example.coursefinder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.coursefinder.adapter.GridAdapter;
@@ -50,6 +53,20 @@ public class PlayingRegister extends AppCompatActivity {
 
         GridAdapter cultureGridAdapter = new GridAdapter(PlayingRegister.this, cultureCategoryNameId, cultureCategoryImgId);
         gridView4.setAdapter(cultureGridAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //Toast.makeText(PlayingRegister.this, "You Clicked on " + categoryNameId[i], Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(PlayingRegister.this, Result.class);
+
+                intent.putExtra("category", categoryNameId[i].toString());
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

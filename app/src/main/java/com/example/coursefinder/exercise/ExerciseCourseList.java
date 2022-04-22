@@ -26,6 +26,8 @@ public class ExerciseCourseList extends AppCompatActivity {
     String[] courseScore = {"5점", "5점"};
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
