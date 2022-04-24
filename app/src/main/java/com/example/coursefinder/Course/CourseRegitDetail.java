@@ -122,8 +122,6 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
                     ci_cata += placeLists.get(i).getCategory()+"@";
                 }
 
-                Log.d("TAG", ci_cata +"임");
-
                 makeCourseInfo(cname, cinfo, price, placeLists.get(0).getImgLink(), finalMember, ci_cata);
                 for(int i=0; i<3; i++){
                     makeCourse(cname , placeLists.get(i), price, i+1, placeLists.get(i).getImgLink());

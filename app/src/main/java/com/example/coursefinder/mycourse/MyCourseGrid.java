@@ -10,17 +10,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.coursefinder.R;
+import com.example.coursefinder.courseVo.CourseInfo;
+import com.example.coursefinder.courseVo.CourseListVo;
+import com.example.coursefinder.courseVo.SelectCourseList;
+
+import java.util.ArrayList;
 
 public class MyCourseGrid extends BaseAdapter{
     private Context mContext;
     private final String[] web;
     private final int[] Imageid;
-
-    public MyCourseGrid(Context c,String[] web,int[] Imageid ) {
+    ArrayList<CourseListVo> courseInfo = new ArrayList<CourseListVo>();
+    public MyCourseGrid(Context c,String[] web,int[] Imageid, SelectCourseList selectCourseList ) {
         mContext = c;
         this.Imageid = Imageid;
         this.web = web;
+        this.courseInfo = selectCourseList.getCourseLists();
     }
 
     @Override
@@ -41,6 +48,7 @@ public class MyCourseGrid extends BaseAdapter{
         return 0;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
@@ -49,7 +57,6 @@ public class MyCourseGrid extends BaseAdapter{
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
-
             grid = new View(mContext);
             grid = inflater.inflate(R.layout.my_course_grid_single, null);
             TextView textView = (TextView) grid.findViewById(R.id.grid_text);
@@ -60,6 +67,9 @@ public class MyCourseGrid extends BaseAdapter{
 
             Button button1 = (Button) grid.findViewById(R.id.button1);
             Button button2 = (Button) grid.findViewById(R.id.button2);
+
+            textView.setText(courseInfo.get(position).getCi_name());
+            Glide.with(grid).load(courseInfo.get(position).getCi_img().replaceAll("\\\\", "")).into(imageView);
 
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override

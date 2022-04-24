@@ -122,6 +122,11 @@ public interface ApiInterface {
             @Query("sch3") String sch3
     );
 
+    @GET("getmycourse.php")
+    Call<String> getMyCourse(   // 내가 만든 코스
+            @Query("miid") String miid
+    );
+
     @FormUrlEncoded
     @POST("update.php")         // 정보 수정용
     Call<String> updateMember(
@@ -129,6 +134,8 @@ public interface ApiInterface {
         @Field("country") String country,
         @Field("name") String name
     );
+
+
 
     @Multipart
     @POST("image.php")
