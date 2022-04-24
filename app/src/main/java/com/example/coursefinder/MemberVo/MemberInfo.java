@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class MemberInfo {
 
-    @SerializedName("id")
+    @SerializedName("mi_id")
     private String id;
 
     public String getId() {

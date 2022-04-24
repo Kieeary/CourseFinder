@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.example.coursefinder.Course.CourseDetail;
 import com.example.coursefinder.Course.CourseListResult;
 import com.example.coursefinder.R;
 
@@ -45,6 +46,9 @@ public class SmallCategoryOrder extends Activity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // ID로 검색 구동 확인용
+                // Intent intent = new Intent(getApplicationContext(), CourseDetail.class);
                 Intent intent = new Intent(getApplicationContext(), CourseListResult.class);
                 startActivity(intent);
             }

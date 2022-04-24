@@ -3,7 +3,10 @@ package com.example.coursefinder.searchVo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PlaceList {
+import java.io.Serializable;
+import java.lang.annotation.Annotation;
+
+public class PlaceList implements Serializable {
     @SerializedName("title")
     @Expose
     private String title;
@@ -23,6 +26,28 @@ public class PlaceList {
     @SerializedName("mapy")
     @Expose
     private int mapy;
+
+    @SerializedName("description")
+    @Expose
+    private String description;
+
+    private String imgLink;
+
+    public String getImgLink() {
+        return imgLink;
+    }
+
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getTitle() {
         return title;
@@ -63,4 +88,6 @@ public class PlaceList {
     public void setMapy(int mapy) {
         this.mapy = mapy;
     }
+
+
 }

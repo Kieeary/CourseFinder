@@ -59,6 +59,7 @@ public interface ApiInterface {
 
 
     // DB연결 용 함수
+    // 로그인
     @FormUrlEncoded     // post일때는 @Field 어노테이션을 이용하는데, @FromUrlEncoded어노테이션을 명시해줘야함
     @POST("Login.php")
     Call<String> doLogin (
@@ -86,24 +87,39 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("courseregit.php")
-    Call<String> insertCourse(
+    @POST("courseinforegit.php")    // courseinfo 테이블 insert
+    Call<String> insertCourseInfo(
             @Field("name") String name,
             @Field("info") String info,
             @Field("price") int price,
             @Field("img") String img,
+            @Field("miid") String miid,
+            @Field("ci_cata") String ci_cata
+    );
+
+    @FormUrlEncoded
+    @POST("courseregit.php")    // courseplace 테이블 insert
+    Call<String> insertCourse(
             @Field("order") int order,
             @Field("pname") String pname,
             @Field("la") double la,
             @Field("lt") double lt,
             @Field("addr") String addr,
-            @Field("pimg") String pimg
+            @Field("pimg") String pimg,
+            @Field("cata") String cata
     );
 
-    @GET("query.php")
-    Call<String> getSelect(     // select , php에서 $_POST[] 를 $_GET[] 으로 바꿔야함
-        @Query("country") String country,
-        @Query("name") String name
+    @GET("coursedetail.php")
+    Call<String> getcoursedetail(   // courseDetail 가져오기(검색 리스트에서 1개를 선택 하면 idx값을 갖지고 select
+            @Query("ciid") String ciid
+    );
+
+
+    @GET("courssearch.php")
+    Call<String> searchCourse(      // 코스 검색 (일단 키워드는 3개로 고정해둠, 차후에 4개로 늘릴것임)
+            @Query("sch1") String sch1,
+            @Query("sch2") String sch2,
+            @Query("sch3") String sch3
     );
 
     @FormUrlEncoded

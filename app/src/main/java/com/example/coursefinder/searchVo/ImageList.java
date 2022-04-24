@@ -3,7 +3,9 @@ package com.example.coursefinder.searchVo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ImageList {
+import java.io.Serializable;
+
+public class ImageList implements Serializable {
     @SerializedName("title")
     private String title;
 

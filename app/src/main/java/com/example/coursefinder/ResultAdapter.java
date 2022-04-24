@@ -21,6 +21,7 @@ public class ResultAdapter extends BaseAdapter {
     Context context;
     int [] image;
     ArrayList<PlaceList> placeName;
+    private ArrayList<PlaceList> placeLists = new ArrayList<PlaceList>();
 
     public ResultAdapter(Context context, int [] image, ArrayList<PlaceList> placeName) {
         this.context = context;
@@ -67,7 +68,6 @@ public class ResultAdapter extends BaseAdapter {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, i + "번째 인덱스입니다", Toast.LENGTH_SHORT).show();
             }
         });
         return convertView;

@@ -3,9 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_course_detail.xml" value="0.2" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_courselist_result.xml" value="0.13854166666666667" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_main_category.xml" value="0.1" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_result.xml" value="0.1125" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_review.xml" value="0.1125" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_review_detail.xml" value="0.1" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/course_detail_grid_single.xml" value="0.1" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/course_review.xml" value="0.1" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/courselist_result_grid_single.xml" value="0.2" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/activity_course_regit_detail.xml" value="0.1359375" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/activity_result.xml" value="0.1125" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/playing/layout/small_category.xml" value="0.1" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/playing/layout/small_category_grid_single.xml" value="0.1" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/ranking/layout/activity_ranking.xml" value="0.1" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/register/layout/activity_playing_register.xml" value="0.13854166666666667" />
         <entry key="app/src/main/res/drawable/blue_border.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/btn_heart.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/button_round.xml" value="0.147" />
