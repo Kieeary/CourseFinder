@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,7 +47,7 @@ public class Result extends AppCompatActivity {
     private static int cnt = 0;
     private static boolean isupdated = false;
     ListView listView;
-    ImageButton imageButton;
+//    ImageButton imageButton;
 
     ListView listView2;
 
@@ -79,11 +80,33 @@ public class Result extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         listView = (ListView)findViewById(R.id.listView);
-        imageButton = (ImageButton)findViewById(R.id.detailBtn);
+//        imageButton = (ImageButton)findViewById(R.id.detailBtn);
 
         listView2 = (ListView)findViewById(R.id.listView2);
 
         listView3 = (ListView)findViewById(R.id.listView3);
+
+        // onClicklistner -> onitemClickListner 변경
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        listView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Gson gson = new Gson();
 

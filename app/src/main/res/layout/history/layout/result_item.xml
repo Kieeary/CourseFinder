@@ -40,16 +40,16 @@
 
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/detailBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="5dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/img">
+<!--        <ImageButton-->
+<!--            android:id="@+id/detailBtn"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/img">-->
 
-        </ImageButton>
+<!--        </ImageButton>-->
 
 
     </LinearLayout>

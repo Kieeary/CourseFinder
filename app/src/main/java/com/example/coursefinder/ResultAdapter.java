@@ -53,7 +53,7 @@ public class ResultAdapter extends BaseAdapter {
         }
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.exercise_list_single_item, null);
+            convertView = inflater.inflate(R.layout.result_item, null);
         }
 
         ImageView courseimgIv = convertView.findViewById(R.id.courseImg);
@@ -63,13 +63,13 @@ public class ResultAdapter extends BaseAdapter {
         courseNameTv.setText(placeName.get(i).getTitle());
 
 
-        ImageButton imageButton = (ImageButton) convertView.findViewById(R.id.detailBtn);
-
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
+//        ImageButton imageButton = (ImageButton) convertView.findViewById(R.id.detailBtn);
+//
+//        imageButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
         return convertView;
     }
 }
