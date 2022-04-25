@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.MypageFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:text="마이페이지"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="283dp"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/userImg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="이름"
+                android:textAlignment="center"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="50dp"
+                tools:layout_editor_absoluteY="80dp" />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/courseNum"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="이용 코스"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="50dp"
+                        tools:layout_editor_absoluteY="80dp" />
+
+                    <TextView
+                        android:id="@+id/bookmarkNum"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="즐겨찾기"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/cNum"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="00"
+                        android:textAlignment="center"
+                        tools:layout_editor_absoluteX="50dp"
+                        tools:layout_editor_absoluteY="80dp" />
+
+                    <TextView
+                        android:id="@+id/bNum"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="00"
+                        android:textAlignment="center"
+                        tools:layout_editor_absoluteX="50dp"
+                        tools:layout_editor_absoluteY="80dp" />
+
+
+                </TableRow>
+
+            </TableLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="361dp"
+            android:layout_height="244dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="계정 관리" />
+
+            <Button
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="개인 정보" />
+
+            <Button
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="리뷰 관리" />
+
+            <Button
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="즐겨찾기 관리" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>
