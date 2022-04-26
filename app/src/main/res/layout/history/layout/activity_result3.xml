@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Result">
+    tools:context=".Result3">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +12,8 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView1"
+            android:text="영화관"
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:gravity="center"
@@ -20,7 +21,7 @@
             android:textAlignment="center" />
 
         <ListView
-            android:id="@+id/listView"
+            android:id="@+id/listView3"
             android:layout_width="match_parent"
             android:layout_height="500dp">
 
@@ -32,9 +33,9 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/next1"
+                android:id="@+id/next3"
                 android:layout_margin="10dp"
-                android:text="다음 카테고리"
+                android:text="코스 저장완료"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
@@ -42,7 +43,7 @@
             </Button>
 
             <Button
-                android:id="@+id/back1"
+                android:id="@+id/back3"
                 android:layout_margin="10dp"
                 android:text="이전 카테고리"
                 android:layout_width="match_parent"
@@ -51,11 +52,8 @@
 
             </Button>
 
-
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 </LinearLayout>

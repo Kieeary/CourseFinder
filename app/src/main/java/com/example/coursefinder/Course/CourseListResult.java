@@ -74,7 +74,7 @@ public class CourseListResult extends Activity {
 
                     // 어텝터 호출
                     Log.d("TAG", "ADAPTER");
-                    CourseListResultGrid adapter = new CourseListResultGrid(CourseListResult.this, buttonStr, schCourseResults.getCourseLists());
+                    CourseListResultGrid adapter = new CourseListResultGrid(CourseListResult.this, buttonStr);
                     grid=(GridView)findViewById(R.id.grid);
                     grid.setAdapter(adapter);
                     grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -16,7 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CourseFinder"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".Result3"
+            android:exported="false" />
+        <activity
+            android:name=".Result2"
+            android:exported="false" />
         <activity
             android:name=".MainCategory"
             android:exported="false" />

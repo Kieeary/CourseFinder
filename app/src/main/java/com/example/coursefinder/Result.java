@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -41,17 +42,20 @@ import retrofit2.Response;
 // 받아온 입력값들을 바탕으로 검색을 돌려서 , ListView형태로 보여주는 클래스. 
 // 검색 결과들을 클릭해서 객체에 담아 준 후에 CourseRegitDetail로 이동해야 함
 // 미완성임,
+
 public class Result extends AppCompatActivity {
 
     String TAG = "TAG";
     private static int cnt = 0;
     private static boolean isupdated = false;
     ListView listView;
+
+    Button next1;
 //    ImageButton imageButton;
 
-    ListView listView2;
-
-    ListView listView3;
+//    ListView listView2;
+//
+//    ListView listView3;
 
     private PlaceSearchResult placeSearchResult;
     private ImageSearchResult imageSearchResult;
@@ -61,16 +65,17 @@ public class Result extends AppCompatActivity {
 
     String results;
     String imgResults;
-    String [] schNames = {"한식", "카페", "영화관"};
+//    String [] schNames = {"한식", "카페", "영화관"};
+String [] schNames = {"한식"};
 
     int[] image = {R.drawable.map};
     String[] placeName = {"가게이름"};
 
-    int[] image2 = {R.drawable.map};
-    String[] placeName2 = {"가게이름"};
-
-    int[] image3 = {R.drawable.map};
-    String[] placeName3 = {"가게이름"};
+//    int[] image2 = {R.drawable.map};
+//    String[] placeName2 = {"가게이름"};
+//
+//    int[] image3 = {R.drawable.map};
+//    String[] placeName3 = {"가게이름"};
 
     private SharedPreferences sharedPreferences;
     private MemberLogInResults loginMember;
@@ -80,11 +85,13 @@ public class Result extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         listView = (ListView)findViewById(R.id.listView);
+        next1 = (Button)findViewById(R.id.next1);
+
 //        imageButton = (ImageButton)findViewById(R.id.detailBtn);
 
-        listView2 = (ListView)findViewById(R.id.listView2);
-
-        listView3 = (ListView)findViewById(R.id.listView3);
+//        listView2 = (ListView)findViewById(R.id.listView2);
+//
+//        listView3 = (ListView)findViewById(R.id.listView3);
 
 
 
@@ -125,11 +132,11 @@ public class Result extends AppCompatActivity {
         ResultAdapter resultAdapter = new ResultAdapter(Result.this, image, orderschResults.get(1));
         listView.setAdapter(resultAdapter);
 
-        ResultAdapter resultAdapter2 = new ResultAdapter(Result.this, image2, orderschResults.get(2));
-        listView2.setAdapter(resultAdapter2);
-
-        ResultAdapter resultAdapter3 = new ResultAdapter(Result.this, image3, orderschResults.get(3));
-        listView3.setAdapter(resultAdapter3);
+//        ResultAdapter resultAdapter2 = new ResultAdapter(Result.this, image2, orderschResults.get(2));
+//        listView2.setAdapter(resultAdapter2);
+//
+//        ResultAdapter resultAdapter3 = new ResultAdapter(Result.this, image3, orderschResults.get(3));
+//        listView3.setAdapter(resultAdapter3);
 
 
         // onClicklistner -> onitemClickListner 변경
@@ -146,32 +153,40 @@ public class Result extends AppCompatActivity {
             }
         });
 
-        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        next1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if(placeLists.indexOf(resultAdapter2.getItem(i)) == -1){
-                    placeLists.add(resultAdapter2.getItem(i));
-                }else {
-                    placeLists.remove(resultAdapter2.getItem(i));
-                    Log.d("TAG", "제거됨");
-                }
-                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                Intent intent = new Intent(Result.this, Result2.class);
+                startActivity(intent);
             }
         });
 
-        listView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("TAG", placeLists.indexOf(resultAdapter3.getItem(i))+" ");
-                if(placeLists.indexOf(resultAdapter3.getItem(i)) == -1){
-                    placeLists.add(resultAdapter3.getItem(i));
-                }else {
-                    placeLists.remove(resultAdapter3.getItem(i));
-                    Log.d("TAG", "제거됨");
-                }
-
-            }
-        });
+//        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                if(placeLists.indexOf(resultAdapter2.getItem(i)) == -1){
+//                    placeLists.add(resultAdapter2.getItem(i));
+//                }else {
+//                    placeLists.remove(resultAdapter2.getItem(i));
+//                    Log.d("TAG", "제거됨");
+//                }
+//                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        listView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Log.d("TAG", placeLists.indexOf(resultAdapter3.getItem(i))+" ");
+//                if(placeLists.indexOf(resultAdapter3.getItem(i)) == -1){
+//                    placeLists.add(resultAdapter3.getItem(i));
+//                }else {
+//                    placeLists.remove(resultAdapter3.getItem(i));
+//                    Log.d("TAG", "제거됨");
+//                }
+//
+//            }
+//        });
 
 
 
