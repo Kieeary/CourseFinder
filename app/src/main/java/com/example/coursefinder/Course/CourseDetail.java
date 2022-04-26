@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,9 +44,47 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CourseDetail extends AppCompatActivity implements OnMapReadyCallback {
+    GridView grid;
+    String[] web = {
+            "Google",
+            "Github",
+            "Instagram",
+            "Facebook",
+            "Flickr",
+            "Pinterest",
+            "Quora",
+            "Twitter",
+            "Vimeo",
+            "WordPress",
+            "Youtube",
+            "Stumbleupon",
+            "SoundCloud",
+            "Reddit",
+            "Blogger"
+
+    } ;
+    int[] imageId = {
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+
+    };
+
+
 
     private ArrayList<CourseInfo> coursePlaces = new ArrayList<CourseInfo>();
-    private ArrayList<PlaceList> placeLists = new ArrayList<>();
     // 네이버맵 지도 객체
     private NaverMap navermap;
 
@@ -72,7 +111,7 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         cinfo = (TextView) findViewById(R.id.textView7);
 
 
-        String ciid = "47";
+        String ciid = "55";
          //코스 검색 후에 상세보기
         // idx의 값을 받아와야 함
         // idx를 통해서 courseplaces 테이블에서 받아온 장소들의 리스트들을 coursePlaces ArrayList에 하나씩 담는다.
@@ -89,11 +128,6 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
             coursePlaces.add(selectFromView.getCourseLists().get(i));
         }
 
-        // 코스의 이름 가격 설명
-        cname.setText(coursePlaces.get(0).getCi_name().toString());
-        cinfo.setText(coursePlaces.get(0).getCi_info().toString());
-        cprice.setText(coursePlaces.get(0).getCi_price()+"");
-
 
         // 지도를 띄움
 
@@ -105,8 +139,13 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         }
         mapFragment.getMapAsync(this);
 
-
-
+        cname.setText(coursePlaces.get(0).getCi_name());
+        cprice.setText(coursePlaces.get(0).getCi_price()+"");
+        cinfo.setText(coursePlaces.get(0).getCi_info());
+        // gridview리스트로 보여준다
+        CourseDetailGrid adapter = new CourseDetailGrid(CourseDetail.this, web, imageId, coursePlaces);
+        grid=(GridView)findViewById(R.id.grid);
+        grid.setAdapter(adapter);
 
 
         //작성자 이름 클릭시 작성자가 지금까지 작성한 리뷰로 넘어감

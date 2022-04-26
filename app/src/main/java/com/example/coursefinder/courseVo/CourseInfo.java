@@ -30,6 +30,16 @@ public class CourseInfo {
     private String cp_cata;
     @SerializedName("mi_id")
     private String mi_id;
+    @SerializedName("cp_img")
+    private String cp_img;
+
+    public String getCp_img() {
+        return cp_img;
+    }
+
+    public void setCp_img(String cp_img) {
+        this.cp_img = cp_img;
+    }
 
     public int getCi_idx() {
         return ci_idx;

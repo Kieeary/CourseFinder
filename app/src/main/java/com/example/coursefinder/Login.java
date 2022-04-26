@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
 //        로그아웃 시 sharedpreference 전부 삭제
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//       SharedPreferences.Editor editor = sharedPreferences.edit();
 //        editor.clear();    editor.commit();
 
         String userId = sharedPreferences.getString("MemberInfo", null);

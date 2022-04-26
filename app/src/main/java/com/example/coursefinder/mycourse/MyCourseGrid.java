@@ -37,9 +37,9 @@ public class MyCourseGrid extends BaseAdapter{
     }
 
     @Override
-    public Object getItem(int position) {
+    public CourseListVo getItem(int position) {
         // TODO Auto-generated method stub
-        return null;
+        return courseInfo.get(position);
     }
 
     @Override
@@ -76,9 +76,9 @@ public class MyCourseGrid extends BaseAdapter{
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext.getApplicationContext(), CourseReview.class);
                     intent.putExtra("courseName", textView.getText());
+                    // intent.putExtra("courseName", textView.getText());
                     mContext.startActivity(intent);
                 }
-
             });
 
         } else {

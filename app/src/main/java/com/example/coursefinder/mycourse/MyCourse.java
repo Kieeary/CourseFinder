@@ -15,6 +15,7 @@ import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.MemberVo.MemberInfo;
 import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
+import com.example.coursefinder.courseVo.CourseListVo;
 import com.example.coursefinder.courseVo.SelectCourseList;
 import com.example.coursefinder.courseVo.SelectFromView;
 import com.example.coursefinder.searchapi.ApiClient3;
@@ -134,10 +135,11 @@ public class MyCourse extends Activity {
                     grid=(GridView)findViewById(R.id.grid);
                     grid.setAdapter(adapter);
                     grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view,
                                                 int position, long id) {
+                            CourseListVo selectedCourse = adapter.getItem(position);
+                            Log.d("TAG", selectedCourse.getCi_idx()+" ");
                             Toast.makeText(MyCourse.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
 
                         }

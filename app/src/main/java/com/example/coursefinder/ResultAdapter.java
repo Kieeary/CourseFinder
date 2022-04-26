@@ -20,8 +20,7 @@ public class ResultAdapter extends BaseAdapter {
 
     Context context;
     int [] image;
-    ArrayList<PlaceList> placeName;
-    private ArrayList<PlaceList> placeLists = new ArrayList<PlaceList>();
+    ArrayList<PlaceList> placeName = new ArrayList<PlaceList>();;
 
     public ResultAdapter(Context context, int [] image, ArrayList<PlaceList> placeName) {
         this.context = context;
@@ -37,8 +36,8 @@ public class ResultAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public PlaceList getItem(int i) {
+        return placeName.get(i);
     }
 
     @Override

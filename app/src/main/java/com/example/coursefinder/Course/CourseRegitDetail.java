@@ -4,14 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.coursefinder.MemberVo.MemberLogInResults;
@@ -41,6 +46,44 @@ import retrofit2.Response;
 
 
 public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCallback {
+    GridView grid;
+    String[] web = {
+            "Google",
+            "Github",
+            "Instagram",
+            "Facebook",
+            "Flickr",
+            "Pinterest",
+            "Quora",
+            "Twitter",
+            "Vimeo",
+            "WordPress",
+            "Youtube",
+            "Stumbleupon",
+            "SoundCloud",
+            "Reddit",
+            "Blogger"
+
+    } ;
+    int[] imageId = {
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+            R.drawable.course_image,
+
+    };
+
     private ArrayList<PlaceList> placeLists = new ArrayList<>();
     private static int cnt=0;
     // 네이버맵 지도 객체
@@ -88,6 +131,18 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
         loginMember = gson.fromJson(member, MemberLogInResults.class);
         member = loginMember.getMemberInfo().get(0).getId();
 
+        // 코스 정보 입력시 한줄로만 간단하게 입력할 수 있도록 엔터키 처리(키보드 내리기기능).
+        inputCinfo.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (i == KeyEvent.KEYCODE_ENTER)) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(inputCinfo.getWindowToken(), 0);    //hide keyboard
+                    return true;
+                }
+                return false;
+            }
+        });
 
         FragmentManager fm = getSupportFragmentManager();
         MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.map);
@@ -99,13 +154,19 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
 
         String finalMember = member;
 
-        /**
-         * 사용자가 지정한 정보들이 담겨져 있는 ArrayList placeLists에 있는 장소들을 리스트로 보여줘야 합니다
-         * */
+        // gridview리스트로 보여준다
+        CourseRegitGrid adapter = new CourseRegitGrid(CourseRegitDetail.this, web, imageId, placeLists);
+        grid=(GridView)findViewById(R.id.grid);
+        grid.setAdapter(adapter);
+        Log.d("TAG", grid.getCount()+" ");
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-
-
-
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(CourseRegitDetail.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // 코스 이름이나 설명 edittext에서 받아오는 형식
         // 확인 버튼 클릭 << db에 저장
@@ -113,6 +174,7 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String results = null;
                 cname = inputCname.getText().toString();
                 cinfo = inputCinfo.getText().toString();
                 price = Integer.parseInt(inputPrice.getText().toString());
@@ -122,10 +184,20 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
                     ci_cata += placeLists.get(i).getCategory()+"@";
                 }
 
-                makeCourseInfo(cname, cinfo, price, placeLists.get(0).getImgLink(), finalMember, ci_cata);
-                for(int i=0; i<3; i++){
-                    makeCourse(cname , placeLists.get(i), price, i+1, placeLists.get(i).getImgLink());
+               //  makeCourseInfo(cname, cinfo, price, placeLists.get(0).getImgLink(), finalMember, ci_cata);
+                try{
+                    results = new MakeCourseInfo(cname, cinfo, price, placeLists.get(0).getImgLink(), finalMember, ci_cata).execute().get();
+                }catch(Exception e){
+                    Log.d("TAG", "INSERT FAILED");
                 }
+
+                Log.d("TAG", "MAKECOURSE START");
+                if(results != null){
+                    for(int i=0; i<3; i++){
+                        makeCourse(cname , placeLists.get(i), price, i+1, placeLists.get(i).getImgLink());
+                    }
+                }
+
             }
         });
     }
@@ -243,12 +315,12 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful() && (response.body().equals("1")) ){
-
                     Log.d("TAG", "SUCESS");
                     cnt++;
                     Log.d("TAG", cnt +"in retrofit");
                     if(cnt==3){
                         Log.d("TAG", "전부 다 들어간 상태");
+                        cnt = 0;
                         Intent intent = new Intent(CourseRegitDetail.this, MyCourse.class);
                         startActivity(intent);
                     }

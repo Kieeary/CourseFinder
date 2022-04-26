@@ -22,8 +22,12 @@
                 android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:gravity="center"
+                android:ems="1"
                 android:text="코스 이름"
-                android:textSize="20dp"/>
+                android:maxLines="1"
+                android:textSize="20sp"
+                android:inputType="text"
+              />
         </LinearLayout>
 
 
@@ -55,7 +59,11 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:ems="1"
                 android:gravity="center"
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:inputType="text"
                 android:text="비용" />
 
             <EditText
@@ -63,7 +71,12 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:ems="1"
                 android:gravity="center"
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
                 android:text="간단 설명" />
 
         </LinearLayout>

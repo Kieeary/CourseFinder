@@ -86,61 +86,40 @@ public class Result extends AppCompatActivity {
 
         listView3 = (ListView)findViewById(R.id.listView3);
 
-        // onClicklistner -> onitemClickListner 변경
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        listView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         Gson gson = new Gson();
 
         try{
-
             // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
             for(int i=0; i<3; i++){
                 results = new Result.GetSchResult(schNames[i]).execute().get();
                 placeSearchResult = gson.fromJson(results, PlaceSearchResult.class);
                 orderschResults.put(i+1, placeSearchResult.getPlaceLists());
             }
+        }catch(Exception e){
+            Log.d(TAG, "장소 검색 실패" + e.getMessage());
+        }
 
 
+        try {
             // 이미지 검색, 보안이 필요할 듯 하여 주석처리 초당 10건 제한이 있음
-            for(int j=1; j<=3; j++) {
+            for (int j = 1; j <= 3; j++) {
                 for (int i = 0; i < 4; i++) {
                     imgResults = new Result.GetImgResult(orderschResults.get(j).get(i).getTitle().replaceAll("<b>", "").replaceAll("</b>", "")).execute().get();
                     imageSearchResult = gson.fromJson(imgResults, ImageSearchResult.class);
                     if (imageSearchResult.getImgResult() == null)
-                       // imgLinks.add("empty");
+                        // imgLinks.add("empty");
                         orderschResults.get(j).get(i).setImgLink("empty");
-                    else orderschResults.get(j).get(i).setImgLink(imageSearchResult.getImgResult().get(0).getLink());
-                        //imgLinks.add(imageSearchResult.getImgResult().get(0).getLink());
+                    else
+                        orderschResults.get(j).get(i).setImgLink(imageSearchResult.getImgResult().get(0).getLink());
+                    //imgLinks.add(imageSearchResult.getImgResult().get(0).getLink());
                 }
             }
-
         }catch(Exception e){
-            Log.d(TAG, "가져오지못함" + e.getMessage());
+            Log.d(TAG, "이미지 검색 실패" + e.getMessage());
         }
 
-        // courseinfo 와 courseplace에 저장할 장소들(사용자가 클릭한 장소들을 담아서 전달함)
-        placeLists.add(orderschResults.get(1).get(0));
-        placeLists.add(orderschResults.get(2).get(0));
-        placeLists.add(orderschResults.get(3).get(0));
 
 
         ResultAdapter resultAdapter = new ResultAdapter(Result.this, image, orderschResults.get(1));
@@ -152,6 +131,50 @@ public class Result extends AppCompatActivity {
         ResultAdapter resultAdapter3 = new ResultAdapter(Result.this, image3, orderschResults.get(3));
         listView3.setAdapter(resultAdapter3);
 
+
+        // onClicklistner -> onitemClickListner 변경
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(placeLists.indexOf(resultAdapter.getItem(i)) == -1){
+                    placeLists.add(resultAdapter.getItem(i));
+                }else {
+                    placeLists.remove(resultAdapter.getItem(i));
+                    Log.d("TAG", "제거됨");
+                }
+                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(placeLists.indexOf(resultAdapter2.getItem(i)) == -1){
+                    placeLists.add(resultAdapter2.getItem(i));
+                }else {
+                    placeLists.remove(resultAdapter2.getItem(i));
+                    Log.d("TAG", "제거됨");
+                }
+                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        listView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("TAG", placeLists.indexOf(resultAdapter3.getItem(i))+" ");
+                if(placeLists.indexOf(resultAdapter3.getItem(i)) == -1){
+                    placeLists.add(resultAdapter3.getItem(i));
+                }else {
+                    placeLists.remove(resultAdapter3.getItem(i));
+                    Log.d("TAG", "제거됨");
+                }
+
+            }
+        });
+
+
+
         Intent intent = getIntent();
 
         TextView textView = findViewById(R.id.textView1);
@@ -160,9 +183,12 @@ public class Result extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Result.this, CourseRegitDetail.class);
-                Log.d("TAG", placeLists.size()+" ");
-                intent.putExtra("placeList", placeLists);
-                startActivity(intent);
+                if(placeLists.size() > 0){
+                    intent.putExtra("placeList", placeLists);
+                    startActivity(intent);
+                }else{
+                    Log.d("TAG", "장소 등록하세요");
+                }
             }
         });
     }

@@ -40,7 +40,7 @@ public class CourseListResult extends Activity {
         // 검색어를 받아온 후에 함수 매개변수로 이용
         searchCourse("한식", "카페", "영화관");
 
-
+        /*
         CourseListResultGrid adapter = new CourseListResultGrid(CourseListResult.this, buttonStr);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
@@ -54,6 +54,8 @@ public class CourseListResult extends Activity {
             }
         });
 
+         */
+
     }
 
     // 매개변수로 검색 키워드를 받아온다
@@ -65,10 +67,22 @@ public class CourseListResult extends Activity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful() && !(response.body().equals("failed"))) {
                     String result = response.body();
-                    Log.d("TAG", "일단 성공 " + response.body());
                     Gson gson = new Gson();
+                    schCourseResults = gson.fromJson(result, SelectCourseList.class);
+
                     // 어텝터 호출
                     Log.d("TAG", "ADAPTER");
+                    CourseListResultGrid adapter = new CourseListResultGrid(CourseListResult.this, buttonStr, schCourseResults.getCourseLists());
+                    grid=(GridView)findViewById(R.id.grid);
+                    grid.setAdapter(adapter);
+                    grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view,
+                                                int position, long id) {
+                            Toast.makeText(CourseListResult.this, "You Clicked at " +buttonStr[+ position], Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }else{
                     Log.d("TAG","조회에 실패함" + response.body() );
                 }

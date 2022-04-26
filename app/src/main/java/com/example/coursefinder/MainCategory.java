@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.coursefinder.Course.CourseDetail;
 import com.example.coursefinder.exercise.ExerciseCourseList;
 import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.ranking.Ranking;
@@ -39,7 +40,7 @@ public class MainCategory extends AppCompatActivity {
         courseRecommend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainCategory.this, SmallCategory.class); //현재 액티비티, 이동하고 싶은 액티비티
+                Intent intent = new Intent(MainCategory.this, CourseDetail.class); //현재 액티비티, 이동하고 싶은 액티비티
                 startActivity(intent); //액티비티 이동
             }
         });
