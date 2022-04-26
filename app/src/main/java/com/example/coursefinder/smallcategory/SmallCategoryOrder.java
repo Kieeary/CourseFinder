@@ -10,6 +10,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.coursefinder.Course.CourseDetail;
+import com.example.coursefinder.Course.CourseListMapping;
 import com.example.coursefinder.Course.CourseListResult;
 import com.example.coursefinder.R;
 
@@ -49,7 +50,7 @@ public class SmallCategoryOrder extends Activity {
 
                 // ID로 검색 구동 확인용
                 // Intent intent = new Intent(getApplicationContext(), CourseDetail.class);
-                Intent intent = new Intent(getApplicationContext(), CourseListResult.class);
+                Intent intent = new Intent(getApplicationContext(), CourseListMapping.class);
                 startActivity(intent);
             }
 

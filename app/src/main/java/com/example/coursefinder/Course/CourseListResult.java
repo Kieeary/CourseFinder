@@ -27,7 +27,9 @@ public class CourseListResult extends Activity {
 
     GridView grid;
     String[] buttonStr={
-
+            "강남",
+            "홍대",
+            "건대"
     };
 
     private SelectCourseList schCourseResults = new SelectCourseList();
