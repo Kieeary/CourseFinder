@@ -16,12 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CourseFinder"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".Result3"
-            android:exported="false" />
-        <activity
-            android:name=".Result2"
-            android:exported="false" />
+
         <activity
             android:name=".MainCategory"
             android:exported="false" />
@@ -68,11 +63,12 @@
         <activity android:name=".Course.CourseList" />
         <activity android:name=".Course.CourseListResult" />
         <activity android:name=".Course.SearchRegister" />
-        <activity android:name=".Course.CourseListMapping" />
         <activity android:name=".Review.Review" />
         <activity android:name=".Review.ReviewDetail" />
         <activity android:name=".ranking.Ranking" />
         <activity android:name=".Course.CourseRegitDetail" />
+        <activity android:name=".Result2"/>
+        <activity android:name=".Result3"/>
     </application>
 
 </manifest>
