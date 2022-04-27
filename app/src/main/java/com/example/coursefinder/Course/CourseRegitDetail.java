@@ -127,7 +127,7 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
         cancelBtn = (Button)findViewById(R.id.cancel);
         inputCname = (EditText)findViewById(R.id.course_name);
         inputCinfo = (EditText)findViewById(R.id.textView7);
-        inputPrice = (EditText)findViewById(R.id.textView8);
+        inputPrice = (EditText)findViewById(R.id.textView8);    // 비용은 반드시 정수로
 
         // 로그인 정보를 받아온다.
         sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
