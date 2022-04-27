@@ -99,11 +99,10 @@ String [] schNames = {"한식"};
 
         try{
             // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
-            for(int i=0; i<3; i++){
-                results = new Result.GetSchResult(schNames[i]).execute().get();
-                placeSearchResult = gson.fromJson(results, PlaceSearchResult.class);
-                orderschResults.put(i+1, placeSearchResult.getPlaceLists());
-            }
+            results = new GetSchResult(schNames[0]).execute().get();
+            placeSearchResult = gson.fromJson(results, PlaceSearchResult.class);
+            orderschResults.put(1, placeSearchResult.getPlaceLists());
+
         }catch(Exception e){
             Log.d(TAG, "장소 검색 실패" + e.getMessage());
         }
@@ -111,23 +110,17 @@ String [] schNames = {"한식"};
 
         try {
             // 이미지 검색, 보안이 필요할 듯 하여 주석처리 초당 10건 제한이 있음
-            for (int j = 1; j <= 3; j++) {
-                for (int i = 0; i < 4; i++) {
-                    imgResults = new Result.GetImgResult(orderschResults.get(j).get(i).getTitle().replaceAll("<b>", "").replaceAll("</b>", "")).execute().get();
-                    imageSearchResult = gson.fromJson(imgResults, ImageSearchResult.class);
-                    if (imageSearchResult.getImgResult() == null)
-                        // imgLinks.add("empty");
-                        orderschResults.get(j).get(i).setImgLink("empty");
-                    else
-                        orderschResults.get(j).get(i).setImgLink(imageSearchResult.getImgResult().get(0).getLink());
-                    //imgLinks.add(imageSearchResult.getImgResult().get(0).getLink());
+            for (int i = 0; i < 4; i++) {
+                imgResults = new GetImgResult(orderschResults.get(1).get(i).getTitle().replaceAll("<b>", "").replaceAll("</b>", "")).execute().get();
+                imageSearchResult = gson.fromJson(imgResults, ImageSearchResult.class);
+                if (imageSearchResult.getImgResult() == null)
+                    orderschResults.get(1).get(i).setImgLink("empty");
+                else
+                    orderschResults.get(1).get(i).setImgLink(imageSearchResult.getImgResult().get(0).getLink());
                 }
-            }
         }catch(Exception e){
             Log.d(TAG, "이미지 검색 실패" + e.getMessage());
         }
-
-
 
         ResultAdapter resultAdapter = new ResultAdapter(Result.this, image, orderschResults.get(1));
         listView.setAdapter(resultAdapter);
@@ -157,6 +150,12 @@ String [] schNames = {"한식"};
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Result.this, Result2.class);
+                if(placeLists.size() > 0){
+                    intent.putExtra("Selectedplace", placeLists);
+                    startActivity(intent);
+                }else{
+                    Log.d("TAG", "장소 등록하세요");
+                }
                 startActivity(intent);
             }
         });
@@ -199,7 +198,7 @@ String [] schNames = {"한식"};
             public void onClick(View view) {
                 Intent intent = new Intent(Result.this, CourseRegitDetail.class);
                 if(placeLists.size() > 0){
-                    intent.putExtra("placeList", placeLists);
+                    intent.putExtra("Selectedplace", placeLists);
                     startActivity(intent);
                 }else{
                     Log.d("TAG", "장소 등록하세요");

@@ -115,7 +115,12 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
         setContentView(R.layout.activity_course_regit_detail);
         // 검색 후 선택된 장소들을 받아온다
         Intent intent = getIntent();
-        placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("placeList");
+        placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
+
+
+        for(int i=0; i<placeLists.size(); i++){
+            Log.d("TAG" , "이미지 링크 : " + placeLists.get(i).getImgLink());
+        }
 
 
         nextBtn = (Button)findViewById(R.id.next);

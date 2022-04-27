@@ -63,6 +63,7 @@ public class CourseRegitGrid extends BaseAdapter {
             imageView.setImageResource(Imageid[position]);
 
             textView.setText(placeLists.get(position).getTitle().replaceAll("<b>", " ").replaceAll("</b>", " "));
+            textView2.setText(placeLists.get(position).getAddress());
             if(placeLists.get(position).getImgLink()!= null){
                 Glide.with(grid).load(placeLists.get(position).getImgLink()).into(imageView);
             }

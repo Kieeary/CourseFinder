@@ -59,7 +59,7 @@ public class ResultAdapter extends BaseAdapter {
         TextView courseNameTv = convertView.findViewById(R.id.courseName);
 
         courseimgIv.setImageResource(image[0]);
-        courseNameTv.setText(placeName.get(i).getTitle());
+        courseNameTv.setText(placeName.get(i).getTitle().replaceAll("<b>", " ").replaceAll("</b>", " "));
 
 
 //        ImageButton imageButton = (ImageButton) convertView.findViewById(R.id.detailBtn);
