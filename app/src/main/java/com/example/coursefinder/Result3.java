@@ -38,9 +38,9 @@ public class Result3 extends AppCompatActivity {
     private PlaceSearchResult placeSearchResult;
     private ImageSearchResult imageSearchResult;
     private ArrayList<PlaceList> placeLists = new ArrayList<PlaceList>();
-    private ArrayList<PlaceList> selectedplace = new ArrayList<PlaceList>();
-    private Map<Integer, ArrayList<PlaceList>> orderschResults = new HashMap<Integer, ArrayList<PlaceList>>();
 
+    private Map<Integer, ArrayList<PlaceList>> orderschResults = new HashMap<Integer, ArrayList<PlaceList>>();
+    private boolean isBack = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +48,7 @@ public class Result3 extends AppCompatActivity {
 
         ListView listView3;
         Button next3;
+        Button back3;
 
         String [] schNames = {"영화관"};
 
@@ -56,11 +57,11 @@ public class Result3 extends AppCompatActivity {
 
         listView3 = (ListView)findViewById(R.id.listView3);
         next3 = (Button)findViewById(R.id.next3);
+        back3 = (Button)findViewById(R.id.back3);
 
         Intent intent = getIntent();
-        selectedplace = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
-        for(int i=0; i<selectedplace.size(); i++)   Log.d("TAG", selectedplace.get(i).getTitle());
-
+        placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
+        isBack = intent.getBooleanExtra("isBack", false);
 
         Gson gson = new Gson();
 
@@ -98,14 +99,33 @@ public class Result3 extends AppCompatActivity {
         listView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("TAG", placeLists.indexOf(resultAdapter3.getItem(i))+" ");
-                if(placeLists.indexOf(resultAdapter3.getItem(i)) == -1){
-                    placeLists.add(resultAdapter3.getItem(i));
-                }else {
-                    placeLists.remove(resultAdapter3.getItem(i));
-                    Log.d("TAG", "제거됨");
+                if(!isBack){
+                    if(placeLists.indexOf(resultAdapter3.getItem(i)) == -1){
+                        placeLists.add(resultAdapter3.getItem(i));
+                    }else {
+                        placeLists.remove(resultAdapter3.getItem(i));
+                        Log.d("TAG", "제거됨");
+                    }
+                }else{
+                    if(findDup(resultAdapter3, i)){ // 중복된 장소가 잇는 경우 (장소제거)
+                        Log.d("TAG", "중복된 장소가 존재합니다");
+                        placeLists.remove(i);
+                    }else{  // 장소 추가인 경우
+                        Log.d("TAG", "추가 합니다");
+                        placeLists.add(resultAdapter3.getItem(i));
+                    }
                 }
 
+            }
+        });
+
+        back3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Result3.this, Result2.class);
+                intent.putExtra("Selectedplace", placeLists);
+                intent.putExtra("isBack", true);
+                startActivity(intent);
             }
         });
 
@@ -114,15 +134,23 @@ public class Result3 extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Result3.this, CourseRegitDetail.class);
                 if(placeLists.size() > 0){
-                    selectedplace.addAll(placeLists);
-                    intent.putExtra("Selectedplace", selectedplace);
+                    intent.putExtra("Selectedplace", placeLists);
                     startActivity(intent);
-                }else{
+                }else {
                     Log.d("TAG", "장소 등록하세요");
                 }
             }
         });
 
+    }
+
+    public Boolean findDup(ResultAdapter resultAdapter, int idx){
+        for(int i = placeLists.size()-1; i>=0; i--){
+            if(placeLists.get(i).getTitle().equals(resultAdapter.getItem(idx).getTitle())){
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -151,8 +179,6 @@ public class Result3 extends AppCompatActivity {
             return null;
         }
     }
-
-
 
     // 이미지 검색을 위한 클래스
     class GetImgResult extends AsyncTask<Void, Void, String>{

@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_course_detail.xml" value="0.2" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_course_detail.xml" value="0.1" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_courselist_result.xml" value="0.16" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_main_category.xml" value="0.1" />
@@ -14,9 +14,15 @@
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/course_review.xml" value="0.1" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/courselist_result_grid_single.xml" value="0.2" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/activity_course_regit_detail.xml" value="0.1359375" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/activity_exercise_user_course.xml" value="0.14791666666666667" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/activity_image_upload.xml" value="0.2246376811594203" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/activity_result.xml" value="0.1125" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/activity_result3.xml" value="0.12158054711246201" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/activity_walking_map_test.xml" value="0.16458333333333333" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/my_course.xml" value="0.1" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/history/layout/my_course_grid_single.xml" value="0.13854166666666667" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/playing/layout/activity_courselist_mapping.xml" value="0.1" />
+        <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/playing/layout/activity_courselist_mapping_grid_single.xml" value="0.1" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/playing/layout/small_category.xml" value="0.1" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/playing/layout/small_category_grid_single.xml" value="0.1" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/ranking/layout/activity_ranking.xml" value="0.1" />

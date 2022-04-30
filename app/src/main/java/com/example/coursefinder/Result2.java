@@ -38,9 +38,8 @@ public class Result2 extends AppCompatActivity {
     private PlaceSearchResult placeSearchResult;
     private ImageSearchResult imageSearchResult;
     private ArrayList<PlaceList> placeLists = new ArrayList<PlaceList>();
-    private ArrayList<PlaceList> selectedplace = new ArrayList<PlaceList>();
     private Map<Integer, ArrayList<PlaceList>> orderschResults = new HashMap<Integer, ArrayList<PlaceList>>();
-
+    private Boolean isBack = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class Result2 extends AppCompatActivity {
 
         ListView listView2;
         Button next2;
-
+        Button back2;
         String [] schNames = {"카페"};
 
         int[] image2 = {R.drawable.map};
@@ -58,10 +57,10 @@ public class Result2 extends AppCompatActivity {
 
         listView2 = (ListView)findViewById(R.id.listView2);
         next2 = (Button)findViewById(R.id.next2);
+        back2 = (Button)findViewById(R.id.back2);
         Intent intent = getIntent();
-        selectedplace = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
-        Log.d("TAG", selectedplace.size() + selectedplace.get(0).getTitle()+" ");
-
+        placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
+        isBack = intent.getBooleanExtra("isBack", false);
 
 
         Gson gson = new Gson();
@@ -92,22 +91,30 @@ public class Result2 extends AppCompatActivity {
         }
 
 
-
-
-
         ResultAdapter resultAdapter2 = new ResultAdapter(Result2.this, image2, orderschResults.get(2));
         listView2.setAdapter(resultAdapter2);
 
           listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               if(placeLists.indexOf(resultAdapter2.getItem(i)) == -1){
-                   placeLists.add(resultAdapter2.getItem(i));
-                }else {
-                    placeLists.remove(resultAdapter2.getItem(i));
-                    Log.d("TAG", "제거됨");
-               }
-                Toast.makeText(Result2.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+
+                if(!isBack){
+                    if(placeLists.indexOf(resultAdapter2.getItem(i)) == -1){
+                        placeLists.add(resultAdapter2.getItem(i));
+                    }else {
+                        placeLists.remove(resultAdapter2.getItem(i));
+                        Log.d("TAG", "제거됨");
+                    }
+                }else{
+                    if(findDup(resultAdapter2, i)){ // 중복된 장소가 잇는 경우 (장소제거)
+                        Log.d("TAG", "중복된 장소가 존재합니다");
+                        placeLists.remove(i);
+                    }else{  // 장소 추가인 경우
+                        Log.d("TAG", "추가 합니다");
+                        placeLists.add(resultAdapter2.getItem(i));
+                    }
+                }
+
             }
         });
 
@@ -116,14 +123,33 @@ public class Result2 extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Result2.this, Result3.class);
                 if(placeLists.size() > 0){
-                    selectedplace.addAll(placeLists);
-                    intent.putExtra("Selectedplace", selectedplace);
+                    intent.putExtra("Selectedplace", placeLists);
                     startActivity(intent);
                 }else{
                     Log.d("TAG", "장소 등록하세요");
                 }
             }
         });
+
+        back2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Result2.this, Result.class);
+                intent.putExtra("Selectedplace", placeLists);
+                intent.putExtra("isBack", true);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+    public Boolean findDup(ResultAdapter resultAdapter, int idx){
+        for(int i = placeLists.size()-1; i>=0; i--){
+            if(placeLists.get(i).getTitle().equals(resultAdapter.getItem(idx).getTitle())){
+                return true;
+            }
+        }
+        return false;
     }
 
 

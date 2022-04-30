@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.coursefinder.R;
 import com.example.coursefinder.courseVo.CourseListVo;
 import com.example.coursefinder.searchVo.PlaceList;
@@ -24,14 +26,14 @@ public class CourseListMappingGrid  extends BaseAdapter {
     private Context mContext;
     private final String[] buttonStr;
     ArrayList<PlaceList> placeName;
-//     private ArrayList<CourseListVo> courseLists = new ArrayList<CourseListVo>();
+   private ArrayList<CourseListVo> courseLists = new ArrayList<CourseListVo>();
 
 
-    public CourseListMappingGrid(Context c, String[] buttonStr, ArrayList<PlaceList> placeName ) { //, ArrayList<CourseListVo> courseLists
+    public CourseListMappingGrid(Context c, String[] buttonStr
+            ,ArrayList<CourseListVo> courseLists) { //
         mContext = c;
         this.buttonStr = buttonStr;
-        this.placeName = placeName;
-        //      this.courseLists = courseLists;
+        this.courseLists = courseLists;
     }
 
     @Override
@@ -41,9 +43,9 @@ public class CourseListMappingGrid  extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public CourseListVo getItem(int position) {
         // TODO Auto-generated method stub
-        return null;
+        return courseLists.get(position);
     }
 
     @Override
@@ -56,7 +58,6 @@ public class CourseListMappingGrid  extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         View grid;
-        int i=0;
         String course="";
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -65,18 +66,16 @@ public class CourseListMappingGrid  extends BaseAdapter {
 
             grid = new View(mContext);
             grid = inflater.inflate(R.layout.activity_courselist_mapping_grid_single, null);
-            for(; i<placeName.size()-1; i++) {
-                course += placeName.get(i).getTitle() +"->";
-            }
-            course += placeName.get(i).getTitle();
 
-            ImageView img = (ImageView)grid.findViewById(R.id.img);
+            ImageView Cimg = (ImageView)grid.findViewById(R.id.Cimg);
             TextView place = (TextView)grid.findViewById(R.id.categoryOrder);
-            ImageButton add_btn = (ImageButton)grid.findViewById(R.id.add_btn);
+            TextView rate = (TextView)grid.findViewById(R.id.star_rating);
+           //  ImageButton add_btn = (ImageButton)grid.findViewById(R.id.add_btn);
 
-            img.setImageResource(R.drawable.bakery);
-            place.setText(course);
-
+            Cimg.setImageResource(R.drawable.bakery);
+            place.setText(courseLists.get(position).getCi_name());
+            rate.setText(courseLists.get(position).getCi_grade()+"");
+            Glide.with(grid).load(courseLists.get(position).getCi_img()).override(300).into(Cimg);
         } else {
             grid = (View) convertView;
         }

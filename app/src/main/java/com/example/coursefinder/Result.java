@@ -39,10 +39,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-// 받아온 입력값들을 바탕으로 검색을 돌려서 , ListView형태로 보여주는 클래스. 
-// 검색 결과들을 클릭해서 객체에 담아 준 후에 CourseRegitDetail로 이동해야 함
-// 미완성임,
-
 public class Result extends AppCompatActivity {
 
     String TAG = "TAG";
@@ -65,6 +61,7 @@ public class Result extends AppCompatActivity {
 
     String results;
     String imgResults;
+    private boolean isBack = false;
 //    String [] schNames = {"한식", "카페", "영화관"};
 String [] schNames = {"한식"};
 
@@ -77,8 +74,6 @@ String [] schNames = {"한식"};
 //    int[] image3 = {R.drawable.map};
 //    String[] placeName3 = {"가게이름"};
 
-    private SharedPreferences sharedPreferences;
-    private MemberLogInResults loginMember;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +88,11 @@ String [] schNames = {"한식"};
 //
 //        listView3 = (ListView)findViewById(R.id.listView3);
 
+
+        Intent intent = getIntent();
+
+        isBack = intent.getBooleanExtra("isBack", false);
+        if(isBack)  placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
 
 
         Gson gson = new Gson();
@@ -136,12 +136,23 @@ String [] schNames = {"한식"};
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if(placeLists.indexOf(resultAdapter.getItem(i)) == -1){
-                    placeLists.add(resultAdapter.getItem(i));
-                }else {
-                    placeLists.remove(resultAdapter.getItem(i));
-                    Log.d("TAG", "제거됨");
+                if(!isBack){
+                    if(placeLists.indexOf(resultAdapter.getItem(i)) == -1){
+                        placeLists.add(resultAdapter.getItem(i));
+                    }else {
+                        placeLists.remove(resultAdapter.getItem(i));
+                        Log.d("TAG", "제거됨");
+                    }
+                }else{
+                    if(findDup(resultAdapter, i)){ // 중복된 장소가 잇는 경우 (장소제거)
+                        Log.d("TAG", "중복된 장소가 존재합니다");
+                        placeLists.remove(i);
+                    }else{  // 장소 추가인 경우
+                        Log.d("TAG", "추가 합니다");
+                        placeLists.add(resultAdapter.getItem(i));
+                    }
                 }
+
                 Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -187,10 +198,6 @@ String [] schNames = {"한식"};
 //            }
 //        });
 
-
-
-        Intent intent = getIntent();
-
         TextView textView = findViewById(R.id.textView1);
         textView.setText(intent.getStringExtra("category"));
         textView.setOnClickListener(new View.OnClickListener() {
@@ -205,6 +212,16 @@ String [] schNames = {"한식"};
                 }
             }
         });
+    }
+
+
+    public Boolean findDup(ResultAdapter resultAdapter, int idx){
+        for(int i = placeLists.size()-1; i>=0; i--){
+            if(placeLists.get(i).getTitle().equals(resultAdapter.getItem(idx).getTitle())){
+                return true;
+            }
+        }
+        return false;
     }
     
 

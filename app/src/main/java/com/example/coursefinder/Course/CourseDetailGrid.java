@@ -5,9 +5,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.example.coursefinder.R;
@@ -17,12 +20,13 @@ import com.example.coursefinder.searchVo.PlaceList;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CourseDetailGrid extends BaseAdapter {
     private Context mContext;
     private final String[] web;
     private final int[] Imageid;
-    private ArrayList<CourseInfo> placeLists = new ArrayList<CourseInfo>();
+    ArrayList<CourseInfo> placeLists;
 
     public CourseDetailGrid(Context mContext, String[] web, int[] imageid, ArrayList<CourseInfo> placeLists) {
         this.mContext = mContext;
@@ -31,6 +35,11 @@ public class CourseDetailGrid extends BaseAdapter {
         this.placeLists = placeLists;
     }
 
+    public class Holder{
+        TextView textView;
+        ImageView imageView;
+        TextView textView2;
+    }
 
     @Override
     public int getCount() {
@@ -38,8 +47,8 @@ public class CourseDetailGrid extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public String getItem(int i) {
+        return placeLists.get(i).getCp_name();
     }
 
     @Override
@@ -49,18 +58,28 @@ public class CourseDetailGrid extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Holder mViewHolder = null;
         View grid;
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
+            mViewHolder = new Holder();
             grid = new View(mContext);
             grid = inflater.inflate(R.layout.course_detail_grid_single, null);
 
-            TextView textView = (TextView) grid.findViewById(R.id.placeName);
+          /*  TextView textView = (TextView) grid.findViewById(R.id.placeName);
             ImageView imageView = (ImageView)grid.findViewById(R.id.placeImg);
             TextView textView2 = (TextView) grid.findViewById(R.id.placeAddr);
 
+
+           */
+
+            mViewHolder.textView = (TextView) grid.findViewById(R.id.placeName);
+            mViewHolder.imageView = (ImageView)grid.findViewById(R.id.placeImg);
+            mViewHolder.textView2 = (TextView) grid.findViewById(R.id.placeAddr);
+            grid.setTag(mViewHolder);
+            /*
             imageView.setImageResource(Imageid[position]);
 
             textView.setText(placeLists.get(position).getCp_name().replaceAll("<b>", " ").replaceAll("</b>", " "));
@@ -69,9 +88,34 @@ public class CourseDetailGrid extends BaseAdapter {
             }
             textView2.setText(placeLists.get(position).getCp_addr());
 
+            Log.d("TAG", "IN VIEW : "+  placeLists.get(position).getCp_name());
+
+
+             */
         }else{
             grid = (View) convertView;
+            mViewHolder = (Holder) convertView.getTag();
         }
+
+
+
+        mViewHolder.imageView.setImageResource(Imageid[position]);
+        mViewHolder.textView.setText(placeLists.get(position).getCp_name().replaceAll("<b>", " ").replaceAll("</b>", " "));
+        if(placeLists.get(position).getCp_img()!= null && !(placeLists.get(position).getCp_img().equals("")) ){
+            Glide.with(grid).load(placeLists.get(position).getCp_img()).into(mViewHolder.imageView);
+         }
+        mViewHolder.textView2.setText(placeLists.get(position).getCp_addr());
+
+        mViewHolder.textView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                placeLists.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+
+
+
 
         return grid;
     }

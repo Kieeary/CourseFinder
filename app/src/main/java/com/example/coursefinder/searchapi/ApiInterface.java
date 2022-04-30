@@ -122,10 +122,40 @@ public interface ApiInterface {
             @Query("sch3") String sch3
     );
 
-    @GET("getmycourse.php")
+    @GET("getfavcourse.php")
+    Call<String> getFavCourse(
+            @Query("miid") String miid
+    );
+
+    @GET("getfavcourse.php")
     Call<String> getMyCourse(   // 내가 만든 코스
             @Query("miid") String miid
     );
+
+    @GET("insertfavcourse.php")
+    Call<String> saveCourse(
+            @Query("ciidx") String ciidx,
+            @Query("miid") String miid
+    );
+
+    @FormUrlEncoded
+    @POST("walkcourseinforegit.php")
+    Call<String> insertWalkCourseInfo(
+            @Field("name") String name,
+            @Field("info") String info,
+            @Field("time") String time,
+            @Field("miid") String miid
+    );
+
+    @FormUrlEncoded
+    @POST("walkcourseregit.php")
+    Call<String> insertWalkCourse(
+            @Field("order") int order,
+            @Field("la") double la,
+            @Field("lt") double lt
+    );
+
+
 
     @FormUrlEncoded
     @POST("update.php")         // 정보 수정용
@@ -139,9 +169,10 @@ public interface ApiInterface {
 
     @Multipart
     @POST("image.php")
-    Call<ResponseBody> postImage(   // 이미지 업로드용 (후기에서 씌일거 같아서 만들어 둠)
-                                    @Part MultipartBody.Part image, @Part("name") RequestBody name,
-                                    @Part("idx") RequestBody idx
+    Call<ResponseBody> imgupload(
+            @Part MultipartBody.Part image,
+            @Part("im_id") RequestBody name,
+            @Part("im_name") RequestBody idx
     );
 
 }

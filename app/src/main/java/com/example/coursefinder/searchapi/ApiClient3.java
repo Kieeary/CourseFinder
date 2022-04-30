@@ -16,6 +16,7 @@ public class ApiClient3 {
     // 안드로이드는 localhost 접속을 위해서 10.0.2.2로만 접속이 가능
     // 자신의 핸드폰으로 연결한 경우 cmd에서 -ipconfig 입력 후 ipv4를 BASE_URL에 입력 EX) http:172.0.1.14/
     private static final String BASE_URL = "http:10.0.2.2/";
+    //"http:10.0.2.2/";
     private static Retrofit retrofit;
 
     public static Retrofit getInstance(){

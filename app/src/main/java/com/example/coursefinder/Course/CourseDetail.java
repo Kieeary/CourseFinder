@@ -2,12 +2,16 @@ package com.example.coursefinder.Course;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,11 +19,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
 import com.example.coursefinder.Review.Review;
 import com.example.coursefinder.Review.ReviewDetail;
 import com.example.coursefinder.courseVo.CourseInfo;
 import com.example.coursefinder.courseVo.SelectFromView;
+import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.ResultPath;
 import com.example.coursefinder.searchapi.ApiClient3;
@@ -87,7 +93,6 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
     private ArrayList<CourseInfo> coursePlaces = new ArrayList<CourseInfo>();
     // 네이버맵 지도 객체
     private NaverMap navermap;
-
     // 마커들을 담음
     private ArrayList<Marker> markers = new ArrayList<Marker>();
     // json형태의 길찾기 경로들을 담음
@@ -98,6 +103,9 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
     private TextView cname;
     private TextView cprice;
     private TextView cinfo;
+
+    private ImageButton fav;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,23 +118,41 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         cprice = (TextView) findViewById(R.id.textView8);
         cinfo = (TextView) findViewById(R.id.textView7);
 
+        Intent intent = getIntent();
+        String ciid = intent.getIntExtra("courseId", 0)+"";
 
-        String ciid = "55";
-         //코스 검색 후에 상세보기
-        // idx의 값을 받아와야 함
-        // idx를 통해서 courseplaces 테이블에서 받아온 장소들의 리스트들을 coursePlaces ArrayList에 하나씩 담는다.
-        // coursePlaces를 통해서 지도상에 핀찍어줄 것임
+
+
         try{
             String results = new GetDetail(ciid).execute().get();
             gson = new Gson();
             selectFromView = gson.fromJson(results, SelectFromView.class);
-
         }catch(Exception e){
             Log.d("TAG", e.getMessage()+" ");
         }
         for(int i=0; i<selectFromView.getCourseLists().size(); i++){
             coursePlaces.add(selectFromView.getCourseLists().get(i));
         }
+
+
+
+        // 즐겨찾기 버튼 (코스 저장)
+        fav = (ImageButton)findViewById(R.id.add_btn);
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 회원 정보(아이디)를 받아온다.
+                sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
+                String member = sharedPreferences.getString("MemberInfo", "null");
+                Gson gson = new Gson();
+                MemberLogInResults loginMember = gson.fromJson(member, MemberLogInResults.class);
+                member = loginMember.getMemberInfo().get(0).getId();
+
+                if(member != null){
+                    saveCourse(ciid, member);
+                }
+            }
+        });
 
 
         // 지도를 띄움
@@ -146,7 +172,6 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         CourseDetailGrid adapter = new CourseDetailGrid(CourseDetail.this, web, imageId, coursePlaces);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
-
 
         //작성자 이름 클릭시 작성자가 지금까지 작성한 리뷰로 넘어감
         /*
@@ -212,6 +237,26 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         }
         path.setCoords(latLngList);
         path.setMap(navermap);
+    }
+
+    public void saveCourse(String ciid, String miid){
+        ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
+        Call<String> call = apiInterface.saveCourse(ciid, miid);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && response.body().equals("1")){
+                    Log.d("TAG", "코스 저장 성공!");
+                    Intent intent = new Intent(CourseDetail.this, MyCourse.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 
     // 코스의 상세정보들을 받아오는 클래스. 해당 코스의 번호를 매개변수로 받아온다.

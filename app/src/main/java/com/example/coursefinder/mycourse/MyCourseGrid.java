@@ -2,6 +2,7 @@ package com.example.coursefinder.mycourse;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.coursefinder.Course.CourseDetail;
 import com.example.coursefinder.R;
 import com.example.coursefinder.courseVo.CourseInfo;
 import com.example.coursefinder.courseVo.CourseListVo;
@@ -76,7 +78,16 @@ public class MyCourseGrid extends BaseAdapter{
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext.getApplicationContext(), CourseReview.class);
                     intent.putExtra("courseName", textView.getText());
-                    // intent.putExtra("courseName", textView.getText());
+
+                    mContext.startActivity(intent);
+                }
+            });
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext.getApplicationContext(), CourseDetail.class);
+                    intent.putExtra("courseId", courseInfo.get(position).getCi_idx());
                     mContext.startActivity(intent);
                 }
             });

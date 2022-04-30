@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.coursefinder.searchVo.ImageList;
 import com.example.coursefinder.searchVo.PlaceList;
 
@@ -60,7 +61,9 @@ public class ResultAdapter extends BaseAdapter {
 
         courseimgIv.setImageResource(image[0]);
         courseNameTv.setText(placeName.get(i).getTitle().replaceAll("<b>", " ").replaceAll("</b>", " "));
-
+        if(placeName.get(i).getImgLink()!= null){
+            Glide.with(convertView).load(placeName.get(i).getImgLink()).into(courseimgIv);
+        }
 
 //        ImageButton imageButton = (ImageButton) convertView.findViewById(R.id.detailBtn);
 //

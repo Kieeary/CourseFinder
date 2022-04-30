@@ -2,6 +2,7 @@ package com.example.coursefinder.courseVo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 // courseInfo테이블만 참조해서 얻어오는 json
@@ -16,4 +17,6 @@ public class SelectCourseList {
     public void setCourseLists(ArrayList<CourseListVo> courseListVos) {
         this.courseListVos = courseListVos;
     }
+
+
 }

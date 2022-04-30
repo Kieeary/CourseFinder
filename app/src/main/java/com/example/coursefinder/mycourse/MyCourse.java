@@ -121,7 +121,7 @@ public class MyCourse extends Activity {
 
     public void getMyCourse(String miid){
         ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
-        Call<String> call = apiInterface.getMyCourse(miid);
+        Call<String> call = apiInterface.getFavCourse(miid);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -141,7 +141,6 @@ public class MyCourse extends Activity {
                             CourseListVo selectedCourse = adapter.getItem(position);
                             Log.d("TAG", selectedCourse.getCi_idx()+" ");
                             Toast.makeText(MyCourse.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
-
                         }
                     });
 

@@ -22,6 +22,8 @@ import android.widget.Toast;
 import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
 import com.example.coursefinder.Result;
+import com.example.coursefinder.Result2;
+import com.example.coursefinder.Result3;
 import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.ResultPath;
@@ -117,12 +119,6 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
         Intent intent = getIntent();
         placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
 
-
-        for(int i=0; i<placeLists.size(); i++){
-            Log.d("TAG" , "이미지 링크 : " + placeLists.get(i).getImgLink());
-        }
-
-
         nextBtn = (Button)findViewById(R.id.next);
         cancelBtn = (Button)findViewById(R.id.cancel);
         inputCname = (EditText)findViewById(R.id.course_name);
@@ -196,13 +192,23 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
                     Log.d("TAG", "INSERT FAILED");
                 }
 
-                Log.d("TAG", "MAKECOURSE START");
                 if(results != null){
                     for(int i=0; i<3; i++){
                         makeCourse(cname , placeLists.get(i), price, i+1, placeLists.get(i).getImgLink());
                     }
                 }
 
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 다음 단계에서 이전으로 넘어왔다는 것을 명시해준다(isBack)
+                Intent intent = new Intent(CourseRegitDetail.this, Result3.class);
+                intent.putExtra("Selectedplace", placeLists);
+                intent.putExtra("isBack", true);
+                startActivity(intent);
             }
         });
     }

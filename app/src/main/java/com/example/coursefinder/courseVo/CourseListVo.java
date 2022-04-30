@@ -2,8 +2,10 @@ package com.example.coursefinder.courseVo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 // courseInfo테이블만 참조해서 얻어오는 json
-public class CourseListVo {
+public class CourseListVo  implements Serializable {
     @SerializedName("ci_idx")
     private int ci_idx;
     @SerializedName("ci_name")
