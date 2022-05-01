@@ -35,11 +35,7 @@ public class CourseDetailGrid extends BaseAdapter {
         this.placeLists = placeLists;
     }
 
-    public class Holder{
-        TextView textView;
-        ImageView imageView;
-        TextView textView2;
-    }
+
 
     @Override
     public int getCount() {
@@ -58,28 +54,19 @@ public class CourseDetailGrid extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Holder mViewHolder = null;
         View grid;
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
-            mViewHolder = new Holder();
             grid = new View(mContext);
             grid = inflater.inflate(R.layout.course_detail_grid_single, null);
 
-          /*  TextView textView = (TextView) grid.findViewById(R.id.placeName);
+           TextView textView = (TextView) grid.findViewById(R.id.placeName);
             ImageView imageView = (ImageView)grid.findViewById(R.id.placeImg);
             TextView textView2 = (TextView) grid.findViewById(R.id.placeAddr);
 
 
-           */
-
-            mViewHolder.textView = (TextView) grid.findViewById(R.id.placeName);
-            mViewHolder.imageView = (ImageView)grid.findViewById(R.id.placeImg);
-            mViewHolder.textView2 = (TextView) grid.findViewById(R.id.placeAddr);
-            grid.setTag(mViewHolder);
-            /*
             imageView.setImageResource(Imageid[position]);
 
             textView.setText(placeLists.get(position).getCp_name().replaceAll("<b>", " ").replaceAll("</b>", " "));
@@ -91,30 +78,11 @@ public class CourseDetailGrid extends BaseAdapter {
             Log.d("TAG", "IN VIEW : "+  placeLists.get(position).getCp_name());
 
 
-             */
+
         }else{
             grid = (View) convertView;
-            mViewHolder = (Holder) convertView.getTag();
+
         }
-
-
-
-        mViewHolder.imageView.setImageResource(Imageid[position]);
-        mViewHolder.textView.setText(placeLists.get(position).getCp_name().replaceAll("<b>", " ").replaceAll("</b>", " "));
-        if(placeLists.get(position).getCp_img()!= null && !(placeLists.get(position).getCp_img().equals("")) ){
-            Glide.with(grid).load(placeLists.get(position).getCp_img()).into(mViewHolder.imageView);
-         }
-        mViewHolder.textView2.setText(placeLists.get(position).getCp_addr());
-
-        mViewHolder.textView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                placeLists.remove(position);
-                notifyDataSetChanged();
-            }
-        });
-
-
 
 
         return grid;
