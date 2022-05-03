@@ -8,7 +8,7 @@
   >github@J1WonLee
 - 백승연(201811190)
   > github@seungyeon17
-- 홍다경()
+- 홍다경(201812785)
   > github@hdk990425
 - 김우중(201912039)
   > github@kimwoojung11
