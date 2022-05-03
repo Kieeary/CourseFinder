@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- activity_review 파일과 똑같음. 그냥 activity_review 파일을 쓸까하다가 만들고 나중에 의견 물어볼 예정 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".exercise.ExerciseDetailCourse">
+    android:background="#FFFFFF"
+    tools:context=".Review.Review">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
                 android:layout_marginLeft="30dp"
                 android:gravity="center"
                 android:text="코스 이름"
-                android:textSize="20dp" />
+                android:textSize="20dp"/>
 
             <ImageButton
                 android:id="@+id/add_btn"
@@ -35,66 +36,62 @@
                 tools:layout_editor_absoluteY="25dp" />
         </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="8">
-
-            <fragment
-                android:id="@+id/map"
-                android:name="com.naver.maps.map.MapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="350dp"
+            android:layout_height="250dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="350dp">
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="소요시간" />
-
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="위치" />
+                android:text="작성자 : user1" />
 
         </LinearLayout>
-
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:numStars="5"
             android:layout_gravity="center" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="261dp"
+            tools:layout_editor_absoluteX="29dp"
+            tools:layout_editor_absoluteY="426dp">
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center"></ListView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="리뷰 내용" />
+            </LinearLayout>
+        </ScrollView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/menu_bottom"
