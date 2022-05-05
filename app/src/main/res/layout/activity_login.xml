@@ -3,110 +3,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/background_color"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Welcome!"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:textColor="@color/text_color"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="CourseFinder"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
+    <ImageView
+        android:id="@+id/img_background"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/loginui" />
+
+    <EditText
+        android:id="@+id/et_inputid"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:textColor="@color/text_color"/>
-
-
-    <soup.neumorphism.NeumorphCardView
-        style="@style/Widget.Neumorph.CardView"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="10dp"
-        app:neumorph_shapeType="pressed">
+        android:ems="1"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="아이디"
+        android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/et_inputid"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:autofillHints=""
-            android:ems="1"
-            android:gravity="center"
-            android:hint="아이디"
-            android:inputType="textPersonName"
-            android:padding="14dp"
-            android:paddingEnd="10dp"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
-            android:textSize="20dp" />
-    </soup.neumorphism.NeumorphCardView>
+    <EditText
+        android:id="@+id/et_inputPwsd"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="비밀번호"
+        android:textSize="20sp" />
 
-    <soup.neumorphism.NeumorphCardView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        style="@style/Widget.Neumorph.CardView"
-        app:neumorph_shapeType="pressed">
-
-        <EditText
-            android:id="@+id/et_inputPwsd"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="비밀번호"
-            android:inputType="textPassword"
-            android:padding="14dp"
-            android:paddingEnd="10dp"
-            android:textSize="20dp"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
-            android:autofillHints=""
-            android:ems="10" />
-    </soup.neumorphism.NeumorphCardView>
-
-    <soup.neumorphism.NeumorphButton
+    <Button
         android:id="@+id/bt_login"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="#6A4CAF50"
         android:text="로그인"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:textColor="@color/button_color"
-        style="@style/Widget.Neumorph.Button">
-    </soup.neumorphism.NeumorphButton>
+        android:textSize="20sp"
+        />
 
-    <soup.neumorphism.NeumorphButton
+    <Button
         android:id="@+id/bt_register"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:text="회원가입"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="#61CDDC39"
         android:layout_gravity="center"
-        android:textSize="20dp"
-        android:textColor="@color/button_color"
-        style="@style/Widget.Neumorph.Button">
-    </soup.neumorphism.NeumorphButton>
-
+        android:text="회원가입"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/background_color"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
         android:text="아이디/비밀번호 찾기"
         app:layout_constraintEnd_toEndOf="@+id/bt_register"
         app:layout_constraintStart_toStartOf="@+id/bt_register"
