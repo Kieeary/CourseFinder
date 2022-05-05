@@ -49,7 +49,8 @@ public interface ApiInterface {
             @Header("X-NCP-APIGW-API-KEY-ID") String id,
             @Header("X-NCP-APIGW-API-KEY") String pw,
             @Query("start") String start,   // "x, y"
-            @Query("goal") String goal      // "x, y"
+            @Query("goal") String goal,      // "x, y"
+            @Query("waypoints") String waypoints
     );
 
     /**
@@ -114,6 +115,12 @@ public interface ApiInterface {
             @Query("ciid") String ciid
     );
 
+    @GET("exercisecoursedetail.php")
+    Call<String>getwalkcoursedetail(
+            @Query("wiidx") String wiidx,
+            @Query("miid") String miid
+    );
+
 
     @GET("courssearch.php")
     Call<String> searchCourse(      // 코스 검색 (일단 키워드는 3개로 고정해둠, 차후에 4개로 늘릴것임)
@@ -130,6 +137,15 @@ public interface ApiInterface {
     @GET("getfavcourse.php")
     Call<String> getMyCourse(   // 내가 만든 코스
             @Query("miid") String miid
+    );
+
+    @GET("insertreview.php")
+    Call<String> saveReview(    // 리뷰 개시
+            @Query("ciidx") int ciidx,
+            @Query("miid") String miid,
+            @Query("crcontent") String content,
+            @Query("crimg") String img,
+            @Query("crgrade") String grade
     );
 
     @GET("insertfavcourse.php")

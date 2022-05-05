@@ -12,10 +12,13 @@ import android.widget.Button;
 import com.example.coursefinder.Course.CourseDetail;
 import com.example.coursefinder.Course.CourseList;
 import com.example.coursefinder.Course.CourseListResult;
+import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.exercise.ExerciseCourseList;
+import com.example.coursefinder.exercise.ExerciseCourseRegit;
 import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.ranking.Ranking;
 import com.example.coursefinder.smallcategory.SmallCategory;
+import com.google.gson.Gson;
 
 public class MainCategory extends AppCompatActivity {
 
@@ -25,13 +28,18 @@ public class MainCategory extends AppCompatActivity {
     private Button courseBest;
     private Button exerciseCourse;
     private  SharedPreferences sharedPreferences;
+    private MemberLogInResults loginMember;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_category);
 
-       sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
-       Log.d("TAG", sharedPreferences.getString("MemberInfo", "null"));
+        sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
+        String member = sharedPreferences.getString("MemberInfo", "null");
+        Gson gson = new Gson();
+        loginMember = gson.fromJson(member, MemberLogInResults.class);
+        String miid = loginMember.getMemberInfo().get(0).getId();
 
         courseRecommend = findViewById(R.id.courseRecommend);
         courseRegister = findViewById(R.id.courseRegister);
@@ -63,14 +71,16 @@ public class MainCategory extends AppCompatActivity {
         courseBest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainCategory.this, Ranking.class); //현재 액티비티, 이동하고 싶은 액티비티
+               // Intent intent = new Intent(MainCategory.this, Ranking.class); //현재 액티비티, 이동하고 싶은 액티비티
+                Intent intent = new Intent(MainCategory.this, ImageUpload.class);
                 startActivity(intent); //액티비티 이동
             }
         });
         exerciseCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainCategory.this, ExerciseCourseList.class);
+                Intent intent = new Intent(MainCategory.this, ExerciseCourseRegit.class);
+                intent.putExtra("miid", miid);
                 startActivity(intent);
             }
         });
