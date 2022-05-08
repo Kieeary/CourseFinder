@@ -63,7 +63,7 @@ public class Result extends AppCompatActivity {
     String imgResults;
     private boolean isBack = false;
 //    String [] schNames = {"한식", "카페", "영화관"};
-String [] schNames = {"한식"};
+    String [] schNames = {"한식"};
 
     int[] image = {R.drawable.map};
     String[] placeName = {"가게이름"};
