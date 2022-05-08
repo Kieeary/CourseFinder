@@ -21,9 +21,8 @@ import android.widget.Toast;
 
 import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
-import com.example.coursefinder.Result;
-import com.example.coursefinder.Result2;
-import com.example.coursefinder.Result3;
+//import com.example.coursefinder.Result2;
+//import com.example.coursefinder.Result3;
 import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.ResultPath;
@@ -201,16 +200,16 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
             }
         });
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 다음 단계에서 이전으로 넘어왔다는 것을 명시해준다(isBack)
-                Intent intent = new Intent(CourseRegitDetail.this, Result3.class);
-                intent.putExtra("Selectedplace", placeLists);
-                intent.putExtra("isBack", true);
-                startActivity(intent);
-            }
-        });
+//        cancelBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // 다음 단계에서 이전으로 넘어왔다는 것을 명시해준다(isBack)
+//                Intent intent = new Intent(CourseRegitDetail.this, Result3.class);
+//                intent.putExtra("Selectedplace", placeLists);
+//                intent.putExtra("isBack", true);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     // 지도를 띄워주는 과정

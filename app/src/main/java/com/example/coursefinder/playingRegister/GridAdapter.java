@@ -1,4 +1,4 @@
-package com.example.coursefinder.adapter;
+package com.example.coursefinder.playingRegister;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,25 +10,24 @@ import android.widget.TextView;
 
 import com.example.coursefinder.R;
 
-public class GameGridAdapter extends BaseAdapter {
+public class GridAdapter extends BaseAdapter {
 
     Context context;
 
-    String[] gameCategoryNameId;
-    int[] gameCategoryImgId;
+    String[] categoryNameId;
+    int[] categoryImgId;
 
-    public GameGridAdapter(Context context, String[] gameCategoryNameId, int[] gameCategoryImgId) {
+    public GridAdapter(Context context, String[] categoryNameId, int[] categoryImgId) {
         this.context = context;
-        this.gameCategoryNameId = gameCategoryNameId;
-        this.gameCategoryImgId = gameCategoryImgId;
+        this.categoryNameId = categoryNameId;
+        this.categoryImgId = categoryImgId;
     }
 
     LayoutInflater inflater;
 
-
     @Override
     public int getCount() {
-        return gameCategoryImgId.length;
+        return categoryImgId.length;
     }
 
     @Override
@@ -43,6 +42,7 @@ public class GameGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
+
         if(inflater == null){
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
@@ -54,8 +54,8 @@ public class GameGridAdapter extends BaseAdapter {
         ImageView imageView = convertView.findViewById(R.id.categoryImgId);
         TextView textView = convertView.findViewById(R.id.categoryNameId);
 
-        imageView.setImageResource(gameCategoryImgId[i]);
-        textView.setText(gameCategoryNameId[i]);
+        imageView.setImageResource(categoryImgId[i]);
+        textView.setText(categoryNameId[i]);
 
         return convertView;
     }
