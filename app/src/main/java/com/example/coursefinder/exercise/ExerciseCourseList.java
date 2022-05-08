@@ -36,7 +36,8 @@ public class ExerciseCourseList extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.listView);
         imageButton = (ImageButton)findViewById(R.id.detailBtn);
 
-        ListViewAdapter listViewAdapter = new ListViewAdapter(ExerciseCourseList.this, courseImgId, courseNameId, coursePlaceId, courseScore);
+        // img를 안넣어줘서 오류가 발생하는 것 같아서 일단 ListViewAdapter.java에서 img부분을 모두 주석 처리 하였음
+        ListViewAdapter listViewAdapter = new ListViewAdapter(ExerciseCourseList.this, /*courseImgId,*/ courseNameId, coursePlaceId, courseScore);
         listView.setAdapter(listViewAdapter);
 
     }

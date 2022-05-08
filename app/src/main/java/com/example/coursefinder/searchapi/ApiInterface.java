@@ -49,8 +49,8 @@ public interface ApiInterface {
             @Header("X-NCP-APIGW-API-KEY-ID") String id,
             @Header("X-NCP-APIGW-API-KEY") String pw,
             @Query("start") String start,   // "x, y"
-            @Query("goal") String goal,      // "x, y"
-            @Query("waypoints") String waypoints
+            @Query("goal") String goal      // "x, y"
+            //@Query("waypoints") String waypoints
     );
 
     /**
@@ -63,7 +63,7 @@ public interface ApiInterface {
     // 로그인
     @FormUrlEncoded     // post일때는 @Field 어노테이션을 이용하는데, @FromUrlEncoded어노테이션을 명시해줘야함
     @POST("Login.php")
-    Call<String> doLogin (
+    Call<String> doLogin(
             // call.enqueue의 반환 타입은 String으로 지정, 객체로도 반환 가능
             @Field("id") String id,
             @Field("password") String password       // id와 password를 받아온다.
@@ -71,13 +71,15 @@ public interface ApiInterface {
 
 
     @FormUrlEncoded
-    @POST("dupchk.php")       // 아이디 중복 확인용
+    @POST("dupchk.php")
+        // 아이디 중복 확인용
     Call<String> dupChk(
             @Field("id") String id
     );
 
     @FormUrlEncoded
-    @POST("regitmember.php")       // 회원 가입용
+    @POST("regitmember.php")
+        // 회원 가입용
     Call<String> insertMember(
             @Field("id") String id,
             @Field("password") String password,
@@ -88,7 +90,8 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("courseinforegit.php")    // courseinfo 테이블 insert
+    @POST("courseinforegit.php")
+        // courseinfo 테이블 insert
     Call<String> insertCourseInfo(
             @Field("name") String name,
             @Field("info") String info,
@@ -99,7 +102,8 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("courseregit.php")    // courseplace 테이블 insert
+    @POST("courseregit.php")
+        // courseplace 테이블 insert
     Call<String> insertCourse(
             @Field("order") int order,
             @Field("pname") String pname,
@@ -112,11 +116,11 @@ public interface ApiInterface {
 
     @GET("coursedetail.php")
     Call<String> getcoursedetail(   // courseDetail 가져오기(검색 리스트에서 1개를 선택 하면 idx값을 갖지고 select
-            @Query("ciid") String ciid
+                                    @Query("ciid") String ciid
     );
 
     @GET("exercisecoursedetail.php")
-    Call<String>getwalkcoursedetail(
+    Call<String> getwalkcoursedetail(
             @Query("wiidx") String wiidx,
             @Query("miid") String miid
     );
@@ -124,9 +128,9 @@ public interface ApiInterface {
 
     @GET("courssearch.php")
     Call<String> searchCourse(      // 코스 검색 (일단 키워드는 3개로 고정해둠, 차후에 4개로 늘릴것임)
-            @Query("sch1") String sch1,
-            @Query("sch2") String sch2,
-            @Query("sch3") String sch3
+                                    @Query("sch1") String sch1,
+                                    @Query("sch2") String sch2,
+                                    @Query("sch3") String sch3
     );
 
     @GET("getfavcourse.php")
@@ -136,16 +140,16 @@ public interface ApiInterface {
 
     @GET("getfavcourse.php")
     Call<String> getMyCourse(   // 내가 만든 코스
-            @Query("miid") String miid
+                                @Query("miid") String miid
     );
 
     @GET("insertreview.php")
     Call<String> saveReview(    // 리뷰 개시
-            @Query("ciidx") int ciidx,
-            @Query("miid") String miid,
-            @Query("crcontent") String content,
-            @Query("crimg") String img,
-            @Query("crgrade") String grade
+                                @Query("ciidx") int ciidx,
+                                @Query("miid") String miid,
+                                @Query("crcontent") String content,
+                                @Query("crimg") String img,
+                                @Query("crgrade") String grade
     );
 
     @GET("insertfavcourse.php")
@@ -172,15 +176,14 @@ public interface ApiInterface {
     );
 
 
-
     @FormUrlEncoded
-    @POST("update.php")         // 정보 수정용
+    @POST("update.php")
+        // 정보 수정용
     Call<String> updateMember(
-        @Field("id") String id,
-        @Field("country") String country,
-        @Field("name") String name
+            @Field("id") String id,
+            @Field("country") String country,
+            @Field("name") String name
     );
-
 
 
     @Multipart
@@ -190,5 +193,6 @@ public interface ApiInterface {
             @Part("im_id") RequestBody name,
             @Part("im_name") RequestBody idx
     );
-
 }
+
+

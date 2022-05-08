@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/capstone/CourseFinder/app/src/main/res/layout/activity_course_detail.xml" value="0.12777777777777777" />
+        <entry key="..\:/capstone/CourseFinder/app/src/main/res/layout/course_detail_grid_single.xml" value="0.13196555217831812" />
+        <entry key="..\:/capstone/CourseFinder/app/src/main/res/layout/griditem.xml" value="0.2671875" />
+        <entry key="..\:/capstone/CourseFinder/app/src/main/res/layout/history/layout/activity_exercise_course_list.xml" value="0.19882246376811594" />
+        <entry key="..\:/capstone/CourseFinder/app/src/main/res/layout/history/layout/activity_exercise_detail_course.xml" value="0.12777777777777777" />
+        <entry key="..\:/capstone/CourseFinder/app/src/main/res/layout/history/layout/exercise_course_list.xml" value="0.13196555217831812" />
+        <entry key="..\:/capstone/CourseFinder/app/src/main/res/layout/history/layout/exercise_list_single_item.xml" value="0.13196555217831812" />
+        <entry key="..\:/capstone/CourseFinder/app/src/main/res/layout/playing/layout/activity_courselist_mapping_grid_single.xml" value="0.13196555217831812" />
+        <entry key="..\:/capstone/CourseFinder/app/src/main/res/layout/ranking/layout/activity_execise_detail_review.xml" value="0.19882246376811594" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_course_detail.xml" value="0.1" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_courselist_result.xml" value="0.16" />
         <entry key="..\:/gwl/CourseFinder/app/src/main/res/layout/activity_login.xml" value="0.1" />

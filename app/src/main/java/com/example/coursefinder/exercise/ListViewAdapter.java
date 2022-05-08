@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.coursefinder.Course.CourseListResult;
 import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.R;
 
@@ -18,16 +19,17 @@ public class ListViewAdapter extends BaseAdapter {
 
     Context context;
 
-    int[] courseImg;
+    //int[] courseImg;
     String[] courseName;
-    String[] coursePlace;
+    String[] courseRoute;
     String[] courseScore;
 
-    public ListViewAdapter(Context context, int[] courseImg, String[] courseName, String[] coursePlace, String[] courseScore) {
+    //public ListViewAdapter(Context context, int[] courseImg, String[] courseName, String[] courseRoute, String[] courseScore) {
+    public ListViewAdapter(Context context, String[] courseName, String[] courseRoute, String[] courseScore){
         this.context = context;
-        this.courseImg = courseImg;
+        //this.courseImg = courseImg;
         this.courseName = courseName;
-        this.coursePlace = coursePlace;
+        this.courseRoute = courseRoute;
         this.courseScore = courseScore;
     }
 
@@ -60,14 +62,14 @@ public class ListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.exercise_list_single_item, null);
         }
 
-        ImageView courseimgIv = convertView.findViewById(R.id.courseImg);
+        //ImageView courseimgIv = convertView.findViewById(R.id.courseImg);
         TextView courseNameTv = convertView.findViewById(R.id.courseName);
-        TextView coursePlaceTv = convertView.findViewById(R.id.coursePlace);
+        TextView courseRouteTv = convertView.findViewById(R.id.courseRoute);
         TextView courseScoreTv = convertView.findViewById(R.id.courseScore);
 
-        courseimgIv.setImageResource(courseImg[i]);
+        //courseimgIv.setImageResource(courseImg[i]);
         courseNameTv.setText(courseName[i]);
-        coursePlaceTv.setText(coursePlace[i]);
+        courseRouteTv.setText(courseRoute[i]);
         courseScoreTv.setText(courseScore[i]);
 
 
@@ -76,11 +78,22 @@ public class ListViewAdapter extends BaseAdapter {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // ExerciseDetailReview.java로 안넘어 가서 일단 MainCategory로
                 Intent intent = new Intent(view.getContext(), MainCategory.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }
         });
+/*
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CourseListResult.class);
+                startActivity(intent);
+            }
+
+        });
+        */
         return convertView;
     }
 
