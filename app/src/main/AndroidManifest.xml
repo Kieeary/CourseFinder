@@ -22,10 +22,10 @@
             android:name=".ImageUpload"
             android:exported="false" />
         <activity
-            android:name=".MainCategory"
+            android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".Result"
+            android:name=".playingRegister.Result1"
             android:exported="false" />
         <activity
             android:name=".exercise.ExerciseUserCourse"
@@ -40,7 +40,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".MainCategory"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,7 +61,7 @@
         <activity android:name=".mycourse.CourseReview" />
         <activity android:name=".smallcategory.SmallCategory" />
         <activity android:name=".smallcategory.SmallCategoryOrder" />
-        <activity android:name=".PlayingRegister" />
+        <activity android:name=".playingRegister.PlayingRegister" />
         <activity android:name=".Register" />
         <activity android:name=".Course.CourseDetail" />
         <activity android:name=".Course.CourseList" />
@@ -71,8 +71,6 @@
         <activity android:name=".Review.ReviewDetail" />
         <activity android:name=".ranking.Ranking" />
         <activity android:name=".Course.CourseRegitDetail" />
-        <activity android:name=".Result2" />
-        <activity android:name=".Result3" />
         <activity android:name=".exercise.ExerciseCourseRegit" />
         <activity android:name=".Course.CourseListMapping" />
     </application>

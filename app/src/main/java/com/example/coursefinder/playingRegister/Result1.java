@@ -1,45 +1,37 @@
-package com.example.coursefinder;
+package com.example.coursefinder.playingRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.coursefinder.Course.CourseDetail;
 import com.example.coursefinder.Course.CourseRegitDetail;
-import com.example.coursefinder.MemberVo.MemberLogInResults;
-import com.example.coursefinder.exercise.ExerciseCourseList;
-import com.example.coursefinder.exercise.ListViewAdapter;
+import com.example.coursefinder.MainCategory;
+import com.example.coursefinder.R;
 import com.example.coursefinder.searchVo.ImageSearchResult;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.PlaceSearchResult;
 import com.example.coursefinder.searchapi.ApiClient;
-import com.example.coursefinder.searchapi.ApiClient3;
 import com.example.coursefinder.searchapi.ApiInterface;
 import com.google.gson.Gson;
-import com.naver.maps.geometry.LatLng;
-import com.naver.maps.geometry.Tm128;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Result extends AppCompatActivity {
+public class Result1 extends AppCompatActivity {
 
     String TAG = "TAG";
     private static int cnt = 0;
@@ -47,10 +39,11 @@ public class Result extends AppCompatActivity {
     ListView listView;
 
     Button next1;
-//    ImageButton imageButton;
 
+    int currIndex;
+    HashMap<Integer, Integer> selectInfo;
+//    ImageButton imageButton;
 //    ListView listView2;
-//
 //    ListView listView3;
 
     private PlaceSearchResult placeSearchResult;
@@ -62,8 +55,9 @@ public class Result extends AppCompatActivity {
     String results;
     String imgResults;
     private boolean isBack = false;
+
 //    String [] schNames = {"한식", "카페", "영화관"};
-String [] schNames = {"한식"};
+    String [] schNames = {"한식"};
 
     int[] image = {R.drawable.map};
     String[] placeName = {"가게이름"};
@@ -83,13 +77,33 @@ String [] schNames = {"한식"};
         next1 = (Button)findViewById(R.id.next1);
 
 //        imageButton = (ImageButton)findViewById(R.id.detailBtn);
-
 //        listView2 = (ListView)findViewById(R.id.listView2);
 //
 //        listView3 = (ListView)findViewById(R.id.listView3);
-
-
         Intent intent = getIntent();
+
+        //PlayingRegister에서 클릭한 클릭한 아이템의 값을 가져오는 부분
+        currIndex = intent.getIntExtra("currIndex", -1);
+        selectInfo = (HashMap<Integer, Integer>) intent.getSerializableExtra("selectInfo");
+        TextView textView2 = findViewById(R.id.textView1);
+
+        String title = "";
+
+        switch(currIndex) {
+            case 0:
+                title = PlayingRegister.categoryNameId[selectInfo.get(currIndex)];
+                break;
+            case 1:
+                title = PlayingRegister.cafeCategoryNameId[selectInfo.get(currIndex)];
+                break;
+            case 2:
+                title = PlayingRegister.gameCategoryNameId[selectInfo.get(currIndex)];
+                break;
+            case 3:
+                title = PlayingRegister.cultureCategoryNameId[selectInfo.get(currIndex)];
+                break;
+        }
+        textView2.setText(title);
 
         isBack = intent.getBooleanExtra("isBack", false);
         if(isBack)  placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
@@ -99,7 +113,7 @@ String [] schNames = {"한식"};
 
         try{
             // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
-            results = new GetSchResult(schNames[0]).execute().get();
+            results = new GetSchResult(title).execute().get();
             placeSearchResult = gson.fromJson(results, PlaceSearchResult.class);
             orderschResults.put(1, placeSearchResult.getPlaceLists());
 
@@ -122,8 +136,38 @@ String [] schNames = {"한식"};
             Log.d(TAG, "이미지 검색 실패" + e.getMessage());
         }
 
-        ResultAdapter resultAdapter = new ResultAdapter(Result.this, image, orderschResults.get(1));
+        ResultAdapter resultAdapter = new ResultAdapter(Result1.this, image, orderschResults.get(1));
         listView.setAdapter(resultAdapter);
+
+        next1.setOnClickListener(view -> {
+
+            Iterator<Integer> iterator = selectInfo.keySet().iterator();
+            int last = -1;
+            while(true) {
+                int temp = iterator.next();
+                if(currIndex == temp && iterator.hasNext()) {
+                    currIndex = iterator.next();
+                    break;
+                }
+                if(iterator.hasNext() == false) {
+                    last = temp;
+                    break;
+                }
+            }
+            if(currIndex == last) {
+                Intent intentTemp = new Intent(Result1.this, MainCategory.class);
+                intentTemp.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intentTemp);
+            }
+            else {
+                Intent intentTemp = new Intent(Result1.this, Result1.class);
+                intentTemp.putExtra("currIndex", currIndex);
+                intentTemp.putExtra("selectInfo", selectInfo);
+                startActivity(intentTemp);
+            }
+
+        });
+
 
 //        ResultAdapter resultAdapter2 = new ResultAdapter(Result.this, image2, orderschResults.get(2));
 //        listView2.setAdapter(resultAdapter2);
@@ -153,23 +197,23 @@ String [] schNames = {"한식"};
                     }
                 }
 
-                Toast.makeText(Result.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Result1.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        next1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Result.this, Result2.class);
-                if(placeLists.size() > 0){
-                    intent.putExtra("Selectedplace", placeLists);
-                    startActivity(intent);
-                }else{
-                    Log.d("TAG", "장소 등록하세요");
-                }
-                startActivity(intent);
-            }
-        });
+//        next1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Result1.this, Result2.class);
+//                if(placeLists.size() > 0){
+//                    intent.putExtra("Selectedplace", placeLists);
+//                    startActivity(intent);
+//                }else{
+//                    Log.d("TAG", "장소 등록하세요");
+//                }
+//                startActivity(intent);
+//            }
+//        });
 
 //        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -203,7 +247,7 @@ String [] schNames = {"한식"};
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Result.this, CourseRegitDetail.class);
+                Intent intent = new Intent(Result1.this, CourseRegitDetail.class);
                 if(placeLists.size() > 0){
                     intent.putExtra("Selectedplace", placeLists);
                     startActivity(intent);
@@ -223,8 +267,6 @@ String [] schNames = {"한식"};
         }
         return false;
     }
-    
-
 
     // 장소 검색을 위한 클래스
     class GetSchResult extends AsyncTask<Void, Void, String> {

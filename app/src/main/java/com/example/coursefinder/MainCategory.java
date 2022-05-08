@@ -5,20 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.coursefinder.Course.CourseDetail;
-import com.example.coursefinder.Course.CourseList;
-import com.example.coursefinder.Course.CourseListResult;
 import com.example.coursefinder.MemberVo.MemberLogInResults;
-import com.example.coursefinder.exercise.ExerciseCourseList;
 import com.example.coursefinder.exercise.ExerciseCourseRegit;
 import com.example.coursefinder.mycourse.MyCourse;
-import com.example.coursefinder.ranking.Ranking;
+import com.example.coursefinder.playingRegister.PlayingRegister;
 import com.example.coursefinder.smallcategory.SmallCategory;
-import com.google.gson.Gson;
 
 public class MainCategory extends AppCompatActivity {
 
