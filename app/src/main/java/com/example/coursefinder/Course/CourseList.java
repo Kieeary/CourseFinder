@@ -24,7 +24,7 @@ public class CourseList extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_courselist);
+        // setContentView(R.layout.activity_courselist);
 
         CourseListGrid adapter = new CourseListGrid(CourseList.this, buttonStr);
         grid=(GridView)findViewById(R.id.grid);

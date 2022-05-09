@@ -20,6 +20,7 @@ import com.example.coursefinder.searchapi.ApiClient3;
 import com.example.coursefinder.searchapi.ApiInterface;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraUpdate;
+import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
@@ -104,8 +105,11 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
     public void onMapReady(@NonNull NaverMap naverMap) {
         this.navermap = naverMap;
         ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
-        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(37.298512, 127.105930));
-        naverMap.moveCamera(cameraUpdate);
+        // CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(37.298512, 127.105930));
+        // naverMap.moveCamera(cameraUpdate);
+
+        navermap.setLocationSource(mLocationSource);
+        navermap.setLocationTrackingMode(LocationTrackingMode.Follow);
 
         navermap.setOnMapDoubleTapListener(new NaverMap.OnMapDoubleTapListener() {
             @Override
@@ -199,9 +203,10 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful() && (response.body().equals("1")) ){
                     Log.d("TAG", "SUCESS");
-                    Intent intent = new Intent(ExerciseCourseRegit.this, ExerciseDetailCourse.class);
-                    intent.putExtra("miid", miid);
-                    startActivity(intent);
+                    // 산책 코스 등록 후 어디로 이동할지 정해야 함
+           //         Intent intent = new Intent(ExerciseCourseRegit.this, ExerciseDetailCourse.class);
+           //         intent.putExtra("miid", miid);
+           //         startActivity(intent);
                 }else{
                     // 등록 실패
                     Log.d("TAG", response.body());

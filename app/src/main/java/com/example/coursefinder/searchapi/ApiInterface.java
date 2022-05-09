@@ -49,8 +49,8 @@ public interface ApiInterface {
             @Header("X-NCP-APIGW-API-KEY-ID") String id,
             @Header("X-NCP-APIGW-API-KEY") String pw,
             @Query("start") String start,   // "x, y"
-            @Query("goal") String goal      // "x, y"
-            //@Query("waypoints") String waypoints
+            @Query("goal") String goal,      // "x, y"
+            @Query("waypoints") String waypoints
     );
 
     /**
@@ -142,14 +142,21 @@ public interface ApiInterface {
     Call<String> getMyCourse(   // 내가 만든 코스
                                 @Query("miid") String miid
     );
+    @GET("getexlist.php")
+    Call<String> getExList(
+        @Query("wcp_at") double lat,
+        @Query("wcp_lt") double lt
+    );
 
     @GET("insertreview.php")
-    Call<String> saveReview(    // 리뷰 개시
-                                @Query("ciidx") int ciidx,
-                                @Query("miid") String miid,
-                                @Query("crcontent") String content,
-                                @Query("crimg") String img,
-                                @Query("crgrade") String grade
+    Call<String> saveReview(
+            @Part("ciidx") RequestBody ciidx,
+            @Part("miid") RequestBody miid,
+            @Part("cranme") RequestBody crtitle,
+            @Part("crcontent") RequestBody content,
+            @Part("crgrade") RequestBody grade,
+            @Part MultipartBody.Part image,
+            @Part("crimg") RequestBody idx
     );
 
     @GET("insertfavcourse.php")
