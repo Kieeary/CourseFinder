@@ -121,7 +121,6 @@ public interface ApiInterface {
 
     @GET("exercisecoursedetail.php")
     Call<String> getwalkcoursedetail(
-            @Query("wiidx") String wiidx,
             @Query("miid") String miid
     );
 
