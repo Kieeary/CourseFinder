@@ -6,32 +6,55 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".exercise.ExerciseCourseRegit">
-
-    <EditText
-        android:id="@+id/epname"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="장소의 이름" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="예상 소요 시간" />
+        <EditText
+            android:id="@+id/epname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="장소의 이름" />
 
-    <FrameLayout
-        android:id="@+id/map"
+        <EditText
+            android:id="@+id/etime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="예상 소요 시간" />
+
+        <EditText
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="간략 설명" />
+
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="424dp" />
-    <Button
-        android:id="@+id/mapbtn1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="장소 모두 지우기" />
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="424dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/mapbtn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="장소 선택 완료" />
+        <Button
+            android:id="@+id/mapbtn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="장소 모두 지우기" />
+
+        <Button
+            android:id="@+id/mapbtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="장소 선택 완료" />
+
+    </LinearLayout>
+
 </LinearLayout>

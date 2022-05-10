@@ -38,14 +38,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="420dp"
+            android:layout_height="wrap_content"
             android:layout_weight="8">
 
             <fragment
                 android:id="@+id/map"
                 android:name="com.naver.maps.map.MapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="412dp" />
+                android:layout_height="400dp" />
         </LinearLayout>
 
 
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:gravity="center"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="30dp"
@@ -66,6 +66,15 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="소요시간" />
+
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="코스 간단 정보" />
         </LinearLayout>
 
 

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.coursefinder.R;
 import com.example.coursefinder.courseVo.ExerciseInfo;
@@ -26,6 +27,8 @@ import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.PathOverlay;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +49,8 @@ public class ExerciseRegitDetail extends AppCompatActivity implements OnMapReady
 
     private ArrayList<ExerciseInfo> exerciseInfos;
 
+    private TextView ename, etime, einfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +58,7 @@ public class ExerciseRegitDetail extends AppCompatActivity implements OnMapReady
 
         Intent intent = getIntent();
         String miid = intent.getStringExtra("miid");
+
 
         FragmentManager fm = getSupportFragmentManager();
         MapFragment mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
@@ -77,6 +83,13 @@ public class ExerciseRegitDetail extends AppCompatActivity implements OnMapReady
         for (int i = 0; i < selectExerciseFromView.getExerciseInfos().size(); i++) {
             exerciseInfos.add(selectExerciseFromView.getExerciseInfos().get(i));
         }
+        ename = (TextView) findViewById(R.id.course_name);
+        etime = (TextView) findViewById(R.id.textView8);
+        einfo = (TextView)  findViewById(R.id.textView9);
+
+        ename.setText(exerciseInfos.get(0).getWi_name());
+        etime.setText(exerciseInfos.get(0).getWi_time());
+        einfo.setText(exerciseInfos.get(0).getWi_info());
     }
 
     // 지도를 띄워주는 과정
