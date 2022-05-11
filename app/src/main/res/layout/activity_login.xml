@@ -3,19 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:clipToPadding="false">
 
-    <ImageView
-        android:id="@+id/img_background"
+    <TextView
+        android:id="@+id/welcome_"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:scaleType="fitStart"
-        android:src="@drawable/loginui" />
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="116dp"
+        android:gravity="center_horizontal|top"
+        android:textSize="30dp"
+        android:text="@string/welcome_"
+        android:textAppearance="@style/welcome_"
+        android:translationY="-9.76sp"
+        android:shadowColor="#000000"
+        android:shadowDx="3"
+        android:shadowDy="2"
+        android:shadowRadius="1.5"/>
 
     <EditText
         android:id="@+id/et_inputid"
@@ -27,7 +35,9 @@
         android:gravity="center"
         android:inputType="textPersonName"
         android:text="아이디"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textAppearance="@style/id"
+        />
 
     <EditText
         android:id="@+id/et_inputPwsd"
@@ -39,7 +49,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="비밀번호"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textAppearance="@style/password"/>
 
     <Button
         android:id="@+id/bt_login"
@@ -47,30 +58,39 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:background="#6A4CAF50"
+        android:background="@drawable/button"
         android:text="로그인"
+        android:textAppearance="@style/bt_login"
         android:textSize="20sp"
+        android:elevation="10dp"
+        android:stateListAnimator="@null"
+
         />
 
     <Button
         android:id="@+id/bt_register"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="#61CDDC39"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:text="회원가입"
-        android:textSize="20sp" />
+        android:background="@drawable/button"
+        android:textSize="20sp"
+        android:textAppearance="@style/bt_login"
+        android:elevation="10dp"
+        android:stateListAnimator="@null"/>
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:background="#FFFFFF"
-        android:text="아이디/비밀번호 찾기"
+        android:text="아이디 / 비밀번호 찾기"
+        android:textAppearance="@style/id"
         app:layout_constraintEnd_toEndOf="@+id/bt_register"
         app:layout_constraintStart_toStartOf="@+id/bt_register"
         app:layout_constraintTop_toBottomOf="@+id/bt_register" />
+
 
 </LinearLayout>

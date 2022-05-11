@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CourseFinder</string>
+    <string name="welcome_">WELCOME!</string>
+    <string name="id">ID</string>
+    <string name="password">Password</string>
+    <string name="bt_login">\u00EB\u00A1\u009C\u00EA\u00B7\u00B8\u00EC\u009D\u00B8x</string>
 </resources>
