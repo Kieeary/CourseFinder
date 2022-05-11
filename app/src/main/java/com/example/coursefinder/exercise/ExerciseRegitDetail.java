@@ -120,7 +120,7 @@ public class ExerciseRegitDetail extends AppCompatActivity implements OnMapReady
         @Override
         protected String doInBackground(Void... voids) {
             ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
-            Call<String> call = apiInterface.getwalkcoursedetail(miid, "");
+            Call<String> call = apiInterface.getwalkcoursedetail(miid);
             try{
                 Response<String> response = call.execute();
                 return response.body().toString();

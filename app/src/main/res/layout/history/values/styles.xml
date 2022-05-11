@@ -34,7 +34,7 @@
             #000000
         </item>
         <item name="android:fontFamily">
-<!--            @font/nanum_b-->
+            @font/nanum_b
         </item>
 
     </style>
@@ -49,7 +49,7 @@
             #303030
         </item>
         <item name="android:fontFamily">
-            @font/dohyeon
+            @font/nanum_b
         </item>
     </style>
 
@@ -61,7 +61,7 @@
             #909090
         </item>
         <item name="android:fontFamily">
-            @font/dohyeon
+            @font/nanum_r
         </item>
         <item name="android:letterSpacing">
             0.05
@@ -81,7 +81,7 @@
         </item>
 
         <item name="android:fontFamily">
-            @font/dohyeon
+            @font/nanum_r
         </item>
 
     </style>
@@ -97,7 +97,7 @@
             #FFFFFF
         </item>
         <item name="android:fontFamily">
-            @font/dohyeon
+            @font/nanum_b
         </item>
     </style>
 
@@ -114,7 +114,7 @@
             #303030
         </item>
         <item name="android:fontFamily">
-            @font/dohyeon
+            @font/nanum_b
         </item>
     </style>
 
@@ -128,7 +128,7 @@
             #FFFFFF
         </item>
         <item name="android:fontFamily">
-            @font/dohyeon
+            @font/nanum_b
         </item>
         <item name="android:letterSpacing">
             0.05
@@ -148,7 +148,7 @@
             0.05
         </item>
         <item name="android:fontFamily">
-            @font/dohyeon
+            @font/nanum_r
         </item>
     </style>
 
@@ -165,7 +165,7 @@
             0.05
         </item>
         <item name="android:fontFamily">
-            @font/dohyeon
+            @font/nanum_r
         </item>
     </style>
 
@@ -182,7 +182,7 @@
             0.05
         </item>
         <item name="android:fontFamily">
-<!--            @font/dohyeon_light-->
+            @font/nanum_r
         </item>
     </style>
 
