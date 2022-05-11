@@ -5,16 +5,20 @@ import com.google.gson.annotations.SerializedName;
 public class ExerciseReviewDetail {
     @SerializedName("wcr_idx")
     private int wcr_idx;
+    @SerializedName("wcr_id")
+    private String wcr_id;
     @SerializedName("wcr_name")
     private String wcr_name;
     @SerializedName("mi_id")
     private String mi_id;
-    @SerializedName("wi_idx")
-    private String wi_idx;
+    @SerializedName("wci_idx")
+    private String wci_idx;
     @SerializedName("wcr_content")
     private String wcr_content;
     @SerializedName("wcr_date")
     private String wcr_date;
+    @SerializedName("wcr_isview")
+    private String wcr_isview;
     @SerializedName("wcr_grade")
     private int wcr_grade;
     @SerializedName("wcr_img")
@@ -28,9 +32,13 @@ public class ExerciseReviewDetail {
         this.wcr_idx = wcr_idx;
     }
 
-    public String getWcr_name() {
-        return wcr_name;
+    public String getWcr_id() { return wcr_id; }
+
+    public void setWcr_id(String wcr_id) {
+        this.wcr_id = wcr_id;
     }
+
+    public String getWcr_name() { return wcr_name; }
 
     public void setWcr_name(String wcr_name) {
         this.wcr_name = wcr_name;
@@ -45,16 +53,14 @@ public class ExerciseReviewDetail {
     }
 
     public String getWi_idx() {
-        return wi_idx;
+        return wci_idx;
     }
 
     public void setWi_idx(String wi_idx) {
-        this.wi_idx = wi_idx;
+        this.wci_idx = wi_idx;
     }
 
-    public String getWcr_content() {
-        return wcr_content;
-    }
+    public String getWcr_content() { return wcr_content; }
 
     public void setWcr_content(String wcr_content) {
         this.wcr_content = wcr_content;
@@ -66,6 +72,12 @@ public class ExerciseReviewDetail {
 
     public void setWcr_date(String wcr_date) {
         this.wcr_date = wcr_date;
+    }
+
+    public String getWcr_isview() { return wcr_isview; }
+
+    public void setWcr_isview(String wcr_isview) {
+        this.wcr_isview = wcr_isview;
     }
 
     public int getWcr_grade() {

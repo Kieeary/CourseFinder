@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.coursefinder.R;
@@ -54,20 +53,10 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
     private Button btn2;
     private Button btn1;
 
-    private EditText name, info, time;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_regit);
-
-        // 장소 모두 초기화
-        btn1 = findViewById(R.id.mapbtn1);
-        // db저장
-        btn2 = findViewById(R.id.mapbtn2);
-        name = (EditText) findViewById(R.id.epname);
-        time = (EditText) findViewById(R.id.etime);
-        info = (EditText) findViewById(R.id.info);
 
         Intent intent = getIntent();
         String miid = intent.getStringExtra("miid");
@@ -84,15 +73,17 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
 
         // 현재 위치 추적을 하기 위해서 설정함
         mLocationSource = new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
+        // 장소 모두 초기화
+        btn1 = findViewById(R.id.mapbtn1);
 
+
+        // db저장
+        btn2 = findViewById(R.id.mapbtn2);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
-                    String epname = name.getText().toString();
-                    String einfo = info.getText().toString();
-                    String etime = time.getText().toString();
-                    String result = new MakeWalkCourseInfo(epname, einfo, etime, miid).execute().get();
+                    String result = new MakeWalkCourseInfo("산책코스1", "가볍게 걷는 운동", "3", miid).execute().get();
                     if(result != null){
                         if(markers.indexOf(null) != -1){
                             markers.remove(markers.indexOf(null));
@@ -213,7 +204,8 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
                 if(response.isSuccessful() && (response.body().equals("1")) ){
                     Log.d("TAG", "SUCESS");
                     // 산책 코스 등록 후 어디로 이동할지 정해야 함
-                    Intent intent = new Intent(ExerciseCourseRegit.this, ExerciseRegitDetail.class);
+                    //Intent intent = new Intent(ExerciseCourseRegit.this, ExerciseDetailCourse.class);
+                    Intent intent = new Intent(ExerciseCourseRegit.this, ExerciseDetailCourse.class);
                     intent.putExtra("miid", miid);
                     startActivity(intent);
                 }else{

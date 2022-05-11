@@ -49,7 +49,7 @@ public interface ApiInterface {
             @Header("X-NCP-APIGW-API-KEY-ID") String id,
             @Header("X-NCP-APIGW-API-KEY") String pw,
             @Query("start") String start,   // "x, y"
-            @Query("goal") String goal,      // "x, y"
+            @Query("goal") String goal,     // "x, y"
             @Query("waypoints") String waypoints
     );
 
@@ -121,8 +121,8 @@ public interface ApiInterface {
 
     @GET("exercisecoursedetail.php")
     Call<String> getwalkcoursedetail(
-            @Query("miid") String miid,
-            @Query("wiidx") String wiid
+            @Query("miid") String miid
+            //@Query("wiidx") String wiid
     );
 
 
@@ -199,6 +199,12 @@ public interface ApiInterface {
             @Part MultipartBody.Part image,
             @Part("im_id") RequestBody name,
             @Part("im_name") RequestBody idx
+    );
+
+    @GET("exercisecoursereview.php")
+    Call<String> getwalkcoursereview(
+            @Query("miid") String miid
+            //@Query("wiidx") String wiid
     );
 }
 

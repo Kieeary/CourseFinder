@@ -1,7 +1,10 @@
 package com.example.coursefinder.exercise;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,27 +13,27 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.coursefinder.Course.CourseListResult;
 import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.R;
+import com.example.coursefinder.courseVo.ExerciseReviewDetail;
+import com.example.coursefinder.courseVo.SelectFromExReview;
+import com.google.gson.Gson;
 
+import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
 
     Context context;
 
-    //int[] courseImg;
-    String[] courseName;
-    String[] courseRoute;
-    String[] courseScore;
+    private ArrayList<ExerciseReviewDetail> exerciseReviews;
 
-    //public ListViewAdapter(Context context, int[] courseImg, String[] courseName, String[] courseRoute, String[] courseScore) {
-    public ListViewAdapter(Context context, String[] courseName, String[] courseRoute, String[] courseScore){
+    public ListViewAdapter(Context context,ArrayList<ExerciseReviewDetail> exerciseReviews ) {
         this.context = context;
-        //this.courseImg = courseImg;
-        this.courseName = courseName;
-        this.courseRoute = courseRoute;
-        this.courseScore = courseScore;
+        this.exerciseReviews = exerciseReviews;
     }
 
     LayoutInflater inflater;
@@ -38,7 +41,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return courseName.length;
+        return exerciseReviews.size();
     }
 
     @Override
@@ -64,13 +67,13 @@ public class ListViewAdapter extends BaseAdapter {
 
         //ImageView courseimgIv = convertView.findViewById(R.id.courseImg);
         TextView courseNameTv = convertView.findViewById(R.id.courseName);
-        TextView courseRouteTv = convertView.findViewById(R.id.courseRoute);
+        TextView coursePlaceTv = convertView.findViewById(R.id.courseReview);
         TextView courseScoreTv = convertView.findViewById(R.id.courseScore);
 
-        //courseimgIv.setImageResource(courseImg[i]);
-        courseNameTv.setText(courseName[i]);
-        courseRouteTv.setText(courseRoute[i]);
-        courseScoreTv.setText(courseScore[i]);
+        //Glide.with(convertView).load("http:10.0.2.2/uploads/test5d1e705b1-32ae-4692-a3f5-6a60a2294418.png.jpg").error(R.drawable.bakery).into(courseimgIv);
+        courseNameTv.setText(exerciseReviews.get(i).getWcr_id());
+        coursePlaceTv.setText(exerciseReviews.get(i).getWcr_content());
+        courseScoreTv.setText(exerciseReviews.get(i).getWcr_grade()+"");
 
 
         ImageButton imageButton = (ImageButton)convertView.findViewById(R.id.detailBtn);
@@ -78,22 +81,12 @@ public class ListViewAdapter extends BaseAdapter {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // ExerciseDetailReview.java로 안넘어 가서 일단 MainCategory로
-                Intent intent = new Intent(view.getContext(), MainCategory.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent = new Intent(view.getContext(), ExerciseDetailReview.class);
+                //   intent.putExtra("wiidx", exerciseInfos.get(i).getWi_idx());
+                //   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }
         });
-/*
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CourseListResult.class);
-                startActivity(intent);
-            }
-
-        });
-        */
         return convertView;
     }
 

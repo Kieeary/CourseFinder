@@ -39,21 +39,21 @@
             </TextView>
 
             <TextView
-                android:id="@+id/courseRoute"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="코스 경로"
-                android:layout_margin="5dp"
-                >
-            </TextView>
-
-            <TextView
                 android:id="@+id/courseScore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="별점"
+                android:layout_margin="5dp"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/courseReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="후기"
                 android:layout_margin="5dp">
             </TextView>
 

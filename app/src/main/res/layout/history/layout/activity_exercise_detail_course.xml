@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="위치" />
+                android:text="코스 간단 정보" />
 
         </LinearLayout>
 

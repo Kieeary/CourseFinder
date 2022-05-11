@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.coursefinder.R;
 import com.example.coursefinder.courseVo.ExerciseInfo;
+import com.example.coursefinder.courseVo.ExerciseReviewDetail;
 
 import java.util.ArrayList;
 
@@ -80,4 +81,5 @@ public class ExListViewAdapter extends BaseAdapter {
         });
         return convertView;
     }
+
 }
