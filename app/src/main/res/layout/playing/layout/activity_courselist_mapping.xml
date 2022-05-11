@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:gravity="center"
-            android:text="소카테고리"
+            android:text="놀거리 추천"
             android:textSize="20dp"
             android:textAlignment="center" />
 

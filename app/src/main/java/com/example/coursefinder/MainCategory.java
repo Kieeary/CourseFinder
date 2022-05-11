@@ -29,7 +29,7 @@ public class MainCategory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_category);
 
-//        sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
 //        String member = sharedPreferences.getString("MemberInfo", "null");
 //        Gson gson = new Gson();
 //        loginMember = gson.fromJson(member, MemberLogInResults.class);

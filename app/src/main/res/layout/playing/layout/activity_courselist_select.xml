@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Course.CourseDetail">
+    tools:context=".Course.CourseListSelect">
 
 
     <LinearLayout
@@ -39,13 +39,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="185dp">
+            android:layout_height="wrap_content"
+            android:layout_weight="8" >
 
             <fragment
                 android:id="@+id/map"
-                android:name="com.naver.maps.map.MapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="189dp" />
+                android:layout_height="match_parent"
+                android:name="com.naver.maps.map.MapFragment" />
         </LinearLayout>
 
 
@@ -89,7 +90,7 @@
         <GridView
             android:id="@+id/grid"
             android:layout_width="wrap_content"
-            android:layout_height="255dp"
+            android:layout_height="258dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
@@ -102,7 +103,7 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/menu_bottom"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:layout_gravity="bottom"
             android:background="#D9EAD3"
             app:labelVisibilityMode="labeled"

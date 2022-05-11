@@ -34,7 +34,7 @@
             #000000
         </item>
         <item name="android:fontFamily">
-            @font/nanum_b
+<!--            @font/nanum_b-->
         </item>
 
     </style>
@@ -182,7 +182,7 @@
             0.05
         </item>
         <item name="android:fontFamily">
-            @font/dohyeon_light
+<!--            @font/dohyeon_light-->
         </item>
     </style>
 

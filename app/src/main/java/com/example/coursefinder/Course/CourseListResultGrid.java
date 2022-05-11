@@ -11,21 +11,25 @@ import android.widget.TextView;
 
 import com.example.coursefinder.R;
 import com.example.coursefinder.courseVo.CourseListVo;
+import com.example.coursefinder.searchVo.PlaceList;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class CourseListResultGrid  extends BaseAdapter {
 
     private Context mContext;
     private final String[] buttonStr;
+    Map<Integer, ArrayList<PlaceList>> placeList;
 //     private ArrayList<CourseListVo> courseLists = new ArrayList<CourseListVo>();
 
 
-    public CourseListResultGrid(Context c, String[] buttonStr ) { //, ArrayList<CourseListVo> courseLists
+    public CourseListResultGrid(Context c, String[] buttonStr,  Map<Integer, ArrayList<PlaceList>> placeList ) { //, ArrayList<CourseListVo> courseLists
         mContext = c;
         this.buttonStr = buttonStr;
+        this.placeList = placeList;
    //      this.courseLists = courseLists;
     }
 
@@ -50,6 +54,9 @@ public class CourseListResultGrid  extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
+        int place_count = placeList.get(position).size();
+        int i=0, j=0;
+        // 각각의 포지션에 장소들 넣어주기
         View grid;
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -58,7 +65,12 @@ public class CourseListResultGrid  extends BaseAdapter {
 
             grid = new View(mContext);
             grid = inflater.inflate(R.layout.courselist_result_grid_single, null);
-;
+
+            for(; j<place_count; j++){
+
+            }
+
+
             Button button1 = (Button)grid.findViewById(R.id.button1);
             Button button2 = (Button)grid.findViewById(R.id.button2);
             Button button3 = (Button)grid.findViewById(R.id.button3);

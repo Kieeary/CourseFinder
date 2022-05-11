@@ -44,6 +44,7 @@ public class SmallCategory extends Activity {
             4,
             2
     }; // db에서 갖고와야할 정보
+    private int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
