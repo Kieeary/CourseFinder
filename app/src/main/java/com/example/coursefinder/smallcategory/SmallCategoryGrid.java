@@ -2,6 +2,7 @@ package com.example.coursefinder.smallcategory;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.coursefinder.Course.CourseListMapping;
 import com.example.coursefinder.R;
 
 public class SmallCategoryGrid extends BaseAdapter{
@@ -64,7 +66,7 @@ public SmallCategoryGrid(Context c,String[] buttonStr, int[] count ) {
             LinearLayout layout = (LinearLayout)grid.findViewById(R.id.gridLayout);
             for(int i=0; i<length; i++){
                 btnArr[i] = new RadioButton(mContext.getApplicationContext());
-                btnArr[i].setText("test" + i);
+                btnArr[i].setText("한식");
                 btnArr[i].setId(position+i);
                 btnArr[i].setButtonDrawable(mContext.getResources().getDrawable(R.drawable.selector_radio_button));
                 btnArr[i].setTextColor(mContext.getResources().getColorStateList(R.drawable.selector_radio_text));

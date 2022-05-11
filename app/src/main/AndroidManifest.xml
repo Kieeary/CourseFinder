@@ -70,6 +70,9 @@
         <activity android:name=".Course.CourseList" />
         <activity android:name=".Course.CourseListResult" />
         <activity android:name=".Course.SearchRegister" />
+        <activity android:name=".Course.CourseListMapping" />
+        <activity android:name=".Course.CourseListSelect" />
+        <activity android:name=".Course.CourseChangePlace" />
         <activity android:name=".Review.Review" />
         <activity android:name=".Review.ReviewDetail" />
         <activity android:name=".ranking.Ranking" />

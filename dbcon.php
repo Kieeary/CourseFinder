@@ -2,7 +2,7 @@
 
     $host = 'localhost';
     $username = 'root'; # MySQL 계정 아이디
-    $password = 'Rktlrhrl1!'; # MySQL 계정 패스워드
+    $password = 'woo2jung'; # MySQL 계정 패스워드
     $dbname = 'coursefinder';  # DATABASE 이름
 
 
@@ -21,7 +21,7 @@
     if(function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) { 
         function undo_magic_quotes_gpc(&$array) { 
             foreach($array as &$value) { 
-                if(is_array($value)) { 
+                if(is_array($value)) {
                     undo_magic_quotes_gpc($value); 
                 } 
                 else { 
@@ -33,7 +33,7 @@
         undo_magic_quotes_gpc($_POST); 
         undo_magic_quotes_gpc($_GET); 
         undo_magic_quotes_gpc($_COOKIE); 
-    } 
+    }
  
     header('Content-Type: text/html; charset=utf-8'); 
     #session_start();

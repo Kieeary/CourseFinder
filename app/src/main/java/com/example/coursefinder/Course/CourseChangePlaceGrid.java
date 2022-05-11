@@ -1,4 +1,4 @@
-package com.example.coursefinder.playingRegister;
+package com.example.coursefinder.Course;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,17 +17,21 @@ import com.example.coursefinder.searchVo.ImageList;
 import com.example.coursefinder.searchVo.PlaceList;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class ResultAdapter extends BaseAdapter {
+public class CourseChangePlaceGrid extends BaseAdapter {
 
     Context context;
     int [] image;
-    ArrayList<PlaceList> placeName = new ArrayList<PlaceList>();;
+    ArrayList<PlaceList> placeName = new ArrayList<PlaceList>();
+    private Map<Integer, ArrayList<PlaceList>> orderschResults = new HashMap<Integer, ArrayList<PlaceList>>();
 
-    public ResultAdapter(Context context, int [] image, ArrayList<PlaceList> placeName) {
+    public CourseChangePlaceGrid(Context context, int [] image, ArrayList<PlaceList> placeName, Map<Integer, ArrayList<PlaceList>> orderschResults) {
         this.context = context;
         this.image = image;
         this.placeName = placeName;
+        this.orderschResults = orderschResults;
     }
 
     LayoutInflater inflater;
@@ -54,18 +58,29 @@ public class ResultAdapter extends BaseAdapter {
         }
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.result_item, null);
+            convertView = inflater.inflate(R.layout.change_item, null);
         }
 
         ImageView courseimgIv = convertView.findViewById(R.id.courseImg);
         TextView courseNameTv = convertView.findViewById(R.id.courseName);
+        ImageButton changeButton = convertView.findViewById(R.id.change_btn);
 
         courseimgIv.setImageResource(image[0]);
         courseNameTv.setText(placeName.get(i).getTitle().replaceAll("<b>", " ").replaceAll("</b>", " "));
         if(placeName.get(i).getImgLink()!= null){
             Glide.with(convertView).load(placeName.get(i).getImgLink()).into(courseimgIv);
         }
+        changeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(context.getApplicationContext(), CourseChangePlace.class);
+                intent.putExtra("place", placeName.get(i));
+
+                context.startActivity(intent);
+            }
+
+        });
 
 //        ImageButton imageButton = (ImageButton) convertView.findViewById(R.id.detailBtn);
 //
