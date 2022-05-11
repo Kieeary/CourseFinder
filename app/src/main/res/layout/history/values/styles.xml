@@ -18,9 +18,7 @@
         <item name="android:fontFamily">
             @font/changaone
         </item>
-        <item name="android:elevation">
-            20dp
-        </item>
+
 
 
     </style>
@@ -36,7 +34,7 @@
             #000000
         </item>
         <item name="android:fontFamily">
-            @font/dohyeon
+            @font/nanum_b
         </item>
 
     </style>
@@ -65,7 +63,9 @@
         <item name="android:fontFamily">
             @font/dohyeon
         </item>
-
+        <item name="android:letterSpacing">
+            0.05
+        </item>
     </style>
 
     <style name="password">
@@ -73,7 +73,9 @@
         <item name="android:textSize">
             14sp
         </item>
-
+        <item name="android:letterSpacing">
+            0.05
+        </item>
         <item name="android:textColor">
             #909090
         </item>
@@ -88,7 +90,9 @@
         <item name="android:textSize">
             18sp
         </item>
-
+        <item name="android:letterSpacing">
+            0.05
+        </item>
         <item name="android:textColor">
             #FFFFFF
         </item>
@@ -114,7 +118,7 @@
         </item>
     </style>
 
-    <style name="text">
+    <style name="button">
 
         <item name="android:textSize">
             18sp
@@ -126,7 +130,62 @@
         <item name="android:fontFamily">
             @font/dohyeon
         </item>
+        <item name="android:letterSpacing">
+            0.05
+        </item>
     </style>
+
+    <style name="text">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+        <item name="android:letterSpacing">
+            0.05
+        </item>
+        <item name="android:fontFamily">
+            @font/dohyeon
+        </item>
+    </style>
+
+    <style name="text1">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #303030
+        </item>
+        <item name="android:letterSpacing">
+            0.05
+        </item>
+        <item name="android:fontFamily">
+            @font/dohyeon
+        </item>
+    </style>
+
+    <style name="text2">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #303030
+        </item>
+        <item name="android:letterSpacing">
+            0.05
+        </item>
+        <item name="android:fontFamily">
+            @font/dohyeon_light
+        </item>
+    </style>
+
 
 
 

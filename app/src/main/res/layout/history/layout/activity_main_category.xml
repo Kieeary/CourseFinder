@@ -1,78 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="false">
+    android:orientation="vertical"
+    tools:context=".MainCategory">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/tv_firstCategory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|top"
+        android:layout_height="70dp"
+        android:gravity="center"
         android:text="대카테고리 선택"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="30dp"
+        android:textAlignment="center"
+        android:textSize="20dp"
         android:textAppearance="@style/title1_"
         />
 
     <Button
         android:id="@+id/courseRecommend"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
         android:text="놀거리"
+        android:layout_gravity="center"
         android:textSize="30sp"
         android:textAppearance="@style/button1_"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="124dp"
         android:background="@drawable/button1"
-        />
+        android:elevation="10dp"/>
 
     <Button
         android:id="@+id/exerciseCourse"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:background="@drawable/button1"
+        android:layout_marginTop="15dp"
         android:text="산책"
         android:textAppearance="@style/button1_"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="220dp"
-        tools:layout_editor_absoluteY="124dp" />
+        android:background="@drawable/button1"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/courseHistory"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:text="History"
+            android:textSize="28sp"
+            android:layout_marginLeft="30dp"
+            android:textAppearance="@style/button1_"
+            android:background="@drawable/button1"/>
+
+        <Button
+            android:id="@+id/courseBest"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="70dp"
+            android:text="Best \n Course"
+            android:textSize="24sp"
+            android:textAppearance="@style/button1_"
+            android:background="@drawable/button1">
+        </Button>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/courseRegister"
-        android:layout_width="322dp"
+        android:layout_width="350dp"
         android:layout_height="100dp"
-        android:background="@drawable/button1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
         android:text="코스 등록"
-        android:textAppearance="@style/button1_"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="44dp"
-        tools:layout_editor_absoluteY="310dp" />
-
-    <Button
-        android:id="@+id/courseHistory"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@drawable/button1"
-        android:text="History"
         android:textAppearance="@style/button1_"
-        android:textSize="28sp"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="449dp" />
+        android:background="@drawable/button1"/>
 
-    <Button
-        android:id="@+id/courseBest"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@drawable/button1"
-        android:text="Best \n Course"
-        android:textAppearance="@style/button1_"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="220dp"
-        tools:layout_editor_absoluteY="449dp"></Button>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
