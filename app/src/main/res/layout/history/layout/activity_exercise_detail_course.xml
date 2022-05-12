@@ -22,7 +22,9 @@
                 android:layout_marginLeft="30dp"
                 android:gravity="center"
                 android:text="코스이름"
-                android:textSize="20dp" />
+                android:background="@drawable/title_box"
+                android:textAppearance="@style/title1_"
+                android:elevation="10dp" />
 
             <ImageButton
                 android:id="@+id/add_btn"
@@ -65,7 +67,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="소요시간" />
+                android:text="소요시간"
+                android:textAppearance="@style/text1"/>
 
 
             <TextView
@@ -74,7 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="코스 간단 정보" />
+                android:text="코스 간단 정보"
+                android:textAppearance="@style/text1"/>
 
         </LinearLayout>
 

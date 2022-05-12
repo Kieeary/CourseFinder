@@ -101,23 +101,6 @@
         </item>
     </style>
 
-
-
-    <style name="button1">
-        <item name="android:textSize">
-            30sp
-        </item>
-        <item name="android:letterSpacing">
-            0.05
-        </item>
-        <item name="android:textColor">
-            #303030
-        </item>
-        <item name="android:fontFamily">
-            @font/nanum_b
-        </item>
-    </style>
-
     <style name="button">
 
         <item name="android:textSize">
@@ -134,6 +117,38 @@
             0.05
         </item>
     </style>
+
+    <style name="button1">
+        <item name="android:textSize">
+            30sp
+        </item>
+        <item name="android:letterSpacing">
+            0.05
+        </item>
+        <item name="android:textColor">
+            #303030
+        </item>
+        <item name="android:fontFamily">
+            @font/nanum_b
+        </item>
+    </style>
+
+    <style name="button2">
+        <item name="android:textSize">
+            18sp
+        </item>
+        <item name="android:letterSpacing">
+            0.05
+        </item>
+        <item name="android:textColor">
+            #303030
+        </item>
+        <item name="android:fontFamily">
+            @font/nanum_b
+        </item>
+    </style>
+
+
 
     <style name="text">
 
@@ -172,7 +187,7 @@
     <style name="text2">
 
         <item name="android:textSize">
-            18sp
+            15sp
         </item>
 
         <item name="android:textColor">

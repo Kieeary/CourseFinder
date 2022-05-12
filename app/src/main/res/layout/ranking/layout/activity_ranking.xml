@@ -16,7 +16,8 @@
             android:layout_height="70dp"
             android:gravity="center"
             android:text="랭 킹"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textAppearance="@style/title1_"/>
 
         <GridView
 
@@ -35,9 +36,9 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/menu_bottom"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:layout_gravity="bottom"
-            app:itemBackground="@drawable/ic_launcher_background"
+            android:background="#D9EAD3"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom"
             tools:layout_editor_absoluteX="0dp"

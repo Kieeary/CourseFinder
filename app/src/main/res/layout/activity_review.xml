@@ -22,7 +22,10 @@
                 android:layout_marginLeft="30dp"
                 android:gravity="center"
                 android:text="코스 이름"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:background="@drawable/title_box"
+                android:textAppearance="@style/title1_"
+                android:elevation="10dp"/>
 
             <ImageButton
                 android:id="@+id/add_btn"
@@ -59,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="작성자 : user1" />
+                android:text="작성자 : user1"
+                android:textAppearance="@style/text2"/>
 
         </LinearLayout>
 
@@ -88,7 +92,8 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="리뷰 내용" />
+                    android:text="리뷰 내용"
+                    android:textAppearance="@style/text2" />
             </LinearLayout>
         </ScrollView>
 

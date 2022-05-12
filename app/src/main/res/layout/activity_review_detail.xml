@@ -22,7 +22,10 @@
                 android:layout_marginLeft="30dp"
                 android:gravity="center"
                 android:text="작성자 이름"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:background="@drawable/title_box"
+                android:textAppearance="@style/title1_"
+                android:elevation="10dp"/>
 
             <ImageButton
                 android:id="@+id/add_btn"
