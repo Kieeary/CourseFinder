@@ -41,12 +41,12 @@
                 android:textAppearance="@style/text2"/>
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/add_btn"
-            android:layout_width="53dp"
-            android:layout_height="50dp"
+<!--        <ImageButton-->
+<!--            android:id="@+id/add_btn"-->
+<!--            android:layout_width="53dp"-->
+<!--            android:layout_height="50dp"-->
 
-            android:background="@drawable/ic_add" />
+<!--            android:background="@drawable/ic_add" />-->
     </LinearLayout>
 
 </LinearLayout>

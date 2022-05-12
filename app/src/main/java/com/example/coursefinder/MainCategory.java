@@ -78,7 +78,7 @@ public class MainCategory extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainCategory.this, ExerciseCourseRegit.class);
-                intent.putExtra("miid", miid);
+//                intent.putExtra("miid", miid);
                 startActivity(intent);
             }
         });

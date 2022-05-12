@@ -151,7 +151,7 @@ public class CourseListResult extends Activity {
     // 매개변수로 검색 키워드를 받아온다
     public void searchCourse(String sch1, String sch2, String sch3){
         ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
-        Call<String> call = apiInterface.searchCourse(sch1, sch2, sch3);
+        Call<String> call = apiInterface.searchCourse(sch1, sch2, sch3, "");
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

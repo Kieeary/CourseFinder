@@ -1,6 +1,7 @@
 package com.example.coursefinder.Course;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -8,12 +9,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -117,8 +124,13 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
     private ImageButton fav;
     private SharedPreferences sharedPreferences;
 
+    String[] category_list;
+    private String[] course_arr;
     private String imgResults;
     String TAG = "TAG";
+
+    private int[] index_arr;
+    private int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,12 +146,12 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
         Intent intent = getIntent();
         String[] results = intent.getStringArrayExtra("results");
         String course = intent.getStringExtra("course");
-        String[] category_list = intent.getStringArrayExtra("category");
-        String course_arr[] = course.split("->");
+        category_list = intent.getStringArrayExtra("category");
+        course_arr = course.split("->");
         String ciid = intent.getIntExtra("courseId", 0)+"";
         int position = intent.getIntExtra("position", 0);
         int size = course_arr.length;
-        int index_arr[] = new int[size];
+        index_arr = new int[size];
 
         if(size==3) {
             int x = (position / size) / size;
@@ -240,6 +252,17 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
         grid.setAdapter(adapter);
 
 
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intent = new Intent(getBaseContext (), CourseChangePlace.class);
+                intent.putExtra("category", category_list[position]);
+                intent.putExtra("ordersch_idx", position+1);
+                intent.putExtra("index_arr", index_arr[position]);
+                launcher.launch(intent);
+            }
+        });
+
 
         //작성자 이름 클릭시 작성자가 지금까지 작성한 리뷰로 넘어감
         /*
@@ -263,6 +286,27 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
 
          */
     }
+    ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>()
+            {
+                @Override
+                public void onActivityResult(ActivityResult data)
+                {
+                    Log.d("TAG", "data : " + data);
+                    if (data.getResultCode() == Activity.RESULT_OK)
+                    {
+                        Intent intent = data.getData();
+                        PlaceList place = (PlaceList) intent.getSerializableExtra("place");
+                        int ordersch_idx = intent.getIntExtra("ordersch_idx", -1);
+                        int item_idx = intent.getIntExtra("index_arr", -1);
+                        orderschResults.get(ordersch_idx).remove(item_idx);
+                        orderschResults.get(ordersch_idx).add(item_idx, place);
+                        CourseListSelectGrid adapter = new CourseListSelectGrid(CourseListSelect.this, imageId, course_arr, category_list, orderschResults, position, index_arr);
+                        grid=(GridView)findViewById(R.id.grid);
+                        grid.setAdapter(adapter);
+                    }
+                }
+            });
 
 
     // 지도를 띄워주는 과정

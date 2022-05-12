@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
@@ -79,7 +81,7 @@ public class CourseListSelectGrid extends BaseAdapter {
             TextView placeName = (TextView) grid.findViewById(R.id.placeName);
             ImageView imageView = (ImageView)grid.findViewById(R.id.placeImg);
             TextView textView2 = (TextView) grid.findViewById(R.id.placeAddr);
-            ImageButton changeButton = (ImageButton) grid.findViewById(R.id.add_btn);
+//            ImageButton changeButton = (ImageButton) grid.findViewById(R.id.add_btn);
 
             imageView.setImageResource(Imageid[position]);
             placeName.setText(orderschResults.get(position+1).get(index_arr[position]).getTitle().replaceAll("<b>", " ").replaceAll("</b>", " "));
@@ -89,20 +91,18 @@ public class CourseListSelectGrid extends BaseAdapter {
             }
 
 
-            changeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent intent = new Intent(mContext.getApplicationContext(), CourseChangePlace.class);
-                    intent.putExtra("category", category_list[position]);
-                    mContext.startActivity(intent);
-                }
-
-            });
-
-            //Log.d("TAG", "IN VIEW : "+  placeLists.get(position).getCp_name());
-
-
+//            changeButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    Intent intent = new Intent(mContext.getApplicationContext(), CourseChangePlace.class);
+//                    intent.putExtra("category", category_list[position]);
+//                    intent.putExtra("ordershc_idx", position+1);
+//                    intent.putExtra("index_arr", index_arr[position]);
+//                    mContext.startActivity(intent);
+//                }
+//
+//            });
 
         }else{
             grid = (View) convertView;
