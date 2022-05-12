@@ -29,14 +29,16 @@
                 android:id="@+id/placeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="장소이름" />
+                android:text="장소이름"
+                android:textAppearance="@style/text2"/>
 
             <TextView
                 android:id="@+id/placeAddr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="주소" />
+                android:text="주소"
+                android:textAppearance="@style/text2"/>
         </LinearLayout>
 
         <ImageButton

@@ -61,14 +61,12 @@
 
         <ImageButton
             android:id="@+id/detailBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="5dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/img">
+            android:layout_width="136dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/ic_add" />
 
-        </ImageButton>
+
 
 
     </LinearLayout>

@@ -34,7 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="산책 코스 이름1" />
+                android:text="산책 코스 이름1"
+                android:textAppearance="@style/text2"/>
 
 
             <TextView
@@ -43,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
-                android:text="별점" />
+                android:text="별점"
+                android:textAppearance="@style/text2"/>
 
         </LinearLayout>
 

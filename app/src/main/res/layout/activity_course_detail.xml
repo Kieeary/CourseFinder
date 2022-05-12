@@ -20,10 +20,14 @@
                 android:id="@+id/course_name"
                 android:layout_width="333dp"
                 android:layout_height="70dp"
+
                 android:layout_marginLeft="30dp"
                 android:gravity="center"
                 android:text="코스 이름"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:background="@drawable/title_box"
+                android:textAppearance="@style/title1_"
+                android:elevation="10dp"/>
 
             <ImageButton
                 android:id="@+id/add_btn"
@@ -33,7 +37,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/btn_heart"
                 tools:layout_editor_absoluteX="345dp"
-                tools:layout_editor_absoluteY="25dp" />
+                tools:layout_editor_absoluteY="25dp"
+                />
         </LinearLayout>
 
 
@@ -49,6 +54,15 @@
         </LinearLayout>
 
 
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="비용"
+            android:textAppearance="@style/text1"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,14 +73,6 @@
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="350dp">
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="비용" />
-
 
             <TextView
                 android:id="@+id/textView7"
@@ -74,7 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="주소" />
+                android:text="주소"
+                android:textAppearance="@style/text1"/>
 
         </LinearLayout>
 
@@ -83,7 +90,7 @@
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"/>
 
 
         <GridView

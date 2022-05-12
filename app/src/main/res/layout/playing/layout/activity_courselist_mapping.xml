@@ -16,8 +16,8 @@
             android:layout_height="70dp"
             android:gravity="center"
             android:text="놀거리 추천"
-            android:textSize="20dp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textAppearance="@style/title1_"/>
 
         <GridView
 
@@ -45,8 +45,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="25dp"
                 android:layout_weight="1"
-                android:backgroundTint="#B5ACAC"
-                android:text="다 음" />
+                android:text="다 음"
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"/>
 
             <Button
                 android:id="@+id/cancel_button"
@@ -56,8 +57,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:backgroundTint="#B5ACAC"
-                android:text="취 소" />
+                android:text="취 소"
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"/>
         </LinearLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

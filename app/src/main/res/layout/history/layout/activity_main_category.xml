@@ -14,7 +14,6 @@
         android:gravity="center"
         android:text="대카테고리 선택"
         android:textAlignment="center"
-        android:textSize="20dp"
         android:textAppearance="@style/title1_"
         />
 

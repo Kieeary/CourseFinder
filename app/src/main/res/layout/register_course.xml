@@ -22,7 +22,7 @@
                 android:gravity="center"
                 android:text="놀거리 코스 등록"
                 android:textAlignment="center"
-                android:textSize="20dp" />
+                android:textAppearance="@style/title1_" />
         </LinearLayout>
 
         <LinearLayout
@@ -40,7 +40,8 @@
                 android:background="@drawable/xml_border"
                 android:gravity="center"
                 android:text="코스 명을 입력하세요."
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textAppearance="@style/text1"/>
 
             <TextView
                 android:id="@+id/textview2"
@@ -52,7 +53,8 @@
                 android:background="@drawable/xml_border"
                 android:gravity="center"
                 android:text="코스를 설명해주세요."
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textAppearance="@style/text2"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -69,7 +71,8 @@
                     android:background="@drawable/xml_border"
                     android:gravity="center"
                     android:text="예상 소요시간"
-                   android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textAppearance="@style/text2"/>
 
                 <TextView
                     android:id="@+id/textview7"
@@ -82,6 +85,7 @@
                     android:background="@drawable/xml_border"
                     android:gravity="center"
                     android:text="(분)"
+                    android:textAppearance="@style/text2"
                     android:textAlignment="center" />
 
             </LinearLayout>
@@ -101,11 +105,12 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:drawableRight="@drawable/plus_image"
+                    android:drawableRight="@drawable/ic_add"
                     android:gravity="left"
                     android:text="장소 이름을 입력해주세요"
                     app:layout_column="0"
-                    app:layout_row="0" />
+                    app:layout_row="0"
+                    android:textAppearance="@style/text2"/>
 
                 <Button
                     android:id="@+id/button3"
@@ -113,11 +118,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:drawableRight="@drawable/plus_image"
+                    android:drawableRight="@drawable/ic_add"
                     android:gravity="left"
                     android:text="장소 이름을 입력해주세요"
                     app:layout_column="0"
-                    app:layout_row="1" />
+                    app:layout_row="1"
+                    android:textAppearance="@style/text2"/>
 
                 <Button
                     android:id="@+id/button4"
@@ -125,11 +131,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:drawableRight="@drawable/plus_image"
+                    android:drawableRight="@drawable/ic_add"
                     android:gravity="left"
                     android:text="장소 이름을 입력해주세요"
                     app:layout_column="0"
-                    app:layout_row="2" />
+                    app:layout_row="2"
+                    android:textAppearance="@style/text2"/>
 
             </androidx.gridlayout.widget.GridLayout>
 
@@ -148,7 +155,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="25dp"
                 android:layout_weight="1"
-                android:backgroundTint="#B5ACAC"
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"
                 android:text="등 록" />
 
             <Button
@@ -159,7 +167,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:backgroundTint="#B5ACAC"
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"
                 android:text="취 소" />
         </LinearLayout>
 
