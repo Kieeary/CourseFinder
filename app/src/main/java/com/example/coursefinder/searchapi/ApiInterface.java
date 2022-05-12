@@ -121,16 +121,17 @@ public interface ApiInterface {
 
     @GET("exercisecoursedetail.php")
     Call<String> getwalkcoursedetail(
-            @Query("miid") String miid
-            //@Query("wiidx") String wiid
+            @Query("miid") String miid,
+            @Query("wiidx") String wiid
     );
 
 
     @GET("courssearch.php")
     Call<String> searchCourse(      // 코스 검색 (일단 키워드는 3개로 고정해둠, 차후에 4개로 늘릴것임)
-                                    @Query("sch1") String sch1,
-                                    @Query("sch2") String sch2,
-                                    @Query("sch3") String sch3
+        @Query("sch1") String sch1,
+        @Query("sch2") String sch2,
+        @Query("sch3") String sch3,
+        @Query("sch4") String sch4
     );
 
     @GET("getfavcourse.php")
