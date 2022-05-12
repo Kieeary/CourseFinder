@@ -75,28 +75,13 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         setContentView(R.layout.activity_exercise_detail_course);
 
         Intent intent = getIntent();
-        String miid = intent.getStringExtra("miid");
+        String wiidx = intent.getStringExtra("wiidx");
 
-        // review
-        Gson rgson = new Gson();
-        exerciseReviewDetails = new ArrayList<ExerciseReviewDetail>();
-        selectFromExReview = new SelectFromExReview();
-        try {
-            String result = new ExerciseDetailCourse.GetExerciseReview(miid).execute().get();
-            selectFromExReview = rgson.fromJson(result, SelectFromExReview.class);
-        } catch (Exception e) {
-            Log.d("TAG", e.getMessage());
-            Log.d("TAG", "ERROR WHILE GSON");
-        }
-        ArrayList<ExerciseReviewDetail> exerciseReviews = selectFromExReview.getExerciseReview();
-
-        ListViewAdapter reviewListViewAdapter = new ListViewAdapter(ExerciseDetailCourse.this, exerciseReviews);
-        // 안 됨
-        //listView.setAdapter(reviewListViewAdapter);
+        listView = (ListView) findViewById(R.id.listView);
+        getExList("123");
 
 
         // map
-
         FragmentManager fm = getSupportFragmentManager();
         MapFragment mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
         if (mapFragment == null) {
@@ -110,7 +95,7 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         gson = new Gson();
 
         try {
-            String result = new ExerciseDetailCourse.GetExerciseDetail(miid).execute().get();
+            String result = new ExerciseDetailCourse.GetExerciseDetail("", "123").execute().get();
             selectExerciseFromView = gson.fromJson(result, SelectExerciseFromView.class);
         } catch (Exception e) {
             Log.d("TAG", e.getMessage());
@@ -145,10 +130,11 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
 
     class GetExerciseDetail extends AsyncTask<Void, Void, String> {
 
-        String miid;
+        String miid, wiidx;
 
-        public GetExerciseDetail(String miid) {
+        public GetExerciseDetail(String miid, String wiidx) {
             this.miid = miid;
+            this.wiidx = wiidx;
         }
 
         @Override
@@ -157,7 +143,7 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         @Override
         protected String doInBackground(Void... voids) {
             ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
-            Call<String> call = apiInterface.getwalkcoursedetail(miid);
+            Call<String> call = apiInterface.getwalkcoursedetail("", wiidx);
             try{
                 Response<String> response = call.execute();
                 return response.body().toString();
@@ -233,27 +219,36 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
 
     }
 
-    class GetExerciseReview extends AsyncTask<Void, Void, String> {
+    // From ExerciseCourseList
+    public void getExList(String wiid){      // wiid
 
-        String miid;
+        Log.d("TAG", "WIID = " + wiid);
+        ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
 
-        public GetExerciseReview(String miid) {
-            this.miid = miid;
-        }
+        Call<String> call = apiInterface.getwalkcoursereview(wiid);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful() && !(response.body().equals("failed"))){
+                    String result = response.body();
+                    Gson gson = new Gson();
+                    SelectFromExReview selectFromExReview = gson.fromJson(result, SelectFromExReview.class);
+                    ArrayList<ExerciseReviewDetail> exerciseReviewDetails = selectFromExReview.getExerciseReview();
 
-        @Override
-        protected void onPostExecute(String s) { super.onPostExecute(s); }
+                    ListViewAdapter listViewAdapter = new ListViewAdapter(ExerciseDetailCourse.this, exerciseReviewDetails);
+                    listView.setAdapter(listViewAdapter);
 
-        @Override
-        protected String doInBackground(Void... voids) {
-            ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
-            Call<String> call = apiInterface.getwalkcoursereview(miid);
-            try{
-                Response<String> response = call.execute();
-                return response.body().toString();
-            }catch(Exception e){
-                Log.d("TAG", "error occured");
-            }return null;
-        }
+                }else{
+                    Log.d("TAG", "DB연결은 성공했으나" + response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("TAG", t.getMessage());
+                Log.d("TAG", "조회 실패");
+            }
+        });
     }
+
 }

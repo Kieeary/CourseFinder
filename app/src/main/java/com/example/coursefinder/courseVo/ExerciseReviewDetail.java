@@ -11,8 +11,8 @@ public class ExerciseReviewDetail {
     private String wcr_name;
     @SerializedName("mi_id")
     private String mi_id;
-    @SerializedName("wci_idx")
-    private String wci_idx;
+    @SerializedName("wi_idx")
+    private String wi_idx;
     @SerializedName("wcr_content")
     private String wcr_content;
     @SerializedName("wcr_date")
@@ -53,11 +53,11 @@ public class ExerciseReviewDetail {
     }
 
     public String getWi_idx() {
-        return wci_idx;
+        return wi_idx;
     }
 
     public void setWi_idx(String wi_idx) {
-        this.wci_idx = wi_idx;
+        this.wi_idx = wi_idx;
     }
 
     public String getWcr_content() { return wcr_content; }
