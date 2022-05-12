@@ -203,8 +203,7 @@ public interface ApiInterface {
 
     @GET("exercisecoursereview.php")
     Call<String> getwalkcoursereview(
-            @Query("miid") String miid
-            //@Query("wiidx") String wiid
+            @Query("wi_idx") String wiid
     );
 }
 
