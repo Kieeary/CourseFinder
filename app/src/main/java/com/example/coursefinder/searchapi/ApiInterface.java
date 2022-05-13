@@ -149,7 +149,9 @@ public interface ApiInterface {
         @Query("wcp_lt") double lt
     );
 
-    @GET("insertreview.php")
+    // 놀거리 코스 리뷰 등록
+    @Multipart
+    @POST("insertreview.php")
     Call<String> saveReview(
             @Part("ciidx") RequestBody ciidx,
             @Part("miid") RequestBody miid,
@@ -159,6 +161,23 @@ public interface ApiInterface {
             @Part MultipartBody.Part image,
             @Part("crimg") RequestBody idx
     );
+
+    // 산책 코스 리뷰 등록
+    @Multipart
+    @POST("exercisereviewregit.php")
+    Call<String> saveExReview(
+            @Part("wiidx") RequestBody wiidx,
+            @Part("miid") RequestBody miid,
+            @Part("wcrname") RequestBody wcrtitle,
+            @Part("wcrcontent") RequestBody wcrcontent,
+            @Part("wcrgrade") RequestBody wcrgrade,
+            @Part MultipartBody.Part image,
+            @Part("wcrimg") RequestBody idx
+    );
+
+
+
+
 
     @GET("insertfavcourse.php")
     Call<String> saveCourse(
