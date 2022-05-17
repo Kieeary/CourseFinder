@@ -25,24 +25,29 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="코스: A->B->C"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:background="@drawable/title_box"
+                android:textAppearance="@style/title1_"
+                android:elevation="10dp"
+                />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="452dp"
+            android:layout_height="402dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="match_parent"
-                android:layout_height="391dp"
+                android:layout_height="361dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/blue_border"
                 android:text="\n리뷰를 작성해주세요."
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textAppearance="@style/text2" />
 
         </LinearLayout>
 
@@ -62,9 +67,11 @@
                 android:stepSize="1.0" />
             <Button
                 android:id="@+id/img_upload"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="이미지 등록하기" />
+                android:text="이미지 등록하기"
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"/>
         </LinearLayout>
 
         <LinearLayout
@@ -80,8 +87,10 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="25dp"
                 android:layout_weight="1"
-                android:backgroundTint="#B5ACAC"
-                android:text="등 록" />
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"
+                android:text="등 록"
+                />
 
             <Button
                 android:id="@+id/button2"
@@ -89,7 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:backgroundTint="#B5ACAC"
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"
                 android:text="정보 보기" />
 
             <Button
@@ -100,7 +110,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:backgroundTint="#B5ACAC"
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"
                 android:text="취 소" />
         </LinearLayout>
 

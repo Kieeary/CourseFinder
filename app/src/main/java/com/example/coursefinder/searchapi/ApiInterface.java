@@ -122,15 +122,16 @@ public interface ApiInterface {
     @GET("exercisecoursedetail.php")
     Call<String> getwalkcoursedetail(
             @Query("miid") String miid,
-            @Query("wiidx") String wiidx
+            @Query("wiidx") String wiid
     );
 
 
     @GET("courssearch.php")
     Call<String> searchCourse(      // 코스 검색 (일단 키워드는 3개로 고정해둠, 차후에 4개로 늘릴것임)
-                                    @Query("sch1") String sch1,
-                                    @Query("sch2") String sch2,
-                                    @Query("sch3") String sch3
+        @Query("sch1") String sch1,
+        @Query("sch2") String sch2,
+        @Query("sch3") String sch3,
+        @Query("sch4") String sch4
     );
 
     @GET("getfavcourse.php")
@@ -148,7 +149,9 @@ public interface ApiInterface {
         @Query("wcp_lt") double lt
     );
 
-    @GET("insertreview.php")
+    // 놀거리 코스 리뷰 등록
+    @Multipart
+    @POST("insertreview.php")
     Call<String> saveReview(
             @Part("ciidx") RequestBody ciidx,
             @Part("miid") RequestBody miid,
@@ -158,6 +161,23 @@ public interface ApiInterface {
             @Part MultipartBody.Part image,
             @Part("crimg") RequestBody idx
     );
+
+    // 산책 코스 리뷰 등록
+    @Multipart
+    @POST("exercisereviewregit.php")
+    Call<String> saveExReview(
+            @Part("wiidx") RequestBody wiidx,
+            @Part("miid") RequestBody miid,
+            @Part("wcrname") RequestBody wcrtitle,
+            @Part("wcrcontent") RequestBody wcrcontent,
+            @Part("wcrgrade") RequestBody wcrgrade,
+            @Part MultipartBody.Part image,
+            @Part("wcrimg") RequestBody idx
+    );
+
+
+
+
 
     @GET("insertfavcourse.php")
     Call<String> saveCourse(

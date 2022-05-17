@@ -29,22 +29,24 @@
                 android:id="@+id/placeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="장소이름" />
+                android:text="장소이름"
+                android:textAppearance="@style/text2"/>
 
             <TextView
                 android:id="@+id/placeAddr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="주소" />
+                android:text="주소"
+                android:textAppearance="@style/text2"/>
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/add_btn"
-            android:layout_width="53dp"
-            android:layout_height="50dp"
+<!--        <ImageButton-->
+<!--            android:id="@+id/add_btn"-->
+<!--            android:layout_width="53dp"-->
+<!--            android:layout_height="50dp"-->
 
-            android:background="@drawable/ic_add" />
+<!--            android:background="@drawable/ic_add" />-->
     </LinearLayout>
 
 </LinearLayout>

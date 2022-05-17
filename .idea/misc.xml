@@ -81,11 +81,13 @@
         <entry key="app/src/main/res/layout/history/layout/activity_result.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/history/layout/activity_result2.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/history/layout/activity_result3.xml" value="0.13728470111448834" />
+        <entry key="app/src/main/res/layout/history/layout/change_item.xml" value="0.25925925925925924" />
         <entry key="app/src/main/res/layout/history/layout/my_course.xml" value="0.27794871794871795" />
         <entry key="app/src/main/res/layout/history/layout/my_course_grid_single.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/history/layout/result_item.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/my_course.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/my_course_grid_single.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/playing/layout/activity_course_change.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/playing/layout/activity_courselist.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/playing/layout/activity_courselist_mapping.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/playing/layout/activity_courselist_mapping_grid_single.xml" value="0.375" />

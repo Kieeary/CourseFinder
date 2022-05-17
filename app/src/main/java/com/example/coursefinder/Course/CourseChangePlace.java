@@ -68,9 +68,11 @@ public class CourseChangePlace extends AppCompatActivity {
     private boolean isBack = false;
     //    String [] schNames = {"한식", "카페", "영화관"};
     String [] schNames = {""};
+    String[] placeName = {"가게이름"};
 
     int[] image = {R.drawable.map};
-    String[] placeName = {"가게이름"};
+    int ordersch_idx;
+    int index_arr_idx;
 
 //    int[] image2 = {R.drawable.map};
 //    String[] placeName2 = {"가게이름"};
@@ -84,7 +86,6 @@ public class CourseChangePlace extends AppCompatActivity {
         setContentView(R.layout.activity_course_change);
 
         listView = (ListView)findViewById(R.id.listView);
-        next1 = (Button)findViewById(R.id.next1);
 
 //        imageButton = (ImageButton)findViewById(R.id.detailBtn);
 
@@ -102,6 +103,9 @@ public class CourseChangePlace extends AppCompatActivity {
         if(isBack)  placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
 
         place = intent.getParcelableExtra("place");
+
+        ordersch_idx = intent.getIntExtra("ordersch_idx", 0);
+        index_arr_idx = intent.getIntExtra("index_arr", 0);
 
         Gson gson = new Gson();
         try {
@@ -137,45 +141,33 @@ public class CourseChangePlace extends AppCompatActivity {
 //        ResultAdapter resultAdapter3 = new ResultAdapter(Result.this, image3, orderschResults.get(3));
 //        listView3.setAdapter(resultAdapter3);
 
+//        btn_back.setOnClickListener (view -> {
+//            Intent intent = new Intent ();
+//            String result = edt_result.getText ().toString ();
+//            intent.putExtra ("result", result);
+//            setResult (RESULT_OK, intent);
+//            finish ();
+//
+//        });
 
         // onClicklistner -> onitemClickListner 변경
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if(!isBack){
-                    if(placeLists.indexOf(changeAdapter.getItem(i)) == -1){
-                        placeLists.add(changeAdapter.getItem(i));
-                    }else {
-                        placeLists.remove(changeAdapter.getItem(i));
-                        Log.d("TAG", "제거됨");
-                    }
-                }else{
-                    if(findDup(changeAdapter, i)){ // 중복된 장소가 잇는 경우 (장소제거)
-                        Log.d("TAG", "중복된 장소가 존재합니다");
-                        placeLists.remove(i);
-                    }else{  // 장소 추가인 경우
-                        Log.d("TAG", "추가 합니다");
-                        placeLists.add(changeAdapter.getItem(i));
-                    }
-                }
-
+//                placeLists.add(changeAdapter.getItem(i));
+                Intent intent = new Intent ();
+                PlaceList place = changeAdapter.getItem(i);
+//                String result = edt_result.getText ().toString ();
+//                intent.putExtra ("result", results);
+                intent.putExtra("place", place);
+                intent.putExtra("ordersch_idx", ordersch_idx);
+                intent.putExtra("index_arr", index_arr_idx);
+                setResult (RESULT_OK, intent);
+                finish ();
                 Toast.makeText(CourseChangePlace.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        next1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CourseChangePlace.this, Result1.class);
-                if(placeLists.size() > 0){
-                    intent.putExtra("Selectedplace", placeLists);
-                    startActivity(intent);
-                }else{
-                    Log.d("TAG", "장소 등록하세요");
-                }
-                startActivity(intent);
-            }
-        });
 
 //        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override

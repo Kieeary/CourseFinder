@@ -31,13 +31,15 @@
                 android:id="@+id/place_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="장소 이름" />
+                android:text="장소 이름"
+                android:textAppearance="@style/text2"/>
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="위치" />
+                android:text="위치"
+                android:textAppearance="@style/text2"/>
 
         </LinearLayout>
 

@@ -20,7 +20,7 @@
             android:gravity="center"
             android:text="놀거리 코스 등록"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textAppearance="@style/title1_"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
 
             <SearchView
                 android:id="@+id/search_view"
-                android:layout_width="320dp"
+                android:layout_width="300dp"
                 android:layout_height="45dp"
                 app:iconifiedByDefault="false"
                 app:queryHint="검색어를 입력하시오"
@@ -39,9 +39,12 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:text="내 코스"
                 tools:layout_editor_absoluteX="310dp"
-                tools:layout_editor_absoluteY="80dp" />
+                tools:layout_editor_absoluteY="80dp"
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"/>
 
         </LinearLayout>
 
@@ -66,22 +69,24 @@
 
             <Button
                 android:id="@+id/cancel_button"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="100dp"
-                android:backgroundTint="@android:color/darker_gray"
+                android:layout_marginRight="20dp"
                 android:text="취소"
-                android:textColor="@color/black" />
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"
+                />
 
             <Button
                 android:id="@+id/next_button"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="@android:color/darker_gray"
+                android:layout_marginLeft="20dp"
                 android:text="다음"
-                android:textColor="@color/black" />
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2" />
         </LinearLayout>
 
 

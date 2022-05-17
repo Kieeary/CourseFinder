@@ -80,9 +80,23 @@ public class ExerciseCourseList extends AppCompatActivity implements OnMapReadyC
             fm.beginTransaction().add(R.id.map, mapFragment).commit();
         }
         mapFragment.getMapAsync(this);
-
+        mLocationSource = new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
+        /*
         // 현재 위치 추적을 하기 위해서 설정함
         mLocationSource = new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
+        ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        String locationProvider = LocationManager.NETWORK_PROVIDER;
+        Location location = locationManager.getLastKnownLocation(locationProvider);
+        lat = location.getLatitude();
+        lon = location.getLongitude();
+
+
+         */
 
         listView = (ListView) findViewById(R.id.listView);
         imageButton = (ImageButton) findViewById(R.id.detailBtn);
@@ -103,7 +117,6 @@ public class ExerciseCourseList extends AppCompatActivity implements OnMapReadyC
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         lat = location.getLatitude();
         lon = location.getLongitude();
-
         getExList(lat, lon);
     }
 

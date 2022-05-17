@@ -63,24 +63,24 @@ public class CourseChangePlaceGrid extends BaseAdapter {
 
         ImageView courseimgIv = convertView.findViewById(R.id.courseImg);
         TextView courseNameTv = convertView.findViewById(R.id.courseName);
-        ImageButton changeButton = convertView.findViewById(R.id.change_btn);
+//        ImageButton changeButton = convertView.findViewById(R.id.change_btn);
 
         courseimgIv.setImageResource(image[0]);
         courseNameTv.setText(placeName.get(i).getTitle().replaceAll("<b>", " ").replaceAll("</b>", " "));
         if(placeName.get(i).getImgLink()!= null){
             Glide.with(convertView).load(placeName.get(i).getImgLink()).into(courseimgIv);
         }
-        changeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(context.getApplicationContext(), CourseChangePlace.class);
-                intent.putExtra("place", placeName.get(i));
-
-                context.startActivity(intent);
-            }
-
-        });
+//        changeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent = new Intent(context.getApplicationContext(), CourseChangePlace.class);
+//                intent.putExtra("place", placeName.get(i));
+//
+//                context.startActivity(intent);
+//            }
+//
+//        });
 
 //        ImageButton imageButton = (ImageButton) convertView.findViewById(R.id.detailBtn);
 //

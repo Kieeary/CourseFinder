@@ -26,34 +26,6 @@
 
         </ListView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/next1"
-                android:layout_margin="10dp"
-                android:text="다음 카테고리"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-            </Button>
-
-            <Button
-                android:id="@+id/back1"
-                android:layout_margin="10dp"
-                android:text="이전 카테고리"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-            </Button>
-
-
-        </LinearLayout>
-
     </LinearLayout>
 
 
