@@ -205,7 +205,7 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
                     Log.d("TAG", "SUCESS");
                     // 산책 코스 등록 후 어디로 이동할지 정해야 함
                     //Intent intent = new Intent(ExerciseCourseRegit.this, ExerciseDetailCourse.class);
-                    Intent intent = new Intent(ExerciseCourseRegit.this, ExerciseDetailCourse.class);
+                    Intent intent = new Intent(ExerciseCourseRegit.this, ExerciseRegitDetail.class);
                     intent.putExtra("miid", miid);
                     startActivity(intent);
                 }else{
