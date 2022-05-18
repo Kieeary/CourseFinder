@@ -14,22 +14,26 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.coursefinder.Course.CourseDetail;
 import com.example.coursefinder.R;
-import com.example.coursefinder.courseVo.CourseInfo;
 import com.example.coursefinder.courseVo.CourseListVo;
+import com.example.coursefinder.courseVo.ExerciseListVo;
 import com.example.coursefinder.courseVo.SelectCourseList;
+import com.example.coursefinder.courseVo.SelectExCourseList;
+import com.example.coursefinder.exercise.ExerciseDetailCourse;
 
 import java.util.ArrayList;
 
-public class MyCourseGrid extends BaseAdapter{
+public class MyCourseGrid2 extends BaseAdapter {
     private Context mContext;
     private final String[] web;
     private final int[] Imageid;
-    ArrayList<CourseListVo> courseInfo = new ArrayList<CourseListVo>();
-    public MyCourseGrid(Context c,String[] web,int[] Imageid, SelectCourseList selectCourseList ) {
+    private ArrayList<ExerciseListVo> exerciseListVos = new ArrayList<ExerciseListVo>();
+
+    public MyCourseGrid2(Context c, String[] web, int[] Imageid, SelectExCourseList exCourseList) {
         mContext = c;
         this.Imageid = Imageid;
         this.web = web;
-        this.courseInfo = selectCourseList.getCourseLists();
+        this.exerciseListVos = exCourseList.getExerciseLists();
+        Log.d("TAG", exerciseListVos.size()+" << SIZE ");
     }
 
     @Override
@@ -39,9 +43,9 @@ public class MyCourseGrid extends BaseAdapter{
     }
 
     @Override
-    public CourseListVo getItem(int position) {
+    public ExerciseListVo getItem(int position) {
         // TODO Auto-generated method stub
-        return courseInfo.get(position);
+        return exerciseListVos.get(position);
     }
 
     @Override
@@ -70,16 +74,14 @@ public class MyCourseGrid extends BaseAdapter{
             Button button1 = (Button) grid.findViewById(R.id.button1);
             Button button2 = (Button) grid.findViewById(R.id.button2);
 
-            textView.setText(courseInfo.get(position).getCi_name());
-            Glide.with(grid).load(courseInfo.get(position).getCi_img().replaceAll("\\\\", "")).into(imageView);
+            textView.setText(exerciseListVos.get(position).getWi_name());
 
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext.getApplicationContext(), CourseReview.class);
-                    // 해당 코스의 객체를 넘겨줌
-
-                    intent.putExtra("courseInfo", courseInfo.get(position));
+                    Intent intent = new Intent(mContext.getApplicationContext(), ExCourseReview.class);
+                    // 해당 코스(즐겨찾기 뷰에서 가져오는)의 객체를 넘겨줌
+                    intent.putExtra("Exinfo", exerciseListVos.get(position));
                     mContext.startActivity(intent);
                 }
             });
@@ -87,8 +89,8 @@ public class MyCourseGrid extends BaseAdapter{
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(mContext.getApplicationContext(), CourseDetail.class);
-                    intent.putExtra("courseId", courseInfo.get(position).getCi_idx());
+                    Intent intent = new Intent(mContext.getApplicationContext(), ExerciseDetailCourse.class);
+                    intent.putExtra("wiid", exerciseListVos.get(position).getWi_idx());
                     mContext.startActivity(intent);
                 }
             });

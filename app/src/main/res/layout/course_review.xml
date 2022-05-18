@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="69dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -34,13 +34,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="402dp"
+            android:layout_height="410dp"
             android:orientation="vertical">
 
-            <TextView
+            <EditText
                 android:id="@+id/textview"
                 android:layout_width="match_parent"
-                android:layout_height="361dp"
+                android:layout_height="200dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
@@ -49,6 +49,14 @@
                 android:textAlignment="center"
                 android:textAppearance="@style/text2" />
 
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -72,6 +80,7 @@
                 android:text="이미지 등록하기"
                 android:background="@drawable/button2"
                 android:textAppearance="@style/button2"/>
+
         </LinearLayout>
 
         <LinearLayout

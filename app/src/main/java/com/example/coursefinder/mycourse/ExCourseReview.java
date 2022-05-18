@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 
@@ -20,6 +21,7 @@ import com.example.coursefinder.R;
 import com.example.coursefinder.UploadImg;
 import com.example.coursefinder.courseVo.CourseListVo;
 import com.example.coursefinder.courseVo.ExerciseInfo;
+import com.example.coursefinder.courseVo.ExerciseListVo;
 import com.example.coursefinder.searchapi.ApiClient3;
 import com.example.coursefinder.searchapi.ApiInterface;
 import com.google.gson.Gson;
@@ -43,17 +45,15 @@ public class ExCourseReview extends AppCompatActivity {
     private static String miid="";
     String uuid;
     private RatingBar ratingBar;
-    private ExerciseInfo exerciseInfo = null;
+    private ExerciseListVo exerciseInfo = null;
+    private EditText contents;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_review);
 
         Intent intent = getIntent();
-        exerciseInfo = (ExerciseInfo) (intent.getSerializableExtra("Exinfo"));
-
-        Log.d("TAG", exerciseInfo.getWi_name()+"");
-
+        exerciseInfo = (ExerciseListVo) (intent.getSerializableExtra("Exinfo"));
 
         sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
         String member = sharedPreferences.getString("MemberInfo", "null");
@@ -61,7 +61,11 @@ public class ExCourseReview extends AppCompatActivity {
         loginMember = gson.fromJson(member, MemberLogInResults.class);
         miid = loginMember.getMemberInfo().get(0).getId();
 
+        contents = (EditText)findViewById(R.id.textview);
         ratingBar = findViewById(R.id.ratingBar);
+
+        EditText textView = (EditText) findViewById(R.id.textView);
+
 
         Button cancelButton = (Button) findViewById(R.id.button3);
         Button regitButton = (Button) findViewById(R.id.button1);
@@ -83,9 +87,13 @@ public class ExCourseReview extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(filePath != null){
-                    getParts(exerciseInfo, miid, filePath, "12", "sadfsadf", ratingBar.getRating());
+                    String content = contents.getText().toString();
+                    String title = textView.getText().toString();
+                    getParts(exerciseInfo, miid, filePath, content, title, ratingBar.getRating());
                 }else{
-                    saveReview(exerciseInfo, miid, "12", "sadfsadf", ratingBar.getRating(), null, null);
+                    String content = contents.getText().toString();
+                    String title = textView.getText().toString();
+                    saveReview(exerciseInfo, miid, content, title, ratingBar.getRating(), null, null);
                 }
 
             }
@@ -103,22 +111,21 @@ public class ExCourseReview extends AppCompatActivity {
     }
 
 
-    public void getParts(ExerciseInfo exerciseInfo, String miid, String filePath, String wcontent, String wcrtitle, double grade){
+    public void getParts(ExerciseListVo exerciseInfo, String miid, String filePath, String wcontent, String wcrtitle, double grade){
         uuid = UUID.randomUUID().toString();
         File file = new File(filePath);
         String filename = "test5" + uuid + filePath.substring(filePath.lastIndexOf("."));
-
         RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("uploaded_file", file.getName(), reqFile);
         RequestBody idx = RequestBody.create(MediaType.parse("text/plain"), filename);
         saveReview(exerciseInfo, miid, wcontent, wcrtitle, grade ,body,idx);
     }
 
-    public void saveReview(ExerciseInfo exerciseInfo, String miid, String content, String title, double grade, @Nullable MultipartBody.Part body, @Nullable RequestBody idx){
+    public void saveReview(ExerciseListVo exerciseInfo, String miid, String content, String title, double grade, @Nullable MultipartBody.Part body, @Nullable RequestBody idx){
         RequestBody wiidx = RequestBody.create(MediaType.parse("text/plain"), exerciseInfo.getWi_idx()+"");
         RequestBody id = RequestBody.create(MediaType.parse("text/plain"),miid);
-        RequestBody wcontent = RequestBody.create(MediaType.parse("text/plain"),"이것은내요입니다");
-        RequestBody wcrtitle = RequestBody.create(MediaType.parse("text/plain"),"제목을입력하십시오?");
+        RequestBody wcontent = RequestBody.create(MediaType.parse("text/plain"),content);
+        RequestBody wcrtitle = RequestBody.create(MediaType.parse("text/plain"),title);
         RequestBody wgrade = RequestBody.create(MediaType.parse("text/plain"),grade+"");
 
 

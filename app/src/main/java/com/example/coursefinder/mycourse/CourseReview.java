@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ public class CourseReview extends Activity {
     private static String miid="";
     String uuid;
     private RatingBar ratingBar;
+    private EditText contents;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +57,14 @@ public class CourseReview extends Activity {
         loginMember = gson.fromJson(member, MemberLogInResults.class);
         miid = loginMember.getMemberInfo().get(0).getId();
 
+        ratingBar = findViewById(R.id.ratingBar);
+        contents = findViewById(R.id.textview);
         int grade = (int)ratingBar.getRating();
-        Log.d("GRADE", grade+" ");
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(courseListVo.getCi_name());
+
+
+
+        EditText textView = (EditText) findViewById(R.id.textView);
+
         Button cancelButton = (Button) findViewById(R.id.button3);
         Button regitButton = (Button) findViewById(R.id.button1);
         Button imgupload = (Button) findViewById(R.id.img_upload);
@@ -82,9 +88,13 @@ public class CourseReview extends Activity {
             @Override
             public void onClick(View view) {
                 if(filePath != null){
-                    getParts(courseListVo, miid, filePath);
+                    String content = contents.getText().toString();
+                    String title = textView.getText().toString();
+                    getParts(courseListVo, miid, filePath, content, title, ratingBar.getRating());
                 }else{
-                    saveReview(courseListVo, miid,null, null);
+                    String content = contents.getText().toString();
+                    String title = textView.getText().toString();
+                    saveReview(courseListVo, miid, content, title, ratingBar.getRating(), null, null);
                 }
 
             }
@@ -109,7 +119,7 @@ public class CourseReview extends Activity {
     }
 
 
-    public void getParts(CourseListVo courseListVo, String miid,String filePath){
+    public void getParts(CourseListVo courseListVo, String miid,String filePath, String content, String title, double rate){
         uuid = UUID.randomUUID().toString();
         File file = new File(filePath);
         String filename = "test5" + uuid + filePath.substring(filePath.lastIndexOf("."));
@@ -117,19 +127,18 @@ public class CourseReview extends Activity {
         RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("uploaded_file", file.getName(), reqFile);
         RequestBody idx = RequestBody.create(MediaType.parse("text/plain"), filename);
-        saveReview(courseListVo, miid,body,idx);
+        saveReview(courseListVo, miid, content, title, rate ,body,idx);
     }
 
-    public void saveReview(CourseListVo courseListVo, String miid, @Nullable MultipartBody.Part body, @Nullable RequestBody idx){
+    public void saveReview(CourseListVo courseListVo, String miid,  String content,  String title, double grade, @Nullable MultipartBody.Part body, @Nullable RequestBody idx){
         RequestBody ciidx = RequestBody.create(MediaType.parse("text/plain"), courseListVo.getCi_idx()+"");
         RequestBody id = RequestBody.create(MediaType.parse("text/plain"),miid);
-        RequestBody content = RequestBody.create(MediaType.parse("text/plain"),"이것은내요입니다\n");
-        RequestBody crtitle = RequestBody.create(MediaType.parse("text/plain"),"제목을입력하십시오?");
-        RequestBody grade = RequestBody.create(MediaType.parse("text/plain"),4+"");
-
+        RequestBody crcontent = RequestBody.create(MediaType.parse("text/plain"),content);
+        RequestBody crcrtitle = RequestBody.create(MediaType.parse("text/plain"),title);
+        RequestBody crgrade = RequestBody.create(MediaType.parse("text/plain"), grade+"");
 
         ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
-        Call<String> call = apiInterface.saveReview(ciidx, id,crtitle, content, grade, body, idx);
+        Call<String> call = apiInterface.saveReview(ciidx, id,crcrtitle, crcontent, crgrade, body, idx);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
