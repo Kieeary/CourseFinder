@@ -5,19 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.coursefinder.Course.CourseDetail;
+import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
 import com.example.coursefinder.courseVo.ExerciseInfo;
 import com.example.coursefinder.courseVo.ExerciseReviewDetail;
 import com.example.coursefinder.courseVo.SelectExerciseFromView;
 import com.example.coursefinder.courseVo.SelectFromExReview;
+import com.example.coursefinder.mycourse.ExCourseReview;
+import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.searchVo.ResultPath;
 import com.example.coursefinder.searchapi.ApiClient2;
 import com.example.coursefinder.searchapi.ApiClient3;
@@ -62,6 +68,9 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
 
     ListView listView;
 
+    private SharedPreferences sharedPreferences;
+    private MemberLogInResults loginMember;
+
 
 
     // test
@@ -69,19 +78,20 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
     String[] courseRoute = {"A to B", "B to C", "C to A" };
     String[] courseScore = {"5", "4", "1"};
 
+    private ImageButton imgbtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_detail_course);
 
         Intent intent = getIntent();
-        String wiidx = intent.getStringExtra("wiidx");
+        String wiid = intent.getStringExtra("wiid");
 
         listView = (ListView) findViewById(R.id.listView);
-        getExList("123");
+        getExList(wiid);
 
 
-        // map
         FragmentManager fm = getSupportFragmentManager();
         MapFragment mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
         if (mapFragment == null) {
@@ -95,7 +105,7 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         gson = new Gson();
 
         try {
-            String result = new ExerciseDetailCourse.GetExerciseDetail("", "123").execute().get();
+            String result = new ExerciseDetailCourse.GetExerciseDetail("", wiid).execute().get();
             selectExerciseFromView = gson.fromJson(result, SelectExerciseFromView.class);
         } catch (Exception e) {
             Log.d("TAG", e.getMessage());
@@ -105,6 +115,27 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         for (int i = 0; i < selectExerciseFromView.getExerciseInfos().size(); i++) {
             exerciseInfos.add(selectExerciseFromView.getExerciseInfos().get(i));
         }
+
+        imgbtn = (ImageButton) findViewById(R.id.add_btn);
+        // 리뷰 등록 버튼으로 쓰고있음, 코스 저장 버튼으로 바꿔야 함
+        imgbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                Intent intent = new Intent(ExerciseDetailCourse.this, ExCourseReview.class);
+                intent.putExtra("Exinfo", selectExerciseFromView.getExerciseInfos().get(0));
+                startActivity(intent);
+
+                 */
+                sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
+                String member = sharedPreferences.getString("MemberInfo", "null");
+                Gson gson = new Gson();
+                loginMember = gson.fromJson(member, MemberLogInResults.class);
+                String miid = loginMember.getMemberInfo().get(0).getId();
+                saveExcourse(wiid, miid);
+            }
+        });
+
         ename = (TextView) findViewById(R.id.course_name);
         etime = (TextView) findViewById(R.id.textView8);
         einfo = (TextView) findViewById(R.id.textView7);
@@ -136,7 +167,6 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
             this.miid = miid;
             this.wiidx = wiidx;
         }
-
         @Override
         protected void onPostExecute(String s) { super.onPostExecute(s); }
 
@@ -214,14 +244,11 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         path.setWidth(35);
         path.setColor(Color.YELLOW);
         path.setMap(navermap);
-
-
-
     }
+
 
     // From ExerciseCourseList
     public void getExList(String wiid){      // wiid
-
         Log.d("TAG", "WIID = " + wiid);
         ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
 
@@ -250,5 +277,25 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
             }
         });
     }
+    // 코스 저장
+    public void saveExcourse(String wiid, String miid){
+        ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
+        Call<String> call = apiInterface.saveExcourse(wiid, miid);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && response.body().equals("1")){
+                    Log.d("TAG", "코스 저장 성공!");
+                    Intent intent = new Intent(ExerciseDetailCourse.this, MyCourse.class);
+                    startActivity(intent);
+                }else{
+                    Log.d("TAG", "연결됫으나 실패함");
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
 
+            }
+        });
+    }
 }

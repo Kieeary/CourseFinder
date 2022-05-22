@@ -134,8 +134,15 @@ public interface ApiInterface {
         @Query("sch4") String sch4
     );
 
+    // 즐겨 찾기한 코스 가져오기(놀거리)
     @GET("getfavcourse.php")
     Call<String> getFavCourse(
+            @Query("miid") String miid
+    );
+
+    // 즐겨 찾기한 코스 가져오기(산책)
+    @GET("getfavexcourse.php")
+    Call<String> getFavExourse(
             @Query("miid") String miid
     );
 
@@ -175,16 +182,21 @@ public interface ApiInterface {
             @Part("wcrimg") RequestBody idx
     );
 
-
-
-
-
+    // 놀거리 코스 즐겨찾기
     @GET("insertfavcourse.php")
     Call<String> saveCourse(
             @Query("ciidx") String ciidx,
             @Query("miid") String miid
     );
 
+    // 산책 코스 즐겨찾기
+    @GET("insertfavexcourse.php")
+    Call<String> saveExcourse(
+            @Query("wiidx") String ciidx,
+            @Query("miid") String miid
+    );
+
+    // 산책 코스 등록
     @FormUrlEncoded
     @POST("walkcourseinforegit.php")
     Call<String> insertWalkCourseInfo(
@@ -193,7 +205,7 @@ public interface ApiInterface {
             @Field("time") String time,
             @Field("miid") String miid
     );
-
+    // 산책 코스 상세 정보 등록(순서, 장소)
     @FormUrlEncoded
     @POST("walkcourseregit.php")
     Call<String> insertWalkCourse(
@@ -221,6 +233,7 @@ public interface ApiInterface {
             @Part("im_name") RequestBody idx
     );
 
+    // 산책 코스 리뷰 불러오기
     @GET("exercisecoursereview.php")
     Call<String> getwalkcoursereview(
             @Query("wi_idx") String wiid
