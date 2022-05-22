@@ -13,6 +13,7 @@ import com.example.coursefinder.exercise.ExerciseCourseList;
 import com.example.coursefinder.exercise.ExerciseCourseRegit;
 import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.playingRegister.PlayingRegister;
+import com.example.coursefinder.ranking.Ranking;
 import com.example.coursefinder.smallcategory.SmallCategory;
 import com.google.gson.Gson;
 
@@ -69,16 +70,16 @@ public class MainCategory extends AppCompatActivity {
         courseBest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Intent intent = new Intent(MainCategory.this, Ranking.class); //현재 액티비티, 이동하고 싶은 액티비티
+                Intent intent = new Intent(MainCategory.this, Ranking.class); //현재 액티비티, 이동하고 싶은 액티비티
 //                Intent intent = new Intent(MainCategory.this, ImageUpload.class);
-//                startActivity(intent); //액티비티 이동
+                startActivity(intent); //액티비티 이동
             }
         });
         exerciseCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainCategory.this, ExerciseCourseRegit.class);
-//                intent.putExtra("miid", miid);
+                intent.putExtra("miid", miid);
                 startActivity(intent);
             }
         });

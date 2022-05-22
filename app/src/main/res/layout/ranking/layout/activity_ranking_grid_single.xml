@@ -15,34 +15,56 @@
         android:layout_height="128dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/rank_text"
-            android:layout_width="25dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:textSize="9sp"
-            ></TextView>
 
         <ImageView
             android:id="@+id/grid_image"
-            android:layout_width="133dp"
+            android:layout_width="118dp"
             android:layout_height="100dp"
             android:layout_marginTop="15dp"></ImageView>
 
-        <TextView
-            android:id="@+id/grid_text"
-            android:layout_width="168dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="15dp"
-            android:textSize="9sp"></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <ImageView
+            <TextView
+                android:id="@+id/courseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="코스 이름"
+                android:layout_margin="5dp"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/courseInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="정보"
+                android:layout_margin="5dp"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/courseScore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="별점"
+                android:layout_margin="5dp">
+            </TextView>
+
+        </LinearLayout>
+
+        <ImageButton
             android:id="@+id/detail_image"
-            android:layout_width="29dp"
+            android:layout_width="35dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"
-            ></ImageView>
+            android:layout_gravity="center"></ImageButton>
     </LinearLayout>
 
 

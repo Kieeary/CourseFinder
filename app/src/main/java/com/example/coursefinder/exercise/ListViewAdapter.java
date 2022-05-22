@@ -81,10 +81,11 @@ public class ListViewAdapter extends BaseAdapter {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ExerciseDetailReview.class);
+                // 리뷰 상세보기 페이지가 따로 필요할 것 같지않아서 주석처리
+                //Intent intent = new Intent(view.getContext(), ExerciseDetailReview.class);
                 //   intent.putExtra("wiidx", exerciseInfos.get(i).getWi_idx());
                 //   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                view.getContext().startActivity(intent);
+                //view.getContext().startActivity(intent);
             }
         });
         return convertView;

@@ -20,6 +20,10 @@ public class CourseListVo  implements Serializable {
     private float ci_grade;
     @SerializedName("mi_id")
     private String mi_id;
+    @SerializedName("ci_isact")
+    private String ci_isact;
+    @SerializedName("ci_cata")
+    private String ci_cata;
 
     public int getCi_idx() {
         return ci_idx;
@@ -76,4 +80,12 @@ public class CourseListVo  implements Serializable {
     public void setMi_id(String mi_id) {
         this.mi_id = mi_id;
     }
+
+    public String getCi_isact() { return ci_isact; }
+
+    public void setCi_isact(String ci_isact) { this.ci_isact = ci_isact; }
+
+    public String getCi_cata() { return ci_cata; }
+
+    public void setCi_cata(String ci_cata) { this.ci_cata = ci_cata; }
 }

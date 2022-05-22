@@ -115,8 +115,8 @@ public interface ApiInterface {
     );
 
     @GET("coursedetail.php")
-    Call<String> getcoursedetail(   // courseDetail 가져오기(검색 리스트에서 1개를 선택 하면 idx값을 갖지고 select
-                                    @Query("ciid") String ciid
+    Call<String> getcoursedetail(   // courseDetail 가져오기(검색 리스트에서 1개를 선택 하면 idx값을 가지고 select
+                                    @Query("ci_idx") String ciid
     );
 
     @GET("exercisecoursedetail.php")
@@ -224,6 +224,11 @@ public interface ApiInterface {
     @GET("exercisecoursereview.php")
     Call<String> getwalkcoursereview(
             @Query("wi_idx") String wiid
+    );
+
+    @GET("bestcourse.php")
+    Call<String> getbestcourse(
+        @Query("ci_idx") String ciid
     );
 }
 
