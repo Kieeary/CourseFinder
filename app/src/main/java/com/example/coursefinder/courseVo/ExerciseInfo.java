@@ -2,7 +2,9 @@ package com.example.coursefinder.courseVo;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ExerciseInfo {
+import java.io.Serializable;
+
+public class ExerciseInfo implements Serializable {
     @SerializedName("wi_idx")
     private String wi_idx;
     @SerializedName("wi_name")

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.coursefinder.R;
@@ -52,6 +53,9 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
     };
     private Button btn2;
     private Button btn1;
+    private EditText title;
+    private EditText etime;
+    private EditText info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,10 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
         Intent intent = getIntent();
         String miid = intent.getStringExtra("miid");
         Log.d("TAG", miid +" user id");
+
+        title = findViewById(R.id.epname);
+        etime = findViewById(R.id.etime);
+        info = findViewById(R.id.info);
 
 
         FragmentManager fm = getSupportFragmentManager();
@@ -83,7 +91,7 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
             @Override
             public void onClick(View view) {
                 try{
-                    String result = new MakeWalkCourseInfo("산책코스1", "가볍게 걷는 운동", "3", miid).execute().get();
+                    String result = new MakeWalkCourseInfo(title.getText().toString(), info.getText().toString(), etime.getText().toString(), miid).execute().get();
                     if(result != null){
                         if(markers.indexOf(null) != -1){
                             markers.remove(markers.indexOf(null));

@@ -62,7 +62,10 @@ public class ExListViewAdapter extends BaseAdapter {
         // TextView coursePlaceTv = convertView.findViewById(R.id.coursePlace);
         TextView courseScoreTv = convertView.findViewById(R.id.courseScore);
 
-        Glide.with(convertView).load("http:10.0.2.2/uploads/test5d1e705b1-32ae-4692-a3f5-6a60a2294418.png.jpg").error(R.drawable.bakery).into(courseimgIv);
+        Glide.with(convertView).load("http:10.0.2.2/uploads/test5d1e705b1-32ae-4692-a3f5-6a60a2294418.png.jpg").
+                error(R.drawable.bakery)
+                .fallback(R.drawable.lens)
+                .into(courseimgIv);
         courseNameTv.setText(exerciseInfos.get(i).getWi_name());
         // coursePlaceTv.setText(exerciseInfos.get(i).getWi_info());
         courseScoreTv.setText(exerciseInfos.get(i).getWi_grade()+"");
@@ -74,8 +77,8 @@ public class ExListViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ExerciseDetailCourse.class);
-             //   intent.putExtra("wiidx", exerciseInfos.get(i).getWi_idx());
-             //   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("wiid", exerciseInfos.get(i).getWi_idx());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }
         });
