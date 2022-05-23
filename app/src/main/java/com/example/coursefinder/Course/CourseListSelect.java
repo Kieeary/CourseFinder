@@ -26,8 +26,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.coursefinder.Login;
 import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
+import com.example.coursefinder.Register;
 import com.example.coursefinder.Review.Review;
 import com.example.coursefinder.Review.ReviewDetail;
 import com.example.coursefinder.courseVo.CourseInfo;
@@ -102,7 +104,7 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
     };
 
 
-
+    private static int cnt=0;
     private ArrayList<CourseInfo> coursePlaces = new ArrayList<CourseInfo>();
     // 네이버맵 지도 객체
     private NaverMap navermap;
@@ -112,6 +114,8 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
     private Map<Integer, ArrayList<PlaceList>> orderschResults = new HashMap<Integer, ArrayList<PlaceList>>();
     private PlaceSearchResult placeSearchResult;
     private ImageSearchResult imageSearchResult;
+    private ArrayList<PlaceList> placeList = new ArrayList<PlaceList>();
+    private MemberLogInResults loginMember;
 
     private ResultPath resultPath = new ResultPath();
     private Gson gson;
@@ -127,6 +131,7 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
     String[] category_list;
     private String[] course_arr;
     private String imgResults;
+    String member;
     String TAG = "TAG";
 
     private int[] index_arr;
@@ -143,15 +148,19 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
         cprice = (TextView) findViewById(R.id.textView8);
         cinfo = (TextView) findViewById(R.id.textView7);
 
+        Button regit_btn = (Button) findViewById(R.id.regit_btn);
+
         Intent intent = getIntent();
         String[] results = intent.getStringArrayExtra("results");
         String course = intent.getStringExtra("course");
+        String[] img_list;
         category_list = intent.getStringArrayExtra("category");
         course_arr = course.split("->");
         String ciid = intent.getIntExtra("courseId", 0)+"";
         int position = intent.getIntExtra("position", 0);
         int size = course_arr.length;
         index_arr = new int[size];
+        img_list = new String[size];
 
         if(size==3) {
             int x = (position / size) / size;
@@ -172,20 +181,8 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
             index_arr[2] = z;
             index_arr[3] = k;
         }
-
-        /*여기는 다시 풀어야함*/
-//        try{
-//            String results1 = new GetDetail(ciid).execute().get();
-//            gson = new Gson();
-//            selectFromView = gson.fromJson(results1, SelectFromView.class);
-//        }catch(Exception e){
-//            Log.d("TAG", e.getMessage()+" ");
-//        }
-//        for(int i=0; i<selectFromView.getCourseLists().size(); i++){
-//            coursePlaces.add(selectFromView.getCourseLists().get(i));
-//        }
-        /*여기까지*/
         gson = new Gson();
+
         try{
             // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
             for(int i=0; i<3; i++){
@@ -212,6 +209,10 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
             Log.d(TAG, "이미지 검색 실패" + e.getMessage());
         }
 
+        sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
+        member = sharedPreferences.getString("MemberInfo", "null");
+        loginMember = gson.fromJson(member, MemberLogInResults.class);
+        member = loginMember.getMemberInfo().get(0).getId();
         // 즐겨찾기 버튼 (코스 저장)
         fav = (ImageButton)findViewById(R.id.add_btn);
         fav.setOnClickListener(new View.OnClickListener() {
@@ -230,16 +231,66 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
+        if(size==3) {
+            if(orderschResults.get(1).get(index_arr[0]).getImgLink()!=null) {
+                img_list[0] = orderschResults.get(1).get(index_arr[0]).getImgLink();
+            }
+            else{
+                img_list[0] = "no_image";
+            }
+            if(orderschResults.get(2).get(index_arr[1]).getImgLink()!=null) {
+                img_list[1] = orderschResults.get(2).get(index_arr[1]).getImgLink();
+            }
+            else{
+                img_list[1] = "no_image";
+            }
+            if(orderschResults.get(3).get(index_arr[2]).getImgLink()!=null) {
+                img_list[2] = orderschResults.get(3).get(index_arr[2]).getImgLink();
+            }
+            else{
+                img_list[2] = "no_image";
+            }
+        }
+        else if(size==4){
+            if(orderschResults.get(1).get(index_arr[0]).getImgLink()!=null) {
+                img_list[0] = orderschResults.get(1).get(index_arr[0]).getImgLink();
+            }
+            else{
+                img_list[0] = "no_image";
+            }
+            if(orderschResults.get(2).get(index_arr[1]).getImgLink()!=null) {
+                img_list[1] = orderschResults.get(2).get(index_arr[1]).getImgLink();
+            }
+            else{
+                img_list[1] = "no_image";
+            }
+            if(orderschResults.get(3).get(index_arr[2]).getImgLink()!=null) {
+                img_list[2] = orderschResults.get(3).get(index_arr[2]).getImgLink();
+            }
+            else{
+                img_list[2] = "no_image";
+            }
+            if(orderschResults.get(4).get(index_arr[3]).getImgLink()!=null) {
+                img_list[3] = orderschResults.get(4).get(index_arr[3]).getImgLink();
+            }
+            else{
+                img_list[3] = "no_image";
+            }
+        }
 
+
+        for(int i=0; i<size; i++){
+            placeList.add(orderschResults.get(i+1).get(index_arr[i]));
+        }
         // 지도를 띄움
 /*여기는 다시 풀어야함*/
-//        FragmentManager fm = getSupportFragmentManager();
-//        MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.map);
-//        if (mapFragment == null) {
-//            mapFragment = MapFragment.newInstance();
-//            fm.beginTransaction().add(R.id.map, mapFragment).commit();
-//        }
-//        mapFragment.getMapAsync(this);
+        FragmentManager fm = getSupportFragmentManager();
+        MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.map);
+        if (mapFragment == null) {
+            mapFragment = MapFragment.newInstance();
+            fm.beginTransaction().add(R.id.map, mapFragment).commit();
+        }
+        mapFragment.getMapAsync(this);
 //
 //        cname.setText(coursePlaces.get(0).getCi_name());
 //        cprice.setText(coursePlaces.get(0).getCi_price()+"");
@@ -250,7 +301,44 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
         CourseListSelectGrid adapter = new CourseListSelectGrid(CourseListSelect.this, imageId, course_arr, category_list, orderschResults, position, index_arr);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
+        regit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String results = null;
+                String name = member+"의 코스";
+                String info = "";
+                int price = 0;
+                String ci_cata ="";
+                // 지정한 3개의 장소들의 cata들 모두 더하지만 구분문자 '@'를 통해서 구분지을 수 있도록 함
+                for(int i=0; i<3; i++){
+                    ci_cata += placeList.get(i).getCategory()+"@";
+                }
 
+                //  makeCourseInfo(cname, cinfo, price, placeLists.get(0).getImgLink(), finalMember, ci_cata);
+                try{
+                    results = new CourseListSelect.MakeCourseInfo(name, info, price, placeList.get(0).getImgLink(), member, ci_cata).execute().get();
+                }catch(Exception e){
+                    Log.d("TAG", "INSERT FAILED");
+                }
+
+                if(results != null){
+                    for(int i=0; i<3; i++){
+                        makeCourse(name , placeList.get(i), price, i+1, placeList.get(i).getImgLink());
+                    }
+                }
+
+            }
+        });
+//        regit_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String coursename = "example1";
+//                String[] courselist = course_arr;
+//                String[] imglist = img_list;
+//
+//                doRegister(coursename, courselist, imglist);
+//            }
+//        });
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -285,7 +373,10 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
         });
 
          */
+
     }
+
+
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>()
             {
@@ -310,31 +401,44 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
 
 
     // 지도를 띄워주는 과정
-    @Override
-    public void onMapReady(@NonNull NaverMap naverMap) {
-        this.navermap = naverMap;
+//    @Override
+//    public void onMapReady(@NonNull NaverMap naverMap) {
+//        this.navermap = naverMap;
         // 현재위치 추적
         // ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
         // 첫번째 장소에서 두번째 장소까지의 경로, 지도에 polyline으로 보여주고있음
         //    getRoute();
         // 장소 3개의 마커
+//        setMarkers();
+//        // 장소 3개를 이어주는 폴리라인
+//        setPolyLines();
+//        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(
+//                new LatLng(coursePlaces.get(0).getCp_lt(), coursePlaces.get(0).getCp_la()));
+//        naverMap.moveCamera(cameraUpdate);
+//    }
+
+    @Override
+    public void onMapReady(@NonNull NaverMap naverMap) {
+        this.navermap = naverMap;
+        // 장소 3개의 마커
         setMarkers();
         // 장소 3개를 이어주는 폴리라인
         setPolyLines();
+        Tm128 tm = new Tm128(orderschResults.get(1).get(index_arr[0]).getMapx(), orderschResults.get(1).get(index_arr[0]).getMapy());
         CameraUpdate cameraUpdate = CameraUpdate.scrollTo(
-                new LatLng(coursePlaces.get(0).getCp_lt(), coursePlaces.get(0).getCp_la()));
+                new LatLng(tm.toLatLng().latitude, tm.toLatLng().longitude));
         naverMap.moveCamera(cameraUpdate);
     }
-
 
     // 코스 장소들의 위치를 찍는 마커
     public void setMarkers(){
         Marker marker;
-        for(int i=0; i<coursePlaces.size(); i++){
+        for(int i=0; i<placeList.size(); i++){
             marker = new Marker();
-            marker.setPosition(new LatLng(coursePlaces.get(i).getCp_lt() , coursePlaces.get(i).getCp_la()));
+            Tm128 tm = new Tm128(placeList.get(i).getMapx(), placeList.get(i).getMapy());
+            marker.setPosition(tm.toLatLng());
             markers.add(marker);
-            markers.get(i).setCaptionText(coursePlaces.get(i).getCp_name().replaceAll("<b>", " ").replaceAll("</b>", " "));
+            markers.get(i).setCaptionText(placeList.get(i).getTitle().replaceAll("<b>", " ").replaceAll("</b>", " "));
             markers.get(i).setCaptionTextSize(20);
             markers.get(i).setMap(navermap);
         }
@@ -369,6 +473,7 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
 
             }
         });
+
     }
 
     // 코스의 상세정보들을 받아오는 클래스. 해당 코스의 번호를 매개변수로 받아온다.
@@ -451,5 +556,78 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
             }
             return null;
         }
+    }
+    class MakeCourseInfo extends AsyncTask<Void, Void, String> {
+        String name;
+        String info;
+        int cprice;
+        String cimg;
+        String miid;
+        String ci_cata;
+
+        public MakeCourseInfo(String cname, String cinfo, int cprice, String cimg, String miid, String ci_cata) {
+            this.name = cname;
+            this.info = cinfo;
+            this.cprice = cprice;
+            this.cimg = cimg;
+            this.miid = miid;
+            this.ci_cata = ci_cata;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
+            Call<String> call = apiInterface.insertCourseInfo(name, info, cprice, cimg, miid,
+                    ci_cata.substring(0, ci_cata.lastIndexOf("@")-1));
+            try{
+                Response<String> response = call.execute();
+                return response.body().toString();
+            }catch(Exception e){
+                Log.d("TAG", "error occured");
+            }
+            return null;
+        }
+    }
+
+    // DB에 지정한 코스를 저장함 (COURSEPLACE TABLE)
+    public void makeCourse(String courseName, PlaceList places, int price, int order ,String imgLink){
+        ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
+        Tm128 tm = new Tm128(places.getMapx(), places.getMapy());
+        LatLng latLng = tm.toLatLng();
+        Call<String> call = apiInterface.insertCourse(
+                order, places.getTitle().replaceAll("<b>", "").replaceAll("</b>", ""), latLng.longitude, latLng.latitude, places.getAddress(), imgLink, places.getCategory()
+        );
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful() && (response.body().equals("1")) ){
+                    Log.d("TAG", "SUCCESS");
+                    cnt++;
+                    Log.d("TAG", cnt +"in retrofit");
+                    if(cnt==3){
+                        Log.d("TAG", "전부 다 들어간 상태");
+                        cnt = 0;
+                        Intent intent = new Intent(CourseListSelect.this, MyCourse.class);
+                        startActivity(intent);
+                    }
+                }else{
+                    // 등록 실패
+                    Log.d("TAG", response.body());
+                    Toast.makeText(getApplicationContext(),"등록에 실패" + response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("TAG", "에러발생!");
+
+            }
+        });
     }
 }

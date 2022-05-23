@@ -44,24 +44,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="185dp">
+            android:layout_height="210dp">
 
             <fragment
                 android:id="@+id/map"
                 android:name="com.naver.maps.map.MapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="189dp" />
+                android:layout_height="210dp" />
         </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="비용"
-            android:textAppearance="@style/text1"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,27 +62,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="350dp">
-
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="주소"
-                android:textAppearance="@style/text1"/>
-
-        </LinearLayout>
-
-
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center"/>
-
+            tools:layout_editor_absoluteY="350dp"/>
 
         <GridView
             android:id="@+id/grid"
@@ -105,6 +76,16 @@
             android:numColumns="1"
             android:stretchMode="columnWidth" />
 
+        <Button
+            android:id="@+id/regit_btn"
+            android:layout_width="222dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button2"
+            android:text="등 록"
+            android:textAppearance="@style/button2" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/menu_bottom"
