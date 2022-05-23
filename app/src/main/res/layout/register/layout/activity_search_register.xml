@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
-                android:text="취소"
+                android:text="취 소"
                 android:background="@drawable/button2"
                 android:textAppearance="@style/button2"
                 />
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:text="다음"
+                android:text="다 음"
                 android:background="@drawable/button2"
                 android:textAppearance="@style/button2" />
         </LinearLayout>

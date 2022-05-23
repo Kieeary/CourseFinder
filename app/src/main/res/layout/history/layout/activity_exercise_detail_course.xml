@@ -106,6 +106,7 @@
             android:layout_height="60dp"
             android:layout_gravity="bottom"
             android:background="#D9EAD3"
+            android:layout_marginBottom="15dp"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom"
             tools:layout_editor_absoluteX="0dp"

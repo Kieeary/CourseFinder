@@ -50,7 +50,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="115dp"
         android:gravity="center">
 
         <Button
@@ -67,13 +67,23 @@
             android:id="@+id/mapbtn2"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/button2"
 
             android:text="장소 선택 완료"
             android:textAppearance="@style/button2" />
 
     </LinearLayout>
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/menu_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:background="#D9EAD3"
+        android:layout_marginBottom="15dp"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_bottom"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="674dp" />
 </LinearLayout>

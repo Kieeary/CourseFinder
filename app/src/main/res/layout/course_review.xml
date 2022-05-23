@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="410dp"
+            android:layout_height="417dp"
             android:orientation="vertical">
 
             <EditText
@@ -55,8 +55,7 @@
                 android:layout_height="100dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                />
+                android:layout_marginRight="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -73,13 +72,14 @@
                 android:backgroundTint="#C11515"
                 android:numStars="5"
                 android:stepSize="1.0" />
+
             <Button
                 android:id="@+id/img_upload"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="이미지 등록하기"
                 android:background="@drawable/button2"
-                android:textAppearance="@style/button2"/>
+                android:text="이미지 등록하기"
+                android:textAppearance="@style/button2" />
 
         </LinearLayout>
 

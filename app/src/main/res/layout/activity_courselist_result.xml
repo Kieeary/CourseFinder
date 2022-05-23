@@ -27,7 +27,7 @@
             android:layout_width="350dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:background="#D9EAD3"
+            android:background="@drawable/listbox"
             android:gravity="center"
             android:text="1. 코스 이름" />
 
@@ -59,7 +59,7 @@
 
             android:id="@+id/grid"
             android:layout_width="wrap_content"
-            android:layout_height="178dp"
+            android:layout_height="246dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"

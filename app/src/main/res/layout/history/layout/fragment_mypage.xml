@@ -118,24 +118,32 @@
             <Button
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button2"
                 android:backgroundTint="@android:color/darker_gray"
                 android:text="계정 관리" />
 
             <Button
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button2"
                 android:backgroundTint="@android:color/darker_gray"
                 android:text="개인 정보" />
 
             <Button
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button2"
                 android:backgroundTint="@android:color/darker_gray"
                 android:text="리뷰 관리" />
 
             <Button
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button2"
                 android:backgroundTint="@android:color/darker_gray"
                 android:text="즐겨찾기 관리" />
 

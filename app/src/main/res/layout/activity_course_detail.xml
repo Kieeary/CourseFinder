@@ -67,7 +67,7 @@
         <GridView
             android:id="@+id/grid"
             android:layout_width="wrap_content"
-            android:layout_height="255dp"
+            android:layout_height="287dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
@@ -78,11 +78,10 @@
 
         <Button
             android:id="@+id/regit_btn"
-            android:layout_width="222dp"
-            android:layout_height="20dp"
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_margin="10dp"
             android:background="@drawable/button2"
             android:text="등 록"
             android:textAppearance="@style/button2" />

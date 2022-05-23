@@ -5,39 +5,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainCategory">
+    tools:context=".MainCategory"
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/tv_firstCategory"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:gravity="center"
-        android:text="대카테고리 선택"
+        android:text="Course Finder"
         android:textAlignment="center"
-        android:textAppearance="@style/title1_"
-        />
+        android:textAppearance="@style/coursefinder_" />
 
-    <Button
-        android:id="@+id/courseRecommend"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="놀거리"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:textAppearance="@style/button1_"
-        android:background="@drawable/button1"
-        android:elevation="10dp"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/courseRecommend"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/button1"
+            android:elevation="10dp"
+            android:text="놀거리"
+            android:textAppearance="@style/button1_"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/exerciseCourse"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/button1"
+            android:text="산책"
+            android:textAppearance="@style/button1_"
+            android:textSize="30sp" />
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/exerciseCourse"
-        android:layout_width="350dp"
+        android:id="@+id/courseRegister"
+        android:layout_width="310dp"
         android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:text="산책"
-        android:textAppearance="@style/button1_"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button1"
+        android:text="코스 등록"
+        android:textAppearance="@style/button1_"
         android:textSize="30sp" />
 
     <LinearLayout
@@ -52,7 +72,8 @@
             android:layout_height="140dp"
             android:text="History"
             android:textSize="28sp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="1dp"
             android:textAppearance="@style/button1_"
             android:background="@drawable/button1"/>
 
@@ -60,24 +81,16 @@
             android:id="@+id/courseBest"
             android:layout_width="140dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="30dp"
             android:text="Best \n Course"
             android:textSize="24sp"
+            android:layout_marginBottom="1dp"
             android:textAppearance="@style/button1_"
             android:background="@drawable/button1">
         </Button>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/courseRegister"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:text="코스 등록"
-        android:textSize="30sp"
-        android:textAppearance="@style/button1_"
-        android:background="@drawable/button1"/>
+
 
 </LinearLayout>

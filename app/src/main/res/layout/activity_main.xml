@@ -4,12 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/background">
 
-    <fragment
-        android:id="@+id/map"
+
+    <TextView
+        android:id="@+id/CourseFinder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.naver.maps.map.MapFragment" />
+        android:gravity="center"
+        android:text="COURSE FINDER"
+        android:textAlignment="center"
+        android:textAppearance="@style/coursefinder"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="197dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

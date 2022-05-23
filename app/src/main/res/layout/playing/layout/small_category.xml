@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:gravity="center"
-            android:text="소카테고리"
+            android:text="카테고리"
             android:textAlignment="center"
             android:textAppearance="@style/title1_"/>
 
@@ -24,7 +24,7 @@
             android:id="@+id/grid"
             android:layout_width="wrap_content"
 
-            android:layout_height="448dp"
+            android:layout_height="514dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"

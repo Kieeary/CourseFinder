@@ -23,7 +23,7 @@
         <ListView
             android:id="@+id/listView"
             android:layout_width="wrap_content"
-            android:layout_height="495dp"
+            android:layout_height="515dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
@@ -60,7 +60,18 @@
                 android:textAppearance="@style/button2"
                 android:text="취 소" />
         </LinearLayout>
-
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/menu_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:background="#D9EAD3"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_bottom"
+            android:layout_marginBottom="15dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="674dp" />
     </LinearLayout>
+
 
 </LinearLayout>

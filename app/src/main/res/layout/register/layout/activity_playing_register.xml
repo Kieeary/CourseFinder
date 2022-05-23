@@ -105,7 +105,7 @@
             <Button
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="이전"
+                android:text="이 전"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/button2"
                 android:textAppearance="@style/button2">
@@ -115,7 +115,7 @@
                 android:id="@+id/nextButton"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="다음"
+                android:text="다 음"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/button2"
                 android:textAppearance="@style/button2">

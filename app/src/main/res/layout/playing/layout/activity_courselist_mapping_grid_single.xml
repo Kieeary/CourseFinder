@@ -10,7 +10,7 @@
         android:layout_height="104dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="#D9EAD3"
+        android:background="@drawable/listbox"
         android:orientation="horizontal">
 
 
