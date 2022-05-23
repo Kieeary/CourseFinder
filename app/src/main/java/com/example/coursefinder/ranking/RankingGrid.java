@@ -10,6 +10,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.coursefinder.Course.CourseDetail;
+import com.example.coursefinder.Course.CourseListResult;
+import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.R;
 import com.example.coursefinder.courseVo.CourseListVo;
 import com.example.coursefinder.courseVo.ExerciseReviewDetail;
@@ -102,18 +105,21 @@ public class RankingGrid extends BaseAdapter{
 
         courseName.setText(courseListvos.get(position).getCi_name());
         courseInfo.setText(courseListvos.get(position).getCi_info());
-        // int는 어떻게 처리해야하지
-        // courseScore.setText((int) courseListvos.get(position).getCi_grade());
+        // int는 어떻게 처리해야하지 CourseListVo에서 String으로 바꿈
+        courseScore.setText(courseListvos.get(position).getCi_grade());
 
         ImageButton detailImg = convertView.findViewById(R.id.detail_image);
-        /*
+
         detailImg.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), )
+                Intent intent = new Intent(view.getContext(), CourseDetail.class);
+                intent.putExtra("courseId", courseListvos.get(position).getCi_idx());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(intent);
             }
-        });*/
+        });
 
         return convertView;
     }

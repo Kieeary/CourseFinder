@@ -65,8 +65,8 @@ public class CourseListVo  implements Serializable {
         this.ci_img = ci_img;
     }
 
-    public float getCi_grade() {
-        return ci_grade;
+    public String getCi_grade() {
+        return String.valueOf(ci_grade);
     }
 
     public void setCi_grade(float ci_grade) {
