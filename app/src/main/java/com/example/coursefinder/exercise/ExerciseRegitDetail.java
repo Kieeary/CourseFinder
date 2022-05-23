@@ -130,8 +130,6 @@ public class ExerciseRegitDetail extends AppCompatActivity implements OnMapReady
         }
     }
 
-
-
     public void setMarkers(){
         Marker marker;
         for(int i=0; i<exerciseInfos.size(); i++){

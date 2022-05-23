@@ -205,6 +205,7 @@ public interface ApiInterface {
             @Field("time") String time,
             @Field("miid") String miid
     );
+
     // 산책 코스 상세 정보 등록(순서, 장소)
     @FormUrlEncoded
     @POST("walkcourseregit.php")

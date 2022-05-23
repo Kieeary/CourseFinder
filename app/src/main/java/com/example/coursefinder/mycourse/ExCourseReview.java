@@ -2,10 +2,13 @@ package com.example.coursefinder.mycourse;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +17,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
 import com.example.coursefinder.UploadImg;
@@ -47,6 +52,13 @@ public class ExCourseReview extends AppCompatActivity {
     private RatingBar ratingBar;
     private ExerciseListVo exerciseInfo = null;
     private EditText contents;
+
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +83,7 @@ public class ExCourseReview extends AppCompatActivity {
         Button regitButton = (Button) findViewById(R.id.button1);
         Button imgupload = (Button) findViewById(R.id.img_upload);
 
-
+        verifyStoragePermissions(this);
         imgupload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,8 +147,11 @@ public class ExCourseReview extends AppCompatActivity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful() && response.body().equals("1")){
-                    Log.d("TAG", "리뷰 등록 성공!");
+                    Toast.makeText(getApplicationContext(), "리뷰가 등록되었습니다", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ExCourseReview.this, MainCategory.class);
+                    startActivity(intent);
                 }else{
+                    Toast.makeText(getApplicationContext(), "리뷰등록에 실패하였습니다", Toast.LENGTH_SHORT).show();
                     Log.d("TAG", "리뷰 등록에 실패");
                 }
             }
@@ -145,6 +160,21 @@ public class ExCourseReview extends AppCompatActivity {
                 Log.d("TAG", t.getMessage());
             }
         });
+    }
+
+
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
 }
