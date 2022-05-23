@@ -36,7 +36,7 @@ public class MainCategory extends AppCompatActivity {
         String member = sharedPreferences.getString("MemberInfo", "null");
         Gson gson = new Gson();
         loginMember = gson.fromJson(member, MemberLogInResults.class);
-        //String miid = loginMember.getMemberInfo().get(0).getId();
+        String miid = loginMember.getMemberInfo().get(0).getId();
 
         courseRecommend = findViewById(R.id.courseRecommend);
         courseRegister = findViewById(R.id.courseRegister);
