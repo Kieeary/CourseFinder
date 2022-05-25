@@ -19,6 +19,9 @@
         android:theme="@style/Theme.CourseFinder"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Result4"
+            android:exported="false" />
+        <activity
             android:name=".mycourse.ExCourseReview"
             android:exported="false" />
         <activity
@@ -47,7 +50,7 @@
             android:exported="false" />
         <activity
             android:name=".MainCategory"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".Main"
             android:exported="true">
@@ -84,7 +87,6 @@
         <activity android:name=".ranking.Ranking" />
         <activity android:name=".Course.CourseRegitDetail" />
         <activity android:name=".exercise.ExerciseCourseRegit" />
-        <activity android:name=".Course.CourseListMapping" />
     </application>
 
 </manifest>

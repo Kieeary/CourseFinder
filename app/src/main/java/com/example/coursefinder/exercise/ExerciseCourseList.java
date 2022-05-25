@@ -115,8 +115,10 @@ public class ExerciseCourseList extends AppCompatActivity implements OnMapReadyC
             return;
         }
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        lat = location.getLatitude();
-        lon = location.getLongitude();
+//        lat = location.getLatitude();
+//        lon = location.getLongitude();
+        lat = 37.298512;
+        lon = 127.105930;
         getExList(lat, lon);
     }
 

@@ -20,10 +20,12 @@ import com.example.coursefinder.searchVo.PlaceSearchResult;
 import com.example.coursefinder.searchapi.ApiClient;
 import com.example.coursefinder.searchapi.ApiClient3;
 import com.example.coursefinder.searchapi.ApiInterface;
+import com.example.coursefinder.smallcategory.SmallCategory;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -40,6 +42,10 @@ public class CourseListMapping extends Activity {
             "D", "E", "F",
             "G", "H", "I"
     };
+
+    String title[] = new String[]{"","","",""};
+    int currIndex;
+    HashMap<Integer, Integer> selectInfo;
 
     private SelectCourseList schCourseResults = new SelectCourseList();
 
@@ -62,14 +68,114 @@ public class CourseListMapping extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courselist_mapping);
 
+        Intent intent = getIntent();
+        currIndex = intent.getIntExtra("currIndex", -1);
+        selectInfo = (HashMap<Integer, Integer>) intent.getSerializableExtra("selectInfo");
+
+        int index = 0;
+
+        switch(currIndex) {
+            case 0:
+                title[index] = SmallCategory.categoryNameId[selectInfo.get(currIndex)];
+                index++;  //index값은 1 로 변경
+                break;
+            case 1:
+                title[index] = SmallCategory.cafeCategoryNameId[selectInfo.get(currIndex)];
+                index++;
+                break;
+            case 2:
+                title[index] = SmallCategory.gameCategoryNameId[selectInfo.get(currIndex)];
+                index++;
+                break;
+            case 3:
+                title[index] = SmallCategory.cultureCategoryNameId[selectInfo.get(currIndex)];
+                index++;
+                break;
+        }
+
+        Iterator<Integer> iterator = selectInfo.keySet().iterator();
+        int last = -1;
+        int temp = iterator.next(); // 맨처음엔 0이 저장.
+
+        for(int i = 1; i < 4; i++) //1->2->3
+        {
+            if (currIndex == temp && iterator.hasNext()) {
+                currIndex = iterator.next(); // 0 -> 1 -> 3로 저장 (0,1,3 이 저장이라고 가정)
+                temp = currIndex;
+
+                switch (currIndex) {
+                    case 1:
+                        title[index] = SmallCategory.cafeCategoryNameId[selectInfo.get(currIndex)];
+                        break;
+                    case 2:
+                        title[index] = SmallCategory.gameCategoryNameId[selectInfo.get(currIndex)];
+                        break;
+                    case 3:
+                        title[index] = SmallCategory.cultureCategoryNameId[selectInfo.get(currIndex)];
+                        break;
+                }
+                index++;
+            }
+            //                if(index == 1)
+//                {
+//                    title[index] = SmallCategory.cafeCategoryNameId[selectInfo.get(currIndex)];
+//                    index++; //index = 2 -> 3 저장
+//                }
+//
+//                if(index == 2)
+//                {
+//                    title[index] = SmallCategory.gameCategoryNameId[selectInfo.get(currIndex)];
+//                    index++; //index = 2 -> 3 저장
+//                }
+//
+//                if(index == 3)
+//                {
+//                    title[index] = SmallCategory.cultureCategoryNameId[selectInfo.get(currIndex)];
+//                    index++; //index = 2 -> 3 저장
+//                }
+
+            if (iterator.hasNext() == false && i == 3) {
+                last = temp; //temp에는 3 이 있음 -> last 도 3 이 저장.
+            }
+        }
+        int k = 0;
+        int num = 0;
+
+        while(title[k] != "")
+        {
+            num++;
+            k++;
+        }
+
+        k = 0;
+
+        String[] categoryTitle = new String[num];
+        int j = 0;
+
+        Log.i("확인121", title[0]);
+        Log.i("확인123", title[1]);
+        Log.i("확인123", title[2]);
+
+        while(title[k] != "")
+        {
+            categoryTitle[j] = title[k];
+            j++;
+            k++;
+        }
+
+        Log.i("확인", categoryTitle[0]);
+        Log.i("확인", categoryTitle[1]);
+        Log.i("확인", categoryTitle[2]);
+
+
         Gson gson = new Gson();
-        int size = schNames.length * schNames.length;
+        int size = categoryTitle.length * categoryTitle.length;
         resultsArr=new String[size];
         try{
 
             // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
             for(int i=0; i<3; i++){
-                results = new CourseListMapping.GetSchResult(schNames[i]).execute().get();
+                results = new CourseListMapping.GetSchResult(categoryTitle[i]).execute().get();
                 resultsArr[i] = results;
                 placeSearchResult = gson.fromJson(results, PlaceSearchResult.class);
                 orderschResults.put(i+1, placeSearchResult.getPlaceLists());
@@ -83,7 +189,7 @@ public class CourseListMapping extends Activity {
 
 
 //        CourseListMappingGrid adapter = new CourseListMappingGrid(CourseListMapping.this, buttonStr, orderschResults.get(1));
-        CourseListMappingGrid adapter = new CourseListMappingGrid(CourseListMapping.this, courseList, courseOrder, schNames, resultsArr);
+        CourseListMappingGrid adapter = new CourseListMappingGrid(CourseListMapping.this, courseList, courseOrder, categoryTitle, resultsArr);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
