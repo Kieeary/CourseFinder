@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".playingRegister.PlayingRegister"
+    tools:context=".PlayingRegister.PlayingRegister"
     >
 
     <LinearLayout
@@ -15,20 +15,20 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <EditText
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="코스명 입력"
+            android:layout_height="70dp"
             android:gravity="center"
-            android:textSize="24sp"
-            android:textAppearance="@style/text1">
-
-        </EditText>
+            android:text="놀거리 코스 등록"
+            android:textAlignment="center"
+            android:textAppearance="@style/title1_" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:padding="15dp"
             android:text="첫번째 대카테고리 선택"
             android:background="@drawable/category_textbox"
@@ -47,6 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
+            android:layout_margin="10dp"
             android:text="두번째 대카테고리 선택"
             android:background="@drawable/category_textbox"
             android:textAppearance="@style/text"/>
@@ -66,6 +67,7 @@
             android:layout_height="wrap_content"
             android:text="세번째 대카테고리"
             android:padding="15dp"
+            android:layout_margin="10dp"
             android:background="@drawable/category_textbox"
             android:textAppearance="@style/text"/>
 
@@ -82,6 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="네번째 대카테고리"
+            android:layout_margin="10dp"
             android:padding="15dp"
             android:background="@drawable/category_textbox"
             android:textAppearance="@style/text"/>

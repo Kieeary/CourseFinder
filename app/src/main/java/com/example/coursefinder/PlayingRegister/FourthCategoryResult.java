@@ -1,4 +1,4 @@
-package com.example.coursefinder;
+package com.example.coursefinder.PlayingRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.coursefinder.Course.CourseRegitDetail;
-import com.example.coursefinder.playingRegister.PlayingRegister;
-import com.example.coursefinder.playingRegister.ResultAdapter;
+import com.example.coursefinder.R;
 import com.example.coursefinder.searchVo.ImageSearchResult;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.PlaceSearchResult;
@@ -30,7 +29,7 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class Result4 extends AppCompatActivity {
+public class FourthCategoryResult extends AppCompatActivity {
     String results;
     String imgResults;
 
@@ -128,7 +127,7 @@ public class Result4 extends AppCompatActivity {
 
 
 
-        ResultAdapter resultAdapter4 = new ResultAdapter(Result4.this, image4, orderschResults.get(4));
+        ResultAdapter resultAdapter4 = new ResultAdapter(FourthCategoryResult.this, image4, orderschResults.get(4));
         listView4.setAdapter(resultAdapter4);
 
         next4.setOnClickListener(view -> {
@@ -149,7 +148,7 @@ public class Result4 extends AppCompatActivity {
             }
 
             if(currIndex == last) {
-                Intent intentTemp = new Intent(Result4.this, CourseRegitDetail.class);
+                Intent intentTemp = new Intent(FourthCategoryResult.this, CourseRegitDetail.class);
                 intentTemp.putExtra("Selectedplace", placeLists);
                 //              intentTemp.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intentTemp);
@@ -161,21 +160,21 @@ public class Result4 extends AppCompatActivity {
 
                         break;
                     case 1:
-                        Intent intentTemp = new Intent(Result4.this, Result2.class);
+                        Intent intentTemp = new Intent(FourthCategoryResult.this, SecondCateogryResult.class);
                         intentTemp.putExtra("currIndex", currIndex);
                         intentTemp.putExtra("selectInfo", selectInfo);
                         intentTemp.putExtra("Selectedplace", placeLists);
                         startActivity(intentTemp);
                         break;
                     case 2:
-                        Intent intentTemp2 = new Intent(Result4.this, Result3.class);
+                        Intent intentTemp2 = new Intent(FourthCategoryResult.this, ThirdCategoryResult.class);
                         intentTemp2.putExtra("currIndex", currIndex);
                         intentTemp2.putExtra("selectInfo", selectInfo);
                         intentTemp2.putExtra("Selectedplace", placeLists);
                         startActivity(intentTemp2);
                         break;
                     case 3:
-                        Intent intentTemp3 = new Intent(Result4.this, Result4.class);
+                        Intent intentTemp3 = new Intent(FourthCategoryResult.this, FourthCategoryResult.class);
                         intentTemp3.putExtra("currIndex", currIndex);
                         intentTemp3.putExtra("selectInfo", selectInfo);
                         intentTemp3.putExtra("Selectedplace", placeLists);
@@ -217,7 +216,7 @@ public class Result4 extends AppCompatActivity {
         back4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Result4.this, Result2.class);
+                Intent intent = new Intent(FourthCategoryResult.this, SecondCateogryResult.class);
                 intent.putExtra("Selectedplace", placeLists);
                 intent.putExtra("isBack", true);
                 startActivity(intent);

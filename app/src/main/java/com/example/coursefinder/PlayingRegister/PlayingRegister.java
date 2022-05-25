@@ -1,4 +1,4 @@
-package com.example.coursefinder.playingRegister;
+package com.example.coursefinder.PlayingRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -95,7 +95,7 @@ public class PlayingRegister extends AppCompatActivity {
             Iterator<Integer> iterator = selectInfo.keySet().iterator();
             int currIndex = iterator.hasNext() ? iterator.next() : -1;
 
-            Intent intent = new Intent(PlayingRegister.this, Result1.class);
+            Intent intent = new Intent(PlayingRegister.this, FirstCateogryResult.class);
             intent.putExtra("currIndex", currIndex);
             intent.putExtra("selectInfo", selectInfo);
             startActivity(intent);

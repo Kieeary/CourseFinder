@@ -1,4 +1,4 @@
-package com.example.coursefinder;
+package com.example.coursefinder.PlayingRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +12,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.coursefinder.Course.CourseRegitDetail;
-import com.example.coursefinder.playingRegister.PlayingRegister;
-import com.example.coursefinder.playingRegister.ResultAdapter;
+import com.example.coursefinder.MainCategory;
+import com.example.coursefinder.R;
 import com.example.coursefinder.searchVo.ImageSearchResult;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.PlaceSearchResult;
@@ -30,7 +29,7 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class Result3 extends AppCompatActivity {
+public class SecondCateogryResult extends AppCompatActivity {
     String results;
     String imgResults;
 
@@ -45,33 +44,32 @@ public class Result3 extends AppCompatActivity {
     private PlaceSearchResult placeSearchResult;
     private ImageSearchResult imageSearchResult;
     private ArrayList<PlaceList> placeLists = new ArrayList<PlaceList>();
-
     private Map<Integer, ArrayList<PlaceList>> orderschResults = new HashMap<Integer, ArrayList<PlaceList>>();
-    private boolean isBack = false;
+//    private Boolean isBack = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result3);
+        setContentView(R.layout.activity_result2);
 
-        ListView listView3;
-        Button next3;
-        Button back3;
+        ListView listView2;
+        Button next2;
+        Button back2;
+        String [] schNames = {"카페"};
 
-//        String [] schNames = {"영화관"};
-//
-        int[] image3 = {R.drawable.map};
-//        String[] placeName3 = {"가게이름"};
+        int[] image2 = {R.drawable.map};
+        String[] placeName2 = {"가게이름"};
 
-        listView3 = (ListView)findViewById(R.id.listView3);
-        next3 = (Button)findViewById(R.id.next3);
-        back3 = (Button)findViewById(R.id.back3);
 
+        listView2 = (ListView)findViewById(R.id.listView2);
+        next2 = (Button)findViewById(R.id.next2);
+        back2 = (Button)findViewById(R.id.back2);
         Intent intent = getIntent();
 
         currIndex = intent.getIntExtra("currIndex", -1);
         selectInfo = (HashMap<Integer, Integer>) intent.getSerializableExtra("selectInfo");
 
-        TextView textView3 = findViewById(R.id.textView3);
+        TextView textView2 = findViewById(R.id.textView2);
         placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
 //        isBack = intent.getBooleanExtra("isBack", false);
 
@@ -96,7 +94,7 @@ public class Result3 extends AppCompatActivity {
                 break;
         }
 
-        textView3.setText(title);
+        textView2.setText(title);
 
         Gson gson = new Gson();
 
@@ -104,7 +102,7 @@ public class Result3 extends AppCompatActivity {
             // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
             results = new GetSchResult(title).execute().get();
             placeSearchResult = gson.fromJson(results, PlaceSearchResult.class);
-            orderschResults.put(3, placeSearchResult.getPlaceLists());
+            orderschResults.put(2, placeSearchResult.getPlaceLists());
 
         }catch(Exception e){
             Log.d(TAG, "장소 검색 실패" + e.getMessage());
@@ -114,23 +112,22 @@ public class Result3 extends AppCompatActivity {
         try {
             // 이미지 검색, 보안이 필요할 듯 하여 주석처리 초당 10건 제한이 있음
             for (int i = 0; i < 4; i++) {
-                imgResults = new GetImgResult(orderschResults.get(3).get(i).getTitle().replaceAll("<b>", "").replaceAll("</b>", "")).execute().get();
+                imgResults = new GetImgResult(orderschResults.get(2).get(i).getTitle().replaceAll("<b>", "").replaceAll("</b>", "")).execute().get();
                 imageSearchResult = gson.fromJson(imgResults, ImageSearchResult.class);
                 if (imageSearchResult.getImgResult() == null)
-                    orderschResults.get(3).get(i).setImgLink("empty");
+                    orderschResults.get(2).get(i).setImgLink("empty");
                 else
-                    orderschResults.get(3).get(i).setImgLink(imageSearchResult.getImgResult().get(0).getLink());
+                    orderschResults.get(2).get(i).setImgLink(imageSearchResult.getImgResult().get(0).getLink());
             }
         }catch(Exception e){
             Log.d(TAG, "이미지 검색 실패" + e.getMessage());
         }
 
 
+        ResultAdapter resultAdapter2 = new ResultAdapter(SecondCateogryResult.this, image2, orderschResults.get(2));
+        listView2.setAdapter(resultAdapter2);
 
-        ResultAdapter resultAdapter3 = new ResultAdapter(Result3.this, image3, orderschResults.get(3));
-        listView3.setAdapter(resultAdapter3);
-
-        next3.setOnClickListener(view -> {
+        next2.setOnClickListener(view -> {
 
             Iterator<Integer> iterator = selectInfo.keySet().iterator();
             int last = -1;
@@ -148,9 +145,8 @@ public class Result3 extends AppCompatActivity {
             }
 
             if(currIndex == last) {
-                Intent intentTemp = new Intent(Result3.this, CourseRegitDetail.class);
-                intentTemp.putExtra("Selectedplace", placeLists);
-                //              intentTemp.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intentTemp = new Intent(SecondCateogryResult.this, MainCategory.class);
+                intentTemp.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intentTemp);
             }
             else {
@@ -160,78 +156,82 @@ public class Result3 extends AppCompatActivity {
 
                         break;
                     case 1:
-                        Intent intentTemp = new Intent(Result3.this, Result2.class);
+                        Intent intentTemp = new Intent(SecondCateogryResult.this, SecondCateogryResult.class);
                         intentTemp.putExtra("currIndex", currIndex);
                         intentTemp.putExtra("selectInfo", selectInfo);
                         intentTemp.putExtra("Selectedplace", placeLists);
                         startActivity(intentTemp);
                         break;
                     case 2:
-                        Intent intentTemp2 = new Intent(Result3.this, Result3.class);
+                        Intent intentTemp2 = new Intent(SecondCateogryResult.this, ThirdCategoryResult.class);
                         intentTemp2.putExtra("currIndex", currIndex);
                         intentTemp2.putExtra("selectInfo", selectInfo);
                         intentTemp2.putExtra("Selectedplace", placeLists);
                         startActivity(intentTemp2);
                         break;
-                    case 3:
-                        Intent intentTemp3 = new Intent(Result3.this, Result4.class);
-                        intentTemp3.putExtra("currIndex", currIndex);
-                        intentTemp3.putExtra("selectInfo", selectInfo);
-                        intentTemp3.putExtra("Selectedplace", placeLists);
-                        startActivity(intentTemp3);
-                        break;
+//                    case 3:
+//                        Intent intentTemp3 = new Intent(Result2.this, Result4.class);
+//                        intentTemp3.putExtra("currIndex", currIndex);
+//                        intentTemp3.putExtra("selectInfo", selectInfo);
+//                        intentTemp3.putExtra("Selectedplace", placeLists);
+//                        startActivity(intentTemp3);
+//                        break;
                 }
             }
         });
 
-
-        listView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if(!isBack){
-                    if(placeLists.indexOf(resultAdapter3.getItem(i)) == -1){
-                        placeLists.add(resultAdapter3.getItem(i));
-                    }else {
-                        placeLists.remove(resultAdapter3.getItem(i));
-                        Log.d("TAG", "제거됨");
-                    }
-                }else{
-                    if(findDup(resultAdapter3, i)){ // 중복된 장소가 잇는 경우 (장소제거)
-                        Log.d("TAG", "중복된 장소가 존재합니다");
-                        placeLists.remove(i);
-                    }else{  // 장소 추가인 경우
-                        Log.d("TAG", "추가 합니다");
-                        placeLists.add(resultAdapter3.getItem(i));
-                    }
-                }
+
+
+                placeLists.add(resultAdapter2.getItem(i));
+                Log.d("TAG", "추가 합니다");
+                Log.d("Info", placeLists.get(0).getTitle());
+//                if(!isBack){
+//                    if(placeLists.indexOf(resultAdapter2.getItem(i)) == -1){
+//                        placeLists.add(resultAdapter2.getItem(i));
+//                    }else {
+//                        placeLists.remove(resultAdapter2.getItem(i));
+//                        Log.d("TAG", "제거됨");
+//                    }
+//                }else{
+//                    if(findDup(resultAdapter2, i)){ // 중복된 장소가 잇는 경우 (장소제거)
+//                        Log.d("TAG", "중복된 장소가 존재합니다");
+//                        placeLists.remove(i);
+//                    }else{  // 장소 추가인 경우
+//                        Log.d("TAG", "추가 합니다");
+//                        placeLists.add(resultAdapter2.getItem(i));
+//                    }
+//                }
 
             }
         });
 
-        back3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Result3.this, Result2.class);
-                intent.putExtra("Selectedplace", placeLists);
-                intent.putExtra("isBack", true);
-                startActivity(intent);
-            }
-        });
-
-//        next3.setOnClickListener(new View.OnClickListener() {
+//        next2.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent intent = new Intent(Result3.this, CourseRegitDetail.class);
+//                Intent intent = new Intent(Result2.this, Result3.class);
 //                if(placeLists.size() > 0){
 //                    intent.putExtra("Selectedplace", placeLists);
 //                    startActivity(intent);
-//                }else {
+//                }else{
 //                    Log.d("TAG", "장소 등록하세요");
 //                }
 //            }
 //        });
-
+//
+//        back2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Result2.this, Result.class);
+//                intent.putExtra("Selectedplace", placeLists);
+//                intent.putExtra("isBack", true);
+//                startActivity(intent);
+//            }
+//        });
     }
+
 
     public Boolean findDup(ResultAdapter resultAdapter, int idx){
         for(int i = placeLists.size()-1; i>=0; i--){
@@ -241,6 +241,8 @@ public class Result3 extends AppCompatActivity {
         }
         return false;
     }
+
+
 
 
     class GetSchResult extends AsyncTask<Void, Void, String> {
@@ -268,6 +270,8 @@ public class Result3 extends AppCompatActivity {
             return null;
         }
     }
+
+
 
     // 이미지 검색을 위한 클래스
     class GetImgResult extends AsyncTask<Void, Void, String>{
@@ -300,9 +304,7 @@ public class Result3 extends AppCompatActivity {
             return null;
         }
     }
-
 }
-
 
 
 //package com.example.coursefinder;
@@ -317,8 +319,8 @@ public class Result3 extends AppCompatActivity {
 //import android.widget.AdapterView;
 //import android.widget.Button;
 //import android.widget.ListView;
+//import android.widget.Toast;
 //
-//import com.example.coursefinder.Course.CourseRegitDetail;
 //import com.example.coursefinder.searchVo.ImageSearchResult;
 //import com.example.coursefinder.searchVo.PlaceList;
 //import com.example.coursefinder.searchVo.PlaceSearchResult;
@@ -333,7 +335,7 @@ public class Result3 extends AppCompatActivity {
 //import retrofit2.Call;
 //import retrofit2.Response;
 //
-//public class Result3 extends AppCompatActivity {
+//public class Result2 extends AppCompatActivity {
 //    String results;
 //    String imgResults;
 //
@@ -345,30 +347,30 @@ public class Result3 extends AppCompatActivity {
 //    private PlaceSearchResult placeSearchResult;
 //    private ImageSearchResult imageSearchResult;
 //    private ArrayList<PlaceList> placeLists = new ArrayList<PlaceList>();
-//
 //    private Map<Integer, ArrayList<PlaceList>> orderschResults = new HashMap<Integer, ArrayList<PlaceList>>();
-//    private boolean isBack = false;
+//    private Boolean isBack = false;
+//
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_result3);
+//        setContentView(R.layout.activity_result2);
 //
-//        ListView listView3;
-//        Button next3;
-//        Button back3;
+//        ListView listView2;
+//        Button next2;
+//        Button back2;
+//        String [] schNames = {"카페"};
 //
-//        String [] schNames = {"영화관"};
+//        int[] image2 = {R.drawable.map};
+//        String[] placeName2 = {"가게이름"};
 //
-//        int[] image3 = {R.drawable.map};
-//        String[] placeName3 = {"가게이름"};
 //
-//        listView3 = (ListView)findViewById(R.id.listView3);
-//        next3 = (Button)findViewById(R.id.next3);
-//        back3 = (Button)findViewById(R.id.back3);
-//
+//        listView2 = (ListView)findViewById(R.id.listView2);
+//        next2 = (Button)findViewById(R.id.next2);
+//        back2 = (Button)findViewById(R.id.back2);
 //        Intent intent = getIntent();
 //        placeLists = (ArrayList<PlaceList>) intent.getSerializableExtra("Selectedplace");
 //        isBack = intent.getBooleanExtra("isBack", false);
+//
 //
 //        Gson gson = new Gson();
 //
@@ -376,7 +378,7 @@ public class Result3 extends AppCompatActivity {
 //            // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
 //            results = new GetSchResult(schNames[0]).execute().get();
 //            placeSearchResult = gson.fromJson(results, PlaceSearchResult.class);
-//            orderschResults.put(3, placeSearchResult.getPlaceLists());
+//            orderschResults.put(2, placeSearchResult.getPlaceLists());
 //
 //        }catch(Exception e){
 //            Log.d(TAG, "장소 검색 실패" + e.getMessage());
@@ -386,70 +388,69 @@ public class Result3 extends AppCompatActivity {
 //        try {
 //            // 이미지 검색, 보안이 필요할 듯 하여 주석처리 초당 10건 제한이 있음
 //            for (int i = 0; i < 4; i++) {
-//                imgResults = new GetImgResult(orderschResults.get(3).get(i).getTitle().replaceAll("<b>", "").replaceAll("</b>", "")).execute().get();
+//                imgResults = new GetImgResult(orderschResults.get(2).get(i).getTitle().replaceAll("<b>", "").replaceAll("</b>", "")).execute().get();
 //                imageSearchResult = gson.fromJson(imgResults, ImageSearchResult.class);
 //                if (imageSearchResult.getImgResult() == null)
-//                    orderschResults.get(3).get(i).setImgLink("empty");
+//                    orderschResults.get(2).get(i).setImgLink("empty");
 //                else
-//                    orderschResults.get(3).get(i).setImgLink(imageSearchResult.getImgResult().get(0).getLink());
+//                    orderschResults.get(2).get(i).setImgLink(imageSearchResult.getImgResult().get(0).getLink());
 //            }
 //        }catch(Exception e){
 //            Log.d(TAG, "이미지 검색 실패" + e.getMessage());
 //        }
 //
 //
+//        ResultAdapter resultAdapter2 = new ResultAdapter(Result2.this, image2, orderschResults.get(2));
+//        listView2.setAdapter(resultAdapter2);
 //
-//        ResultAdapter resultAdapter3 = new ResultAdapter(Result3.this, image3, orderschResults.get(3));
-//        listView3.setAdapter(resultAdapter3);
-//
-//
-//        listView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//          listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
 //                if(!isBack){
-//                    if(placeLists.indexOf(resultAdapter3.getItem(i)) == -1){
-//                        placeLists.add(resultAdapter3.getItem(i));
+//                    if(placeLists.indexOf(resultAdapter2.getItem(i)) == -1){
+//                        placeLists.add(resultAdapter2.getItem(i));
 //                    }else {
-//                        placeLists.remove(resultAdapter3.getItem(i));
+//                        placeLists.remove(resultAdapter2.getItem(i));
 //                        Log.d("TAG", "제거됨");
 //                    }
 //                }else{
-//                    if(findDup(resultAdapter3, i)){ // 중복된 장소가 잇는 경우 (장소제거)
+//                    if(findDup(resultAdapter2, i)){ // 중복된 장소가 잇는 경우 (장소제거)
 //                        Log.d("TAG", "중복된 장소가 존재합니다");
 //                        placeLists.remove(i);
 //                    }else{  // 장소 추가인 경우
 //                        Log.d("TAG", "추가 합니다");
-//                        placeLists.add(resultAdapter3.getItem(i));
+//                        placeLists.add(resultAdapter2.getItem(i));
 //                    }
 //                }
 //
 //            }
 //        });
 //
-//        back3.setOnClickListener(new View.OnClickListener() {
+//        next2.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent intent = new Intent(Result3.this, Result2.class);
-//                intent.putExtra("Selectedplace", placeLists);
-//                intent.putExtra("isBack", true);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        next3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Result3.this, CourseRegitDetail.class);
+//                Intent intent = new Intent(Result2.this, Result3.class);
 //                if(placeLists.size() > 0){
 //                    intent.putExtra("Selectedplace", placeLists);
 //                    startActivity(intent);
-//                }else {
+//                }else{
 //                    Log.d("TAG", "장소 등록하세요");
 //                }
 //            }
 //        });
 //
+//        back2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Result2.this, Result.class);
+//                intent.putExtra("Selectedplace", placeLists);
+//                intent.putExtra("isBack", true);
+//                startActivity(intent);
+//            }
+//        });
 //    }
+//
 //
 //    public Boolean findDup(ResultAdapter resultAdapter, int idx){
 //        for(int i = placeLists.size()-1; i>=0; i--){
@@ -459,6 +460,8 @@ public class Result3 extends AppCompatActivity {
 //        }
 //        return false;
 //    }
+//
+//
 //
 //
 //    class GetSchResult extends AsyncTask<Void, Void, String> {
@@ -486,6 +489,8 @@ public class Result3 extends AppCompatActivity {
 //            return null;
 //        }
 //    }
+//
+//
 //
 //    // 이미지 검색을 위한 클래스
 //    class GetImgResult extends AsyncTask<Void, Void, String>{
@@ -518,5 +523,4 @@ public class Result3 extends AppCompatActivity {
 //            return null;
 //        }
 //    }
-//
 //}

@@ -1,4 +1,4 @@
-package com.example.coursefinder.playingRegister;
+package com.example.coursefinder.PlayingRegister;
 
 import android.content.Context;
 import android.view.LayoutInflater;

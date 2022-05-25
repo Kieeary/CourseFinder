@@ -1,10 +1,8 @@
 package com.example.coursefinder.Course;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,19 +20,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.coursefinder.Login;
 import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
-import com.example.coursefinder.Register;
-import com.example.coursefinder.Review.Review;
-import com.example.coursefinder.Review.ReviewDetail;
 import com.example.coursefinder.courseVo.CourseInfo;
 import com.example.coursefinder.courseVo.SelectFromView;
 import com.example.coursefinder.mycourse.MyCourse;
-import com.example.coursefinder.playingRegister.ResultAdapter;
 import com.example.coursefinder.searchVo.ImageSearchResult;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.PlaceSearchResult;
@@ -47,13 +38,11 @@ import com.google.gson.Gson;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.geometry.Tm128;
 import com.naver.maps.map.CameraUpdate;
-import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.PathOverlay;
-import com.naver.maps.map.util.FusedLocationSource;
 
 import java.util.ArrayList;
 import java.util.HashMap;

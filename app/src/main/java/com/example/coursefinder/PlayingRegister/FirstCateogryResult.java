@@ -1,4 +1,4 @@
-package com.example.coursefinder.playingRegister;
+package com.example.coursefinder.PlayingRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,9 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coursefinder.Course.CourseRegitDetail;
-import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.R;
-import com.example.coursefinder.Result2;
 import com.example.coursefinder.searchVo.ImageSearchResult;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.PlaceSearchResult;
@@ -32,7 +30,7 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class Result1 extends AppCompatActivity {
+public class FirstCateogryResult extends AppCompatActivity {
 
     String TAG = "TAG";
     private static int cnt = 0;
@@ -165,7 +163,7 @@ public class Result1 extends AppCompatActivity {
             Log.d(TAG, "이미지 검색 실패" + e.getMessage());
         }
 
-        ResultAdapter resultAdapter = new ResultAdapter(Result1.this, image, orderschResults.get(1));
+        ResultAdapter resultAdapter = new ResultAdapter(FirstCateogryResult.this, image, orderschResults.get(1));
         listView.setAdapter(resultAdapter);
 
         next1.setOnClickListener(view -> {
@@ -193,7 +191,7 @@ public class Result1 extends AppCompatActivity {
 //            }
 //
             if(currIndex == last) {
-                Intent intentTemp = new Intent(Result1.this, CourseRegitDetail.class);
+                Intent intentTemp = new Intent(FirstCateogryResult.this, CourseRegitDetail.class);
                 intentTemp.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intentTemp);
             }
@@ -204,7 +202,7 @@ public class Result1 extends AppCompatActivity {
 
                         break;
                     case 1:
-                        Intent intentTemp = new Intent(Result1.this, Result2.class);
+                        Intent intentTemp = new Intent(FirstCateogryResult.this, SecondCateogryResult.class);
                         intentTemp.putExtra("currIndex", currIndex);
                         intentTemp.putExtra("selectInfo", selectInfo);
                         intentTemp.putExtra("Selectedplace", placeLists);
@@ -290,7 +288,7 @@ public class Result1 extends AppCompatActivity {
 //                    }
 //                }
 
-                Toast.makeText(Result1.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FirstCateogryResult.this, i+1 + "번째 코스 저장!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -342,7 +340,7 @@ public class Result1 extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Result1.this, CourseRegitDetail.class);
+                Intent intent = new Intent(FirstCateogryResult.this, CourseRegitDetail.class);
                 if(placeLists.size() > 0){
                     intent.putExtra("Selectedplace", placeLists);
                     startActivity(intent);

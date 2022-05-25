@@ -14,13 +14,13 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="카테고리 분류"
+            android:layout_height="70dp"
             android:gravity="center"
-            android:textSize="24sp">
-
-        </TextView>
+            android:text="카테고리 선택"
+            android:textAlignment="center"
+            android:textAppearance="@style/title1_" />
 
         <TextView
             android:id="@+id/textView1"

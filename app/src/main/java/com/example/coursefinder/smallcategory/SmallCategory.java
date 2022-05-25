@@ -3,20 +3,14 @@ package com.example.coursefinder.smallcategory;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.example.coursefinder.Course.CourseListMapping;
-import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.R;
-import com.example.coursefinder.mycourse.MyCourse;
-import com.example.coursefinder.playingRegister.GridAdapter;
-import com.example.coursefinder.playingRegister.PlayingRegister;
-import com.example.coursefinder.playingRegister.Result1;
+import com.example.coursefinder.PlayingRegister.GridAdapter;
 
 import java.util.HashMap;
 import java.util.Iterator;

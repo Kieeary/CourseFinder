@@ -3,43 +3,29 @@ package com.example.coursefinder.Course;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.coursefinder.Course.CourseDetail;
-import com.example.coursefinder.Course.CourseRegitDetail;
-import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
-import com.example.coursefinder.playingRegister.Result1;
-import com.example.coursefinder.playingRegister.ResultAdapter;
-import com.example.coursefinder.exercise.ExerciseCourseList;
-import com.example.coursefinder.exercise.ListViewAdapter;
 import com.example.coursefinder.searchVo.ImageSearchResult;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.PlaceSearchResult;
 import com.example.coursefinder.searchapi.ApiClient;
-import com.example.coursefinder.searchapi.ApiClient3;
 import com.example.coursefinder.searchapi.ApiInterface;
 import com.google.gson.Gson;
-import com.naver.maps.geometry.LatLng;
-import com.naver.maps.geometry.Tm128;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CourseChangePlace extends AppCompatActivity {

@@ -19,7 +19,7 @@
         android:theme="@style/Theme.CourseFinder"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Result4"
+            android:name=".PlayingRegister.FourthCategoryResult"
             android:exported="false" />
         <activity
             android:name=".mycourse.ExCourseReview"
@@ -34,7 +34,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".playingRegister.Result1"
+            android:name=".PlayingRegister.FirstCateogryResult"
             android:exported="false" />
         <activity
             android:name=".exercise.ExerciseUserCourse"
@@ -73,7 +73,7 @@
         <activity android:name=".mycourse.CourseReview" />
         <activity android:name=".smallcategory.SmallCategory" />
         <activity android:name=".smallcategory.SmallCategoryOrder" />
-        <activity android:name=".playingRegister.PlayingRegister" />
+        <activity android:name=".PlayingRegister.PlayingRegister" />
         <activity android:name=".Register" />
         <activity android:name=".Course.CourseDetail" />
         <activity android:name=".Course.CourseList" />

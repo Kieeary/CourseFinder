@@ -11,14 +11,10 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.coursefinder.R;
-import com.example.coursefinder.playingRegister.Result1;
 import com.example.coursefinder.courseVo.SelectCourseList;
-import com.example.coursefinder.courseVo.CourseListVo;
-import com.example.coursefinder.searchVo.ImageSearchResult;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.PlaceSearchResult;
 import com.example.coursefinder.searchapi.ApiClient;
-import com.example.coursefinder.searchapi.ApiClient3;
 import com.example.coursefinder.searchapi.ApiInterface;
 import com.example.coursefinder.smallcategory.SmallCategory;
 import com.google.gson.Gson;
@@ -29,7 +25,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 
