@@ -62,7 +62,20 @@
             android:layout_gravity="center"
             android:gravity="center"
             tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="350dp"/>
+            tools:layout_editor_absoluteY="350dp" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="장소목록"
+                android:id="@+id/places" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="리뷰목록"
+                android:id="@+id/reviews" />
+        </LinearLayout>
 
         <GridView
             android:id="@+id/grid"
