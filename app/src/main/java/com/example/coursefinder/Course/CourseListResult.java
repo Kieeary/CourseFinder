@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -45,6 +46,11 @@ public class CourseListResult extends Activity {
     private ArrayList<PlaceList> placeLists = new ArrayList<PlaceList>();
     private Map<Integer, ArrayList<PlaceList>> orderschResults = new HashMap<Integer, ArrayList<PlaceList>>();
 
+    String title[] = new String[]{"","","",""};
+    int currIndex;
+    HashMap<Integer, Integer> selectInfo;
+
+
     String results;
     String imgResults;
     String [] schNames = {"한식", "카페", "영화관"};
@@ -53,11 +59,56 @@ public class CourseListResult extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_courselist_result);
+        setContentView(R.layout.activity_courselist_mapping);
 
-        // 검색어를 받아온 후에 함수 매개변수로 이용
-//        searchCourse("한식", "카페", "영화관");
+        Intent intent = getIntent();
+        currIndex = intent.getIntExtra("currIndex", -1);
+        selectInfo = (HashMap<Integer, Integer>) intent.getSerializableExtra("selectInfo");
 
+        int index = 0;
+
+        switch (currIndex) {
+            case 0:
+                title[index] = SmallCategory.categoryNameId[selectInfo.get(currIndex)];
+                index++;  //index값은 1 로 변경
+                break;
+            case 1:
+                title[index] = SmallCategory.cafeCategoryNameId[selectInfo.get(currIndex)];
+                index++;
+                break;
+            case 2:
+                title[index] = SmallCategory.gameCategoryNameId[selectInfo.get(currIndex)];
+                index++;
+                break;
+            case 3:
+                title[index] = SmallCategory.cultureCategoryNameId[selectInfo.get(currIndex)];
+                index++;
+                break;
+        }
+
+        Iterator<Integer> iterator = selectInfo.keySet().iterator();
+        int last = -1;
+        int temp = iterator.next(); // 맨처음엔 0이 저장.
+
+        for (int i = 1; i < 4; i++) //1->2->3
+        {
+            if (currIndex == temp && iterator.hasNext()) {
+                currIndex = iterator.next(); // 0 -> 1 -> 3로 저장 (0,1,3 이 저장이라고 가정)
+                temp = currIndex;
+
+                switch (currIndex) {
+                    case 1:
+                        title[index] = SmallCategory.cafeCategoryNameId[selectInfo.get(currIndex)];
+                        break;
+                    case 2:
+                        title[index] = SmallCategory.gameCategoryNameId[selectInfo.get(currIndex)];
+                        break;
+                    case 3:
+                        title[index] = SmallCategory.cultureCategoryNameId[selectInfo.get(currIndex)];
+                        break;
+                }
+                index++;
+            }
         /*
         CourseListResultGrid adapter = new CourseListResultGrid(CourseListResult.this, buttonStr);
         grid=(GridView)findViewById(R.id.grid);
@@ -72,9 +123,9 @@ public class CourseListResult extends Activity {
             }
         });
          */
-        Gson gson = new Gson();
+            Gson gson = new Gson();
 
-        try{
+     /*   try{
 
             // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
             for(int i=0; i<3; i++){
@@ -101,26 +152,19 @@ public class CourseListResult extends Activity {
         }
     });
 
-    Button nextButton = (Button) findViewById(R.id.next_button);
-    Button cancelButton = (Button) findViewById(R.id.cancel_button);
+      */
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(), CourseListResult.class);
-            startActivity(intent);
         }
 
-        });
+        Log.d("TAG", title[0]); Log.d("TAG", title[1]); Log.d("TAG", title[2]);
+        Log.d("TAG", title[3] + "is null???");
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(), SmallCategory.class);
-            startActivity(intent);
-        }
+        // 검색어를 받아온 후에 함수 매개변수로 이용
+        searchCourse(title[0], title[1], title[2], title[3]);
 
-        });
+        Button nextButton = (Button) findViewById(R.id.next_button);
+        Button cancelButton = (Button) findViewById(R.id.cancel_button);
+
     }
     class GetSchResult extends AsyncTask<Void, Void, String> {
         String keyword;
@@ -149,9 +193,9 @@ public class CourseListResult extends Activity {
     }
 
     // 매개변수로 검색 키워드를 받아온다
-    public void searchCourse(String sch1, String sch2, String sch3){
+    public void searchCourse(String sch1, String sch2, String sch3, String sch4){
         ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
-        Call<String> call = apiInterface.searchCourse(sch1, sch2, sch3, "");
+        Call<String> call = apiInterface.searchCourse(sch1, sch2, sch3, sch4);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -162,14 +206,14 @@ public class CourseListResult extends Activity {
 
                     // 어텝터 호출
                     Log.d("TAG", "ADAPTER");
-                    CourseListResultGrid adapter = new CourseListResultGrid(CourseListResult.this, buttonStr, orderschResults);
+                    CourseListResultGrid2 adapter = new CourseListResultGrid2(CourseListResult.this, buttonStr, schCourseResults.getCourseLists());
                     grid=(GridView)findViewById(R.id.grid);
                     grid.setAdapter(adapter);
                     grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view,
                                                 int position, long id) {
-                            Toast.makeText(CourseListResult.this, "You Clicked at " +buttonStr[+ position], Toast.LENGTH_SHORT).show();
+
                         }
                     });
 

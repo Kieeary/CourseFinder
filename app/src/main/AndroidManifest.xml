@@ -19,6 +19,9 @@
         android:theme="@style/Theme.CourseFinder"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CourseSchSelect"
+            android:exported="false" />
+        <activity
             android:name=".PlayingRegister.FourthCategoryResult"
             android:exported="false" />
         <activity

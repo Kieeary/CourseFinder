@@ -3,12 +3,14 @@ package com.example.coursefinder.smallcategory;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 
 import com.example.coursefinder.Course.CourseListMapping;
+import com.example.coursefinder.Course.CourseListResult;
 import com.example.coursefinder.R;
 import com.example.coursefinder.PlayingRegister.GridAdapter;
 
@@ -38,11 +40,19 @@ public class SmallCategory extends Activity {
 
     int[] cultureCategoryImgId = {R.drawable.movie, R.drawable.exhibition, R.drawable.reading};
     public static String[] cultureCategoryNameId = {"영화", "전시회", "독서", "공연"};
-
+    private int isDB = -1;  // 사용자 코스로 이동할지, 리스트 맵핑으로 이동할지 결정
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tem_small_category);
+
+        // CourseSchSelect에서 받아온 값을 통해서, 사용자 코스 리스트를 보여줄지, 리스트 맵핑 코스리스트를 보여줄지 결정
+        // 1이면 사용자, -1이면 리스트 맵핑
+        Intent getSort = getIntent();
+        isDB = getSort.getIntExtra("isDb", -1);
+        Log.d("TAG", "ISDB = " + isDB+"");
+
+
 
         selectInfo = new HashMap<Integer, Integer>(); // 선택된 정보를 담을 맵 객체
 
@@ -99,10 +109,24 @@ public class SmallCategory extends Activity {
             Iterator<Integer> iterator = selectInfo.keySet().iterator();
             int currIndex = iterator.hasNext() ? iterator.next() : -1; //ex 0,1,3 이 저장이라고 가정.
 
+            if(isDB == 1){
+                Intent intent = new Intent(SmallCategory.this, CourseListResult.class);
+                intent.putExtra("currIndex", currIndex);
+                intent.putExtra("selectInfo", selectInfo);
+                startActivity(intent);
+            }else {
+                Intent intent = new Intent(SmallCategory.this, CourseListMapping.class);
+                intent.putExtra("currIndex", currIndex);
+                intent.putExtra("selectInfo", selectInfo);
+                startActivity(intent);
+            }
+/*
             Intent intent = new Intent(SmallCategory.this, CourseListMapping.class);
             intent.putExtra("currIndex", currIndex);
             intent.putExtra("selectInfo", selectInfo);
             startActivity(intent);
+
+ */
         });
 
 //            GridView grid;

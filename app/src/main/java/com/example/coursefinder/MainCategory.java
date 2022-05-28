@@ -46,7 +46,8 @@ public class MainCategory extends AppCompatActivity {
         courseRecommend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainCategory.this, SmallCategory.class); //현재 액티비티, 이동하고 싶은 액티비티
+              //  Intent intent = new Intent(MainCategory.this, SmallCategory.class); //현재 액티비티, 이동하고 싶은 액티비티
+                Intent intent = new Intent(MainCategory.this, CourseSchSelect.class); //현재 액티비티, 이동하고 싶은 액티비티
                 startActivity(intent); //액티비티 이동
             }
         });

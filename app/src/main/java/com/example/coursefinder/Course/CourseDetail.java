@@ -24,6 +24,7 @@ import com.example.coursefinder.R;
 import com.example.coursefinder.Review.Review;
 import com.example.coursefinder.Review.ReviewDetail;
 import com.example.coursefinder.courseVo.CourseInfo;
+import com.example.coursefinder.courseVo.SelectFromCourseReview;
 import com.example.coursefinder.courseVo.SelectFromView;
 import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.searchVo.PlaceList;
@@ -106,6 +107,9 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
 
     private ImageButton fav;
     private SharedPreferences sharedPreferences;
+    
+    private Button places;  // 장소 목록 버튼
+    private Button reviews; // 리뷰 목록 버튼
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +121,8 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         cname = (TextView) findViewById(R.id.course_name);
         cprice = (TextView) findViewById(R.id.textView8);
         cinfo = (TextView) findViewById(R.id.textView7);
+        places = (Button) findViewById(R.id.places);
+        reviews = (Button) findViewById(R.id.reviews);
 
         Intent intent = getIntent();
         String ciid = intent.getIntExtra("courseId", 0)+"";
@@ -165,13 +171,30 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         }
         mapFragment.getMapAsync(this);
 
-        cname.setText(coursePlaces.get(0).getCi_name());
-        //cprice.setText(coursePlaces.get(0).getCi_price()+"");
-        //cinfo.setText(coursePlaces.get(0).getCi_info());
-        // gridview리스트로 보여준다
-        CourseDetailGrid adapter = new CourseDetailGrid(CourseDetail.this, web, imageId, coursePlaces);
+        cname.setText(coursePlaces.get(0).getCi_name()); // 코스 이름
         grid=(GridView)findViewById(R.id.grid);
-        grid.setAdapter(adapter);
+        //  장소 버튼 클릭시 장소 리스트 불러옴
+        places.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CourseDetailGrid adapter = new CourseDetailGrid(CourseDetail.this, web, imageId, coursePlaces);
+                grid.setAdapter(adapter);
+            }
+        });
+
+        reviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getCourseReview(coursePlaces.get(0).getCi_idx()+"");
+            }
+        });
+
+//        cprice.setText(coursePlaces.get(0).getCi_price()+"");
+//        cinfo.setText(coursePlaces.get(0).getCi_info());
+        // gridview리스트로 보여준다
+//        CourseDetailGrid adapter = new CourseDetailGrid(CourseDetail.this, web, imageId, coursePlaces);
+//        grid=(GridView)findViewById(R.id.grid);
+//        grid.setAdapter(adapter);
 
         //작성자 이름 클릭시 작성자가 지금까지 작성한 리뷰로 넘어감
         /*
@@ -281,5 +304,29 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
                 Log.d("TAG", "error occured");
             }return null;
         }
+    }
+
+    public void getCourseReview(String ciid){
+        ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
+        Call<String> call = apiInterface.getCourseReview(ciid);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && !(response.body().equals("failed"))){
+                    String result = response.body();
+                    gson = new Gson();
+                    SelectFromCourseReview selectFromCourseReview = gson.fromJson(result, SelectFromCourseReview.class);
+                    CourseDetailGridReview adapter = new CourseDetailGridReview(CourseDetail.this, web, imageId, selectFromCourseReview.getCourseReview());
+                    grid=(GridView)findViewById(R.id.grid);
+                    grid.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+
     }
 }

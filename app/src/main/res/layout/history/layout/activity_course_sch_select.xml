@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CourseSchSelect"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/tv_firstCategory"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="Course Finder"
+        android:textAlignment="center"
+        android:textAppearance="@style/coursefinder_" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/UserCourse"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/button1"
+            android:elevation="10dp"
+            android:text="유저 등록 코스"
+            android:textAppearance="@style/button1_"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/mappingCourse"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/button1"
+            android:text="자동 맵핑 코스"
+            android:textAppearance="@style/button1_"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

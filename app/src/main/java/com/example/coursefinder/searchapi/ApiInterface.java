@@ -146,9 +146,9 @@ public interface ApiInterface {
             @Query("miid") String miid
     );
 
-    @GET("getfavcourse.php")
-    Call<String> getMyCourse(   // 내가 만든 코스
-                                @Query("miid") String miid
+    @GET("getcoursereview.php")
+    Call<String> getCourseReview(   // 놀거리 코스 리뷰 가져오기
+                                @Query("ciidx") String cridx
     );
     @GET("getexlist.php")
     Call<String> getExList(
