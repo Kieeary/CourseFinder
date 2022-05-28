@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -13,8 +14,10 @@ import android.widget.Toast;
 import com.example.coursefinder.R;
 import com.example.coursefinder.courseVo.CourseInfo;
 import com.example.coursefinder.courseVo.CourseListVo;
+import com.example.coursefinder.courseVo.ExerciseListVo;
 import com.example.coursefinder.courseVo.ExerciseReviewDetail;
 import com.example.coursefinder.courseVo.SelectCourseList;
+import com.example.coursefinder.courseVo.SelectExCourseList;
 import com.example.coursefinder.courseVo.SelectFromExReview;
 import com.example.coursefinder.exercise.ExerciseDetailCourse;
 import com.example.coursefinder.exercise.ListViewAdapter;
@@ -89,12 +92,33 @@ public class Ranking extends Activity {
     String resultsArr[];
     String [] schNames = {"중식", "카페", "영화관"};
 
+    private Button playrank;
+    private Button exrank;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
-        Intent intent = getIntent();
+        playrank = (Button)findViewById(R.id.playrank);
+        exrank = (Button)findViewById(R.id.exrank);
+
+        playrank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getCourse("");
+
+            }
+        });
+
+        exrank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getExCourse("");
+            }
+        });
+
+//        Intent intent = getIntent();
 /*        Gson gson = new Gson();
         int size = 10;      // 10개 불러오기
         resultsArr = new String[size];
@@ -107,10 +131,10 @@ public class Ranking extends Activity {
         } catch(Exception e){
             Log.d(TAG, "가져오지 못함" + e.getMessage());
         }*/
-       // RankingGrid adapter = new RankingGrid(Ranking.this);
-        grid = (GridView) findViewById(R.id.grid);
-      //  grid.setAdapter(adapter);
-        getCourse("1");
+        // RankingGrid adapter = new RankingGrid(Ranking.this);
+        //grid = (GridView) findViewById(R.id.grid);
+        //  grid.setAdapter(adapter);
+        //getCourse("");
 /*
 
         com.example.coursefinder.ranking.RankingGrid adapter = new com.example.coursefinder.ranking.RankingGrid(Ranking.this, description, courseImage, detailImage);
@@ -145,6 +169,7 @@ public class Ranking extends Activity {
                     ArrayList<CourseListVo> courseListVos = selectCourseList.getCourseLists();
 
                     RankingGrid rankingGrid = new RankingGrid(Ranking.this, courseListVos);
+                    grid = (GridView) findViewById(R.id.grid);
                     grid.setAdapter(rankingGrid);
 
                 }else{
@@ -160,4 +185,34 @@ public class Ranking extends Activity {
         });
     }
 
+    public void getExCourse(String wiid){
+        Log.d("TAG", "WIID = " + wiid);
+        ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
+
+        Call<String> call = apiInterface.getbestexcourse(wiid);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful() && !(response.body().equals("failed"))){
+                    String result = response.body();
+                    Gson gson = new Gson();
+                    SelectExCourseList selectExCourseList = gson.fromJson(result, SelectExCourseList.class);
+                    ArrayList<ExerciseListVo> exerciseListVos = selectExCourseList.getExerciseLists();
+
+                    RankingGrid2 rankingGrid = new RankingGrid2(Ranking.this, exerciseListVos);
+                    grid = (GridView) findViewById(R.id.grid);
+                    grid.setAdapter(rankingGrid);
+
+                }else{
+                    Log.d("TAG", "DB연결은 성공했으나" + response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("TAG", t.getMessage());
+                Log.d("TAG", "조회 실패");
+            }
+        });
+    }
 }

@@ -166,8 +166,8 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
 
         cname.setText(coursePlaces.get(0).getCi_name());
-        cprice.setText(coursePlaces.get(0).getCi_price()+"");
-        cinfo.setText(coursePlaces.get(0).getCi_info());
+        //cprice.setText(coursePlaces.get(0).getCi_price()+"");
+        //cinfo.setText(coursePlaces.get(0).getCi_info());
         // gridview리스트로 보여준다
         CourseDetailGrid adapter = new CourseDetailGrid(CourseDetail.this, web, imageId, coursePlaces);
         grid=(GridView)findViewById(R.id.grid);

@@ -67,9 +67,7 @@ public class CourseInfo implements Serializable {
         this.ci_info = ci_info;
     }
 
-    public int getCi_price() {
-        return ci_price;
-    }
+    public int getCi_price() { return ci_price; }
 
     public void setCi_price(int ci_price) {
         this.ci_price = ci_price;

@@ -15,6 +15,11 @@ public class ExerciseListVo implements Serializable {
     private String wi_grade;
     @SerializedName("mi_id")
     private String mi_id;
+    @SerializedName("wi_time")
+    private String wi_time;
+    @SerializedName("wi_isact")
+    private String wi_isact;
+
 
     public String getWi_idx() {
         return wi_idx;
@@ -54,5 +59,21 @@ public class ExerciseListVo implements Serializable {
 
     public void setMi_id(String mi_id) {
         this.mi_id = mi_id;
+    }
+
+    public String getWi_time() {
+        return wi_time;
+    }
+
+    public void setWi_time(String wi_time) {
+        this.wi_time = wi_time;
+    }
+
+    public String getWi_isact() {
+        return wi_isact;
+    }
+
+    public void setWi_isact(String wi_isact) {
+        this.wi_isact = wi_isact;
     }
 }

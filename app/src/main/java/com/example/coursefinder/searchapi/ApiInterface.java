@@ -240,9 +240,17 @@ public interface ApiInterface {
             @Query("wi_idx") String wiid
     );
 
+    // 놀거리 코스 랭킹
     @GET("bestcourse.php")
     Call<String> getbestcourse(
         @Query("ci_idx") String ciid
+    );
+
+
+    // 산책 코스 랭킹
+    @GET("bestexcourse.php")
+    Call<String> getbestexcourse(
+            @Query("wi_idx") String wiid
     );
 }
 
