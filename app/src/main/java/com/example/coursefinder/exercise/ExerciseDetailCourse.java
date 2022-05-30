@@ -7,12 +7,14 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.Rating;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.coursefinder.Course.CourseDetail;
@@ -79,6 +81,7 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
     String[] courseScore = {"5", "4", "1"};
 
     private ImageButton imgbtn;
+    private RatingBar rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,8 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
 
         listView = (ListView) findViewById(R.id.listView);
         getExList(wiid);
+
+        rating = (RatingBar) findViewById(R.id.ratingBar);
 
 
         FragmentManager fm = getSupportFragmentManager();
@@ -117,16 +122,11 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         }
 
         imgbtn = (ImageButton) findViewById(R.id.add_btn);
-        // 리뷰 등록 버튼으로 쓰고있음, 코스 저장 버튼으로 바꿔야 함
+        // 코스 저장 버튼으로 바꿔야 함
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Intent intent = new Intent(ExerciseDetailCourse.this, ExCourseReview.class);
-                intent.putExtra("Exinfo", selectExerciseFromView.getExerciseInfos().get(0));
-                startActivity(intent);
 
-                 */
                 sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
                 String member = sharedPreferences.getString("MemberInfo", "null");
                 Gson gson = new Gson();
@@ -143,6 +143,7 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         ename.setText(exerciseInfos.get(0).getWi_name());
         etime.setText(exerciseInfos.get(0).getWi_time());
         einfo.setText(exerciseInfos.get(0).getWi_info());
+        rating.setRating(exerciseInfos.get(0).getWi_grade());
     }
 
     // 지도를 띄워주는 과정
