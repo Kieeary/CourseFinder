@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
 import com.example.coursefinder.UploadImg;
@@ -112,9 +114,10 @@ public class CourseReview extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        ImageView img = (ImageView) findViewById(R.id.img);
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             filePath = UploadImg.getRealPathFromURI_API19(this, data.getData());
-            // Glide.with(this).load(filePath).into(img);
+            Glide.with(this).load(filePath).into(img);
         }
     }
 
@@ -144,6 +147,8 @@ public class CourseReview extends Activity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful() && response.body().equals("1")){
                     Log.d("TAG", "리뷰 등록 성공!");
+                    Intent intent = new Intent(CourseReview.this, MainCategory.class);
+                    startActivity(intent);
                 }else{
                     Log.d("TAG", "리뷰 등록에 실패");
                 }

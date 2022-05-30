@@ -102,6 +102,18 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
+    @POST("mappingcourseinforegit.php")
+        // courseinfo 테이블 insert
+    Call<String> insertMapCourseInfo(
+            @Field("name") String name,
+            @Field("info") String info,
+            @Field("price") int price,
+            @Field("img") String img,
+            @Field("miid") String miid,
+            @Field("ci_cata") String ci_cata
+    );
+
+    @FormUrlEncoded
     @POST("courseregit.php")
         // courseplace 테이블 insert
     Call<String> insertCourse(
@@ -146,6 +158,12 @@ public interface ApiInterface {
             @Query("miid") String miid
     );
 
+    // mappingcourse 리스트 가져오기
+    @GET("getmapcourse.php")
+    Call<String> getMapCourse(
+            @Query("miid") String miid
+    );
+
     @GET("getcoursereview.php")
     Call<String> getCourseReview(   // 놀거리 코스 리뷰 가져오기
                                 @Query("ciidx") String cridx
@@ -162,7 +180,7 @@ public interface ApiInterface {
     Call<String> saveReview(
             @Part("ciidx") RequestBody ciidx,
             @Part("miid") RequestBody miid,
-            @Part("cranme") RequestBody crtitle,
+            @Part("crname") RequestBody crtitle,
             @Part("crcontent") RequestBody content,
             @Part("crgrade") RequestBody grade,
             @Part MultipartBody.Part image,
