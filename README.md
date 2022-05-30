@@ -15,7 +15,7 @@
 * * *
 ## History
 - 2022/05/30
-  - [이강원] ratingbar 별점 처리 
+  - [이강원] ratingbar 별점 처리  + mapcourse 저장하는 apiinterface함수, coursereview부분 누락된 컬럼 때문에 생기는 에러 조정
 - 2022/05/28
   - [홍다경] 산책 코스 랭킹
 - 2022/05/28
