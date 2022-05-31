@@ -27,7 +27,7 @@
                 android:id="@+id/playfav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="30dp"
                 android:text="놀거리"
                 android:background="@drawable/button2"
                 android:textAppearance="@style/button2"/>
@@ -36,8 +36,18 @@
                 android:id="@+id/exfav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="40dp"
                 android:text="산책"
+                android:background="@drawable/button2"
+                android:textAppearance="@style/button2"/>
+
+            <Button
+                android:id="@+id/playinglist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="10dp"
+                android:text="놀거리1"
                 android:background="@drawable/button2"
                 android:textAppearance="@style/button2"/>
         </LinearLayout>

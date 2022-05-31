@@ -2,6 +2,7 @@ package com.example.coursefinder.smallcategory;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.GridView;
 
 import com.example.coursefinder.Course.CourseListMapping;
 import com.example.coursefinder.Course.CourseListResult;
+import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.R;
 import com.example.coursefinder.PlayingRegister.GridAdapter;
 
@@ -24,7 +26,13 @@ public class SmallCategory extends Activity {
     GridView gridView3;
     GridView gridView4;
 
+    View prevView;
+    View prevView2;
+    View prevView3;
+    View prevView4;
+
     Button nextButton;
+    Button prevButton;
     HashMap<Integer, Integer> selectInfo; // 선택된 카테고리 정보를 담기 위한 hashmap
 
     int[] categoryImgId = {R.drawable.hansik, R.drawable.ilsik, R.drawable.yangsik, R.drawable.jungsik,
@@ -40,6 +48,15 @@ public class SmallCategory extends Activity {
 
     int[] cultureCategoryImgId = {R.drawable.movie, R.drawable.exhibition, R.drawable.reading};
     public static String[] cultureCategoryNameId = {"영화", "전시회", "독서", "공연"};
+
+    Boolean colorset = false;
+    Boolean colorset2 = false;
+    Boolean colorset3 = false;
+    Boolean colorset4 = false;
+    int prev=-1;
+    int prev2=-1;
+    int prev3=-1;
+    int prev4=-1;
     private int isDB = -1;  // 사용자 코스로 이동할지, 리스트 맵핑으로 이동할지 결정
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +79,7 @@ public class SmallCategory extends Activity {
         gridView4 = findViewById(R.id.gridViewId4);
 
         nextButton = findViewById(R.id.nextButton);
+        prevButton = findViewById(R.id.prevButton);
 
         GridAdapter gridAdapter = new GridAdapter(SmallCategory.this, categoryNameId, categoryImgId);
         gridView.setAdapter(gridAdapter);
@@ -79,6 +97,29 @@ public class SmallCategory extends Activity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                adapterView.setBackgroundColor(Color.YELLOW);
+                if(colorset) {
+                    if(prev==i) {
+                        view.setBackgroundColor(Color.parseColor("#00000000"));
+                        colorset = false;
+                        prev=i;
+                        prevView=view;
+                    }
+                    else{
+                        prevView.setBackgroundColor(Color.parseColor("#00000000"));
+                        view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+                        colorset = true;
+                        prev=i;
+                        prevView=view;
+                    }
+                }
+                else {
+                    prev=i;
+                    view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+//                    adapterView.setBackgroundColor(Color.parseColor("#F12312"));
+                    colorset=true;
+                    prevView=view;
+                }
                 selectInfo.put(0, i);
                 //Log.i("확인", "첫번째 그리드 뷰");
             }
@@ -86,6 +127,28 @@ public class SmallCategory extends Activity {
         gridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(colorset2) {
+                    if(prev2==i) {
+                        view.setBackgroundColor(Color.parseColor("#00000000"));
+                        colorset2 = false;
+                        prev2=i;
+                        prevView2=view;
+                    }
+                    else{
+                        prevView2.setBackgroundColor(Color.parseColor("#00000000"));
+                        view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+                        colorset2 = true;
+                        prev2=i;
+                        prevView2=view;
+                    }
+                }
+                else {
+                    prev2=i;
+                    view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+//                    adapterView.setBackgroundColor(Color.parseColor("#F12312"));
+                    colorset2=true;
+                    prevView2=view;
+                }
                 selectInfo.put(1, i);
                 //Log.i("확인", "두번째 그리드 뷰");
             }
@@ -93,6 +156,28 @@ public class SmallCategory extends Activity {
         gridView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(colorset3) {
+                    if(prev3==i) {
+                        view.setBackgroundColor(Color.parseColor("#00000000"));
+                        colorset3 = false;
+                        prev3=i;
+                        prevView3=view;
+                    }
+                    else{
+                        prevView3.setBackgroundColor(Color.parseColor("#00000000"));
+                        view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+                        colorset3 = true;
+                        prev3=i;
+                        prevView3=view;
+                    }
+                }
+                else {
+                    prev3=i;
+                    view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+//                    adapterView.setBackgroundColor(Color.parseColor("#F12312"));
+                    colorset3=true;
+                    prevView3=view;
+                }
                 selectInfo.put(2, i);
                 //Log.i("확인", "세번째 그리드 뷰");
             }
@@ -100,6 +185,28 @@ public class SmallCategory extends Activity {
         gridView4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(colorset4) {
+                    if(prev4==i) {
+                        view.setBackgroundColor(Color.parseColor("#00000000"));
+                        colorset4 = false;
+                        prev4=i;
+                        prevView4=view;
+                    }
+                    else{
+                        prevView4.setBackgroundColor(Color.parseColor("#00000000"));
+                        view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+                        colorset4 = true;
+                        prev4=i;
+                        prevView4=view;
+                    }
+                }
+                else {
+                    prev4=i;
+                    view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+//                    adapterView.setBackgroundColor(Color.parseColor("#F12312"));
+                    colorset4=true;
+                    prevView4=view;
+                }
                 selectInfo.put(3, i);
                 //Log.i("확인", "네번째 그리드 뷰");
             }
@@ -125,9 +232,8 @@ public class SmallCategory extends Activity {
             intent.putExtra("currIndex", currIndex);
             intent.putExtra("selectInfo", selectInfo);
             startActivity(intent);
-
- */
         });
+*/
 
 //            GridView grid;
 //    String[] buttonStr={
@@ -198,96 +304,12 @@ public class SmallCategory extends Activity {
 //        });
 //    }
 //
-    }
-}
+    });
+        prevButton.setOnClickListener(view -> {
+            Intent intent = new Intent(SmallCategory.this, MainCategory.class);
+            startActivity(intent);
+            finish();
+        });
+}}
 
 
-
-//package com.example.coursefinder.smallcategory;
-//
-//import android.app.Activity;
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.view.View;
-//import android.widget.AdapterView;
-//import android.widget.Button;
-//import android.widget.GridView;
-//import android.widget.Toast;
-//
-//import com.example.coursefinder.Course.CourseListMapping;
-//import com.example.coursefinder.MainCategory;
-//import com.example.coursefinder.R;
-//import com.example.coursefinder.mycourse.MyCourse;
-//
-//public class SmallCategory extends Activity {
-//    GridView grid;
-//    String[] buttonStr={
-//            "일식",
-//            "한식",
-//            "한식",
-//            "일식",
-//            "한식",
-//            "일식",
-//            "한식",
-//            "일식",
-//            "한식",
-//            "일식",
-//            "한식",
-//            "일식"
-//    };
-//    int[] count = {
-//            2,
-//            3,
-//            4,
-//            1,
-//            2,
-//            3,
-//            2,
-//            3,
-//            1,
-//            2,
-//            4,
-//            2
-//    }; // db에서 갖고와야할 정보
-//    private int position;
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.small_category);
-//
-//        SmallCategoryGrid adapter = new SmallCategoryGrid(SmallCategory.this, buttonStr, count);
-//        grid=(GridView)findViewById(R.id.grid);
-//        grid.setAdapter(adapter);
-//        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//                Toast.makeText(SmallCategory.this, "You Clicked at " +buttonStr[+ position], Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//
-//        Button nextButton = (Button) findViewById(R.id.next_button);
-//        Button cancelButton = (Button) findViewById(R.id.cancel_button);
-//
-//        nextButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), CourseListMapping.class);
-//                startActivity(intent);
-//            }
-//
-//        });
-//
-//        cancelButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), MainCategory.class);
-//                startActivity(intent);
-//            }
-//
-//        });
-//    }
-//
-//}

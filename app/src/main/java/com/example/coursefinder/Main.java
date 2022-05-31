@@ -15,8 +15,8 @@ public class Main extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Main.this, MainCategory.class); //현재 액티비티, 이동하고 싶은 액티비티
-                startActivity(intent); //액티비티 이동
+                Intent intent = new Intent(Main.this, Login.class); //현재 액티비티, 이동하고 싶은 액티비티
+                startActivity(intent);
                 finish();
             }
         }, 1500); //딜레이 타임 조절

@@ -31,7 +31,7 @@
             android:name=".exercise.ExerciseRegitDetail"
             android:exported="false" />
         <activity
-            android:name=".ImageUpload"
+            android:name=".UploadImg"
             android:exported="false" />
         <activity
             android:name=".Login"

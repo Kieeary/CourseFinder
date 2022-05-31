@@ -70,6 +70,7 @@ public class MyCourse extends Activity {
     private MemberLogInResults loginMember;
     private Button playfav;
     private Button exfav;
+    private Button playinglist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class MyCourse extends Activity {
 
         playfav = (Button)findViewById(R.id.playfav);
         exfav = (Button)findViewById(R.id.exfav);
+        playinglist = (Button)findViewById(R.id.playinglist);
 
         playfav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +101,12 @@ public class MyCourse extends Activity {
                 getMyExCourse(miid);
             }
         });
-
+        playinglist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getPlayingCourse(miid);
+            }
+        });
 
 
         
@@ -133,7 +140,7 @@ public class MyCourse extends Activity {
                     String result = response.body();
                     Gson gson = new Gson();
                     SelectCourseList courseList = gson.fromJson(result, SelectCourseList.class);
-                    MyCourseGrid adapter = new MyCourseGrid(MyCourse.this, web, imageId, courseList);
+                    MyCourseGrid adapter = new MyCourseGrid(MyCourse.this, web, imageId, courseList, courseList.getSize());
                     grid=(GridView)findViewById(R.id.grid);
                     grid.setAdapter(adapter);
                 } else{
@@ -172,4 +179,27 @@ public class MyCourse extends Activity {
         });
     }
 
+    public void getPlayingCourse(String miid){
+        ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
+        Call<String> call = apiInterface.getPlayingCourse(miid);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful() && !(response.body().equals("failed"))){
+                    String result = response.body();
+                    Gson gson = new Gson();
+                    SelectCourseList courseList = gson.fromJson(result, SelectCourseList.class);
+                    MyCourseGrid adapter = new MyCourseGrid(MyCourse.this, web, imageId, courseList, courseList.getSize());
+                    grid=(GridView)findViewById(R.id.grid);
+                    grid.setAdapter(adapter);
+                } else{
+                    Log.d("TAG", "FAILED");
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("TAG", "ERROR" + t.getMessage());
+            }
+        });
+    }
 }

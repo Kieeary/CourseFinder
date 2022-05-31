@@ -3,6 +3,7 @@ package com.example.coursefinder.PlayingRegister;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +23,11 @@ public class PlayingRegister extends AppCompatActivity {
     GridView gridView3;
     GridView gridView4;
 
+    View prevView;
+    View prevView2;
+    View prevView3;
+    View prevView4;
+
     Button nextButton;
     HashMap<Integer, Integer> selectInfo; // 선택된 카테고리 정보를 담기 위한 hashmap
 
@@ -38,6 +44,15 @@ public class PlayingRegister extends AppCompatActivity {
 
     int[] cultureCategoryImgId ={R.drawable.movie, R.drawable.exhibition, R.drawable.reading};
     public static String[] cultureCategoryNameId ={"영화", "전시회", "독서", "공연"};
+
+    Boolean colorset = false;
+    Boolean colorset2 = false;
+    Boolean colorset3 = false;
+    Boolean colorset4 = false;
+    int prev=-1;
+    int prev2=-1;
+    int prev3=-1;
+    int prev4=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,24 +84,112 @@ public class PlayingRegister extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(colorset) {
+                    if(prev==i) {
+                        view.setBackgroundColor(Color.parseColor("#00000000"));
+                        colorset = false;
+                        prev=i;
+                        prevView=view;
+                    }
+                    else{
+                        prevView.setBackgroundColor(Color.parseColor("#00000000"));
+                        view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+                        colorset = true;
+                        prev=i;
+                        prevView=view;
+                    }
+                }
+                else {
+                    prev=i;
+                    view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+//                    adapterView.setBackgroundColor(Color.parseColor("#F12312"));
+                    colorset=true;
+                    prevView=view;
+                }
                 selectInfo.put(0, i);
             }
         });
         gridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(colorset2) {
+                    if(prev2==i) {
+                        view.setBackgroundColor(Color.parseColor("#00000000"));
+                        colorset2 = false;
+                        prev2=i;
+                        prevView2=view;
+                    }
+                    else{
+                        prevView2.setBackgroundColor(Color.parseColor("#00000000"));
+                        view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+                        colorset2 = true;
+                        prev2=i;
+                        prevView2=view;
+                    }
+                }
+                else {
+                    prev2=i;
+                    view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+//                    adapterView.setBackgroundColor(Color.parseColor("#F12312"));
+                    colorset2=true;
+                    prevView2=view;
+                }
                 selectInfo.put(1, i);
             }
         });
         gridView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(colorset3) {
+                    if(prev3==i) {
+                        view.setBackgroundColor(Color.parseColor("#00000000"));
+                        colorset3 = false;
+                        prev3=i;
+                        prevView3=view;
+                    }
+                    else{
+                        prevView3.setBackgroundColor(Color.parseColor("#00000000"));
+                        view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+                        colorset3 = true;
+                        prev3=i;
+                        prevView3=view;
+                    }
+                }
+                else {
+                    prev3=i;
+                    view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+//                    adapterView.setBackgroundColor(Color.parseColor("#F12312"));
+                    colorset3=true;
+                    prevView3=view;
+                }
                 selectInfo.put(2, i);
             }
         });
         gridView4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(colorset4) {
+                    if(prev4==i) {
+                        view.setBackgroundColor(Color.parseColor("#00000000"));
+                        colorset4 = false;
+                        prev4=i;
+                        prevView4=view;
+                    }
+                    else{
+                        prevView4.setBackgroundColor(Color.parseColor("#00000000"));
+                        view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+                        colorset4 = true;
+                        prev4=i;
+                        prevView4=view;
+                    }
+                }
+                else {
+                    prev4=i;
+                    view.setBackgroundColor(Color.parseColor("#6650BCDF"));
+//                    adapterView.setBackgroundColor(Color.parseColor("#F12312"));
+                    colorset4=true;
+                    prevView4=view;
+                }
                 selectInfo.put(3, i);
             }
         });

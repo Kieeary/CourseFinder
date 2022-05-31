@@ -24,11 +24,14 @@
 
         <TextView
             android:id="@+id/textView1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/category_textbox"
             android:padding="15dp"
             android:text="첫번째 대카테고리 선택"
-            android:textColor="#3F51B5" />
+            android:textAppearance="@style/text" />
 
         <GridView
             android:layout_marginLeft="20dp"
@@ -40,11 +43,14 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:padding="15dp"
+            android:layout_margin="10dp"
             android:text="두번째 대카테고리 선택"
-            android:textColor="#3F51B5"/>
+            android:background="@drawable/category_textbox"
+            android:textAppearance="@style/text"/>
 
         <GridView
             android:layout_marginLeft="20dp"
@@ -57,11 +63,14 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="세번째 대카테고리"
             android:padding="15dp"
-            android:textColor="#3F51B5"/>
+            android:layout_margin="10dp"
+            android:background="@drawable/category_textbox"
+            android:textAppearance="@style/text"/>
 
         <GridView
             android:layout_marginLeft="20dp"
@@ -73,11 +82,14 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="네번째 대카테고리"
+            android:layout_margin="10dp"
             android:padding="15dp"
-            android:textColor="#3F51B5"/>
+            android:background="@drawable/category_textbox"
+            android:textAppearance="@style/text"/>
 
         <GridView
             android:layout_marginLeft="20dp"
@@ -96,11 +108,11 @@
             >
 
             <Button
+                android:id="@+id/prevButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="이전"
-                android:layout_marginRight="80dp">
-            </Button>
+                android:layout_marginRight="80dp"
+                android:text="이전"></Button>
 
             <Button
                 android:id="@+id/nextButton"

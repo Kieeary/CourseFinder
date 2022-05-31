@@ -18,5 +18,6 @@ public class SelectCourseList {
         this.courseListVos = courseListVos;
     }
 
+    public int getSize() {return courseListVos.size();}
 
 }

@@ -23,7 +23,7 @@ public class MainCategory extends AppCompatActivity {
     private Button courseHistory;
     private Button courseBest;
     private Button exerciseCourse;
-    private  SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
     private MemberLogInResults loginMember;
 
     @Override
@@ -35,7 +35,8 @@ public class MainCategory extends AppCompatActivity {
         String member = sharedPreferences.getString("MemberInfo", "null");
         Gson gson = new Gson();
         loginMember = gson.fromJson(member, MemberLogInResults.class);
-        String miid = loginMember.getMemberInfo().get(0).getId();
+//        String miid = loginMember.getMemberInfo().get(0).getId();
+        String miid = "test";
 
         courseRecommend = findViewById(R.id.courseRecommend);
         courseRegister = findViewById(R.id.courseRegister);

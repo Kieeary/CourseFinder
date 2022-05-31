@@ -38,7 +38,7 @@ public class CourseListMapping extends Activity {
             "G", "H", "I"
     };
 
-    String title[] = new String[]{"","","",""};
+    String title[] = new String[]{"","","","",""};
     int currIndex;
     HashMap<Integer, Integer> selectInfo;
 
@@ -169,7 +169,7 @@ public class CourseListMapping extends Activity {
         try{
 
             // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
-            for(int i=0; i<3; i++){
+            for(int i=0; i<categoryTitle.length; i++){
                 results = new CourseListMapping.GetSchResult(categoryTitle[i]).execute().get();
                 resultsArr[i] = results;
                 placeSearchResult = gson.fromJson(results, PlaceSearchResult.class);
@@ -229,7 +229,8 @@ public class CourseListMapping extends Activity {
                     for(int z=0; z<3; z++){
                         String third = orderschResults.get(3).get(z).getTitle();
                         for(int k=0; k<3; k++){
-                            courseList[idx] = first + "->" + second + "->" + third;
+                            String fourth = orderschResults.get(4).get(k).getTitle();
+                            courseList[idx] = first + "->" + second + "->" + third + "->" + fourth;
                             Log.d(TAG, idx+": "+courseList[idx]);
                             idx++;
                         }

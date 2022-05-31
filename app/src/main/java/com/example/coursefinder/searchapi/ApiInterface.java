@@ -98,7 +98,8 @@ public interface ApiInterface {
             @Field("price") int price,
             @Field("img") String img,
             @Field("miid") String miid,
-            @Field("ci_cata") String ci_cata
+            @Field("ci_cata") String ci_cata,
+            @Field("ci_playing") String ci_playing
     );
 
     @FormUrlEncoded
@@ -143,6 +144,12 @@ public interface ApiInterface {
     // 즐겨 찾기한 코스 가져오기(산책)
     @GET("getfavexcourse.php")
     Call<String> getFavExourse(
+            @Query("miid") String miid
+    );
+
+    // 놀거리 등록 코스 가져오기
+    @GET("getplaycourse.php")
+    Call<String> getPlayingCourse(
             @Query("miid") String miid
     );
 

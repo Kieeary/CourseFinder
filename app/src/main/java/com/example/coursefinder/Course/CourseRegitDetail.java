@@ -256,7 +256,7 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
     public void makeCourseInfo(String cname, String cinfo, int cprice, String cimg, String miid, String ci_cata){
         ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
         Call<String> call = apiInterface.insertCourseInfo(cname, cinfo, cprice, cimg, miid,
-                ci_cata.substring(0, ci_cata.trim().lastIndexOf("@")));
+                ci_cata.substring(0, ci_cata.trim().lastIndexOf("@")), " ");
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -301,7 +301,7 @@ public class CourseRegitDetail extends AppCompatActivity implements OnMapReadyCa
         protected String doInBackground(Void... voids) {
             ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
             Call<String> call = apiInterface.insertCourseInfo(cname, cinfo, cprice, cimg, miid,
-                    ci_cata.substring(0, ci_cata.lastIndexOf("@")-1));
+                    ci_cata.substring(0, ci_cata.lastIndexOf("@")-1), " ");
             try{
                 Response<String> response = call.execute();
                 return response.body().toString();

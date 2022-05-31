@@ -24,18 +24,20 @@ public class MyCourseGrid extends BaseAdapter{
     private Context mContext;
     private final String[] web;
     private final int[] Imageid;
+    private final int size;
     ArrayList<CourseListVo> courseInfo = new ArrayList<CourseListVo>();
-    public MyCourseGrid(Context c,String[] web,int[] Imageid, SelectCourseList selectCourseList ) {
+    public MyCourseGrid(Context c,String[] web,int[] Imageid, SelectCourseList selectCourseList, int size ) {
         mContext = c;
         this.Imageid = Imageid;
         this.web = web;
         this.courseInfo = selectCourseList.getCourseLists();
+        this.size = size;
     }
 
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return web.length;
+        return size;
     }
 
     @Override

@@ -174,7 +174,7 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
 
         try{
             // 장소 검색, async를 통해서 받아올 때는 try catch문 안에서 사용해야 함
-            for(int i=0; i<3; i++){
+            for(int i=0; i<size; i++){
                 placeSearchResult = gson.fromJson(results[i], PlaceSearchResult.class);
                 orderschResults.put(i+1, placeSearchResult.getPlaceLists());
             }
@@ -572,7 +572,7 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(Void... voids) {
             ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
             Call<String> call = apiInterface.insertCourseInfo(name, info, cprice, cimg, miid,
-                    ci_cata.substring(0, ci_cata.lastIndexOf("@")-1));
+                    ci_cata.substring(0, ci_cata.lastIndexOf("@")-1), "y");
             try{
                 Response<String> response = call.execute();
                 return response.body().toString();
