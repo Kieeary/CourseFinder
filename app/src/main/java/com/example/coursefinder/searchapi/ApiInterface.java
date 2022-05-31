@@ -103,6 +103,18 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
+    @POST("mappingcourseinforegit.php")
+        // courseinfo 테이블 insert
+    Call<String> insertMapCourseInfo(
+            @Field("name") String name,
+            @Field("info") String info,
+            @Field("price") int price,
+            @Field("img") String img,
+            @Field("miid") String miid,
+            @Field("ci_cata") String ci_cata
+    );
+
+    @FormUrlEncoded
     @POST("courseregit.php")
         // courseplace 테이블 insert
     Call<String> insertCourse(
@@ -150,6 +162,12 @@ public interface ApiInterface {
     // 놀거리 등록 코스 가져오기
     @GET("getplaycourse.php")
     Call<String> getPlayingCourse(
+            @Query("miid") String miid
+    );
+
+    // mappingcourse 리스트 가져오기
+    @GET("getmapcourse.php")
+    Call<String> getMapCourse(
             @Query("miid") String miid
     );
 

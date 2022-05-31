@@ -573,6 +573,11 @@ public class CourseListSelect extends AppCompatActivity implements OnMapReadyCal
             ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
             Call<String> call = apiInterface.insertCourseInfo(name, info, cprice, cimg, miid,
                     ci_cata.substring(0, ci_cata.lastIndexOf("@")-1), "y");
+//            Call<String> call = apiInterface.insertCourseInfo(name, info, cprice, cimg, miid,
+//                    ci_cata.substring(0, ci_cata.lastIndexOf("@")-1));
+
+            //Call<String> call = apiInterface.insertMapCourseInfo(name, info, cprice, cimg, miid,
+              //      ci_cata.substring(0, ci_cata.lastIndexOf("@")-1));
             try{
                 Response<String> response = call.execute();
                 return response.body().toString();
