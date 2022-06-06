@@ -169,13 +169,13 @@ public class SecondCateogryResult extends AppCompatActivity {
                         intentTemp2.putExtra("Selectedplace", placeLists);
                         startActivity(intentTemp2);
                         break;
-//                    case 3:
-//                        Intent intentTemp3 = new Intent(Result2.this, Result4.class);
-//                        intentTemp3.putExtra("currIndex", currIndex);
-//                        intentTemp3.putExtra("selectInfo", selectInfo);
-//                        intentTemp3.putExtra("Selectedplace", placeLists);
-//                        startActivity(intentTemp3);
-//                        break;
+                    case 3:
+                        Intent intentTemp3 = new Intent(SecondCateogryResult.this, FourthCategoryResult.class);
+                        intentTemp3.putExtra("currIndex", currIndex);
+                        intentTemp3.putExtra("selectInfo", selectInfo);
+                        intentTemp3.putExtra("Selectedplace", placeLists);
+                        startActivity(intentTemp3);
+                        break;
                 }
             }
         });

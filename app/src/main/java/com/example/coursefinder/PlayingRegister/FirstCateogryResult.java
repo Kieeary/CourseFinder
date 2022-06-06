@@ -209,19 +209,19 @@ public class FirstCateogryResult extends AppCompatActivity {
                         startActivity(intentTemp);
                         break;
                     case 2:
-//                        Intent intentTemp2 = new Intent(Result1.this, Result3.class);
-//                        intentTemp2.putExtra("currIndex", currIndex);
-//                        intentTemp2.putExtra("selectInfo", selectInfo);
-//                        intentTemp2.putExtra("Selectedplace", placeLists);
-//                        startActivity(intentTemp2);
-//                        break;
-//                    case 3:
-//                        Intent intentTemp3 = new Intent(Result1.this, Result4.class);
-//                        intentTemp3.putExtra("currIndex", currIndex);
-//                        intentTemp3.putExtra("selectInfo", selectInfo);
-//                        intentTemp3.putExtra("Selectedplace", placeLists);
-//                        startActivity(intentTemp3);
-//                        break;
+                        Intent intentTemp2 = new Intent(FirstCateogryResult.this, ThirdCategoryResult.class);
+                        intentTemp2.putExtra("currIndex", currIndex);
+                        intentTemp2.putExtra("selectInfo", selectInfo);
+                        intentTemp2.putExtra("Selectedplace", placeLists);
+                        startActivity(intentTemp2);
+                        break;
+                    case 3:
+                        Intent intentTemp3 = new Intent(FirstCateogryResult.this, FourthCategoryResult.class);
+                        intentTemp3.putExtra("currIndex", currIndex);
+                        intentTemp3.putExtra("selectInfo", selectInfo);
+                        intentTemp3.putExtra("Selectedplace", placeLists);
+                        startActivity(intentTemp3);
+                        break;
                 }
 //                Intent intentTemp = new Intent(Result1.this, Result2.class);
 //                intentTemp.putExtra("currIndex", currIndex);

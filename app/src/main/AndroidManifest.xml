@@ -40,6 +40,9 @@
             android:name=".PlayingRegister.FirstCateogryResult"
             android:exported="false" />
         <activity
+            android:name=".PlayingRegister.SecondCateogryResult"
+            android:exported="false" />
+        <activity
             android:name=".exercise.ExerciseUserCourse"
             android:exported="false" />
         <activity
@@ -90,6 +93,7 @@
         <activity android:name=".ranking.Ranking" />
         <activity android:name=".Course.CourseRegitDetail" />
         <activity android:name=".exercise.ExerciseCourseRegit" />
+        <activity android:name=".PlayingRegister.ThirdCategoryResult" />
     </application>
 
 </manifest>
