@@ -19,6 +19,9 @@
         android:theme="@style/Theme.CourseFinder"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CourseRegitSelect"
+            android:exported="false" />
+        <activity
             android:name=".CourseSchSelect"
             android:exported="false" />
         <activity
@@ -29,9 +32,6 @@
             android:exported="false" />
         <activity
             android:name=".exercise.ExerciseRegitDetail"
-            android:exported="false" />
-        <activity
-            android:name=".UploadImg"
             android:exported="false" />
         <activity
             android:name=".Login"

@@ -12,6 +12,7 @@ import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.exercise.ExerciseCourseList;
 import com.example.coursefinder.exercise.ExerciseCourseRegit;
 import com.example.coursefinder.PlayingRegister.PlayingRegister;
+import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.ranking.Ranking;
 import com.example.coursefinder.smallcategory.SmallCategory;
 import com.google.gson.Gson;
@@ -35,8 +36,8 @@ public class MainCategory extends AppCompatActivity {
         String member = sharedPreferences.getString("MemberInfo", "null");
         Gson gson = new Gson();
         loginMember = gson.fromJson(member, MemberLogInResults.class);
-//        String miid = loginMember.getMemberInfo().get(0).getId();
-        String miid = "test";
+        String miid = loginMember.getMemberInfo().get(0).getId();
+//        String miid = "test";
 
         courseRecommend = findViewById(R.id.courseRecommend);
         courseRegister = findViewById(R.id.courseRegister);
@@ -55,16 +56,17 @@ public class MainCategory extends AppCompatActivity {
         courseRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainCategory.this, PlayingRegister.class); //현재 액티비티, 이동하고 싶은 액티비티
+              //  Intent intent = new Intent(MainCategory.this, PlayingRegister.class); //현재 액티비티, 이동하고 싶은 액티비티
+                Intent intent = new Intent(MainCategory.this, CourseRegitSelect.class); //현재 액티비티, 이동하고 싶은 액티비티
+                intent.putExtra("miid", miid);
                 startActivity(intent); //액티비티 이동
             }
         });
         courseHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //  ExerciseCourseList test
-                //Intent intent = new Intent(MainCategory.this, MyCourse.class);
-                Intent intent = new Intent(MainCategory.this, ExerciseCourseList.class); //현재 액티비티, 이동하고 싶은 액티비티
+                 Intent intent = new Intent(MainCategory.this, MyCourse.class);
+
                 startActivity(intent); //액티비티 이동
             }
         });
@@ -78,9 +80,9 @@ public class MainCategory extends AppCompatActivity {
         exerciseCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Intent intent = new Intent(MainCategory.this, ExerciseCourseRegit.class);
-                // Intent intent = new Intent(MainCategory.this, ExerciseCourseList.class);
-                // intent.putExtra("miid", miid);
+                // Intent intent = new Intent(MainCategory.this, ExerciseCourseRegit.class);
+                 Intent intent = new Intent(MainCategory.this, ExerciseCourseList.class);
+                intent.putExtra("miid", miid);
                 startActivity(intent);
             }
         });
