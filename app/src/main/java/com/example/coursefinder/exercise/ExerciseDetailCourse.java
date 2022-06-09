@@ -2,17 +2,25 @@ package com.example.coursefinder.exercise;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.Rating;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -33,11 +41,14 @@ import com.example.coursefinder.searchapi.ApiInterface;
 import com.google.gson.Gson;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraUpdate;
+import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.PathOverlay;
+import com.naver.maps.map.util.FusedLocationSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +59,18 @@ import retrofit2.Response;
 
 public class ExerciseDetailCourse extends AppCompatActivity implements OnMapReadyCallback {
 
+    private FusedLocationSource mLocationSource;
+    private static final int PERMISSION_REQUEST_CODE = 100;
+    // 권환 확인
+    private static final String[] PERMISSIONS = {
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+    };
+
+    private FusedLocationSource locationSource;
+
     private NaverMap navermap;
-    // 마커들을 담음
+
     private ArrayList<Marker> markers = new ArrayList<Marker>();
     // json형태의 길찾기 경로들을 담음
     private ResultPath resultPath = new ResultPath();
@@ -74,19 +95,20 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
     private MemberLogInResults loginMember;
 
 
-
     // test
     String[] courseName = {"1", "2", "3"};
-    String[] courseRoute = {"A to B", "B to C", "C to A" };
+    String[] courseRoute = {"A to B", "B to C", "C to A"};
     String[] courseScore = {"5", "4", "1"};
-
     private ImageButton imgbtn;
     private RatingBar rating;
-
+    private Button tracking;
+    private String miid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_detail_course);
+        locationSource = new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
+
 
         Intent intent = getIntent();
         String wiid = intent.getStringExtra("wiid");
@@ -95,6 +117,13 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         getExList(wiid);
 
         rating = (RatingBar) findViewById(R.id.ratingBar);
+        tracking = (Button) findViewById(R.id.trackmode);
+
+        sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
+        String member = sharedPreferences.getString("MemberInfo", "null");
+        Gson gson = new Gson();
+        loginMember = gson.fromJson(member, MemberLogInResults.class);
+        miid = loginMember.getMemberInfo().get(0).getId();
 
 
         FragmentManager fm = getSupportFragmentManager();
@@ -104,6 +133,7 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
             fm.beginTransaction().add(R.id.map, mapFragment).commit();
         }
         mapFragment.getMapAsync(this);
+        mLocationSource = new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
 
         exerciseInfos = new ArrayList<ExerciseInfo>();
         selectExerciseFromView = new SelectExerciseFromView();
@@ -120,18 +150,12 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         for (int i = 0; i < selectExerciseFromView.getExerciseInfos().size(); i++) {
             exerciseInfos.add(selectExerciseFromView.getExerciseInfos().get(i));
         }
-
+        ExFavChk(miid, exerciseInfos.get(0).getWi_idx());
         imgbtn = (ImageButton) findViewById(R.id.add_btn);
         // 코스 저장 버튼으로 바꿔야 함
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
-                String member = sharedPreferences.getString("MemberInfo", "null");
-                Gson gson = new Gson();
-                loginMember = gson.fromJson(member, MemberLogInResults.class);
-                String miid = loginMember.getMemberInfo().get(0).getId();
                 saveExcourse(wiid, miid);
             }
         });
@@ -146,10 +170,31 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
         rating.setRating(exerciseInfos.get(0).getWi_grade());
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (locationSource.onRequestPermissionsResult(
+                requestCode, permissions, grantResults)) {
+            return;
+        }
+    }
+
     // 지도를 띄워주는 과정
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
         this.navermap = naverMap;
+        tracking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navermap.setLocationSource(locationSource);
+                UiSettings uiSettings = navermap.getUiSettings();
+                uiSettings.setLocationButtonEnabled(true);
+                navermap.setLocationTrackingMode(LocationTrackingMode.Follow);
+            }
+        });
+
+        ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
+
         getRoute();
 
         setMarkers();
@@ -293,6 +338,25 @@ public class ExerciseDetailCourse extends AppCompatActivity implements OnMapRead
                     Log.d("TAG", "연결됫으나 실패함");
                 }
             }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void ExFavChk(String miid, String wiid ){
+        ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
+        Call<String> call = apiInterface.isExFav(wiid, miid);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && response.body().equals("1")){
+                    imgbtn.setImageResource(R.drawable.ic_heart_pressed);
+                    imgbtn.setScaleType(ImageView.ScaleType.FIT_XY);
+                }
+            }
+
             @Override
             public void onFailure(Call<String> call, Throwable t) {
 

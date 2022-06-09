@@ -80,7 +80,7 @@
         <GridView
             android:id="@+id/grid"
             android:layout_width="wrap_content"
-            android:layout_height="244dp"
+            android:layout_height="257dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
@@ -96,7 +96,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/button2"
-            android:text="등 록"
+            android:text="홈으로"
             android:textAppearance="@style/button2" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -60,10 +60,11 @@ public class CourseDetailGridReview extends BaseAdapter {
             ImageView imageView = (ImageView)grid.findViewById(R.id.placeImg);
             TextView textView2 = (TextView) grid.findViewById(R.id.placeAddr);
             TextView grade = (TextView) grid.findViewById(R.id.grade);
-            textView.setText(reviews.get(i).getCr_title());
+            textView.setText(reviews.get(i).getCr_name());
             Glide.with(grid).load("http:10.0.2.2/uploads/" + reviews.get(i).getCr_img())
-                    .error(R.drawable.lens)
-                    .fallback(R.drawable.lens)
+                    .placeholder(R.drawable.course_image)
+                    .error(R.drawable.course_image)
+                    .fallback(R.drawable.course_image)
                     .into(imageView);
             textView2.setText(reviews.get(i).getCr_content());
             grade.setText(reviews.get(i).getCr_grade()+"");

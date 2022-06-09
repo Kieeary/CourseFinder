@@ -187,7 +187,7 @@ public interface ApiInterface {
     Call<String> saveReview(
             @Part("ciidx") RequestBody ciidx,
             @Part("miid") RequestBody miid,
-            @Part("cranme") RequestBody crtitle,
+            @Part("crname") RequestBody crtitle,
             @Part("crcontent") RequestBody content,
             @Part("crgrade") RequestBody grade,
             @Part MultipartBody.Part image,
@@ -276,6 +276,19 @@ public interface ApiInterface {
     @GET("bestexcourse.php")
     Call<String> getbestexcourse(
             @Query("wi_idx") String wiid
+    );
+
+    @GET("isFavExCourseSaved.php")
+    Call<String> isExFav(
+            @Query("wi_idx") String wiidx,
+            @Query("mi_id") String miid
+    );
+
+
+    @GET("isFavCourseSaved.php")
+    Call<String> isCoFav(
+            @Query("ci_idx") String ciidx,
+            @Query("mi_id") String miid
     );
 }
 

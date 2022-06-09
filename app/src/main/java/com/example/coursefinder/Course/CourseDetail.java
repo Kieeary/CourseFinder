@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.MemberVo.MemberLogInResults;
 import com.example.coursefinder.R;
 import com.example.coursefinder.Review.Review;
@@ -29,6 +31,7 @@ import com.example.coursefinder.courseVo.SelectFromView;
 import com.example.coursefinder.mycourse.MyCourse;
 import com.example.coursefinder.searchVo.PlaceList;
 import com.example.coursefinder.searchVo.ResultPath;
+import com.example.coursefinder.searchapi.ApiClient2;
 import com.example.coursefinder.searchapi.ApiClient3;
 import com.example.coursefinder.searchapi.ApiInterface;
 import com.google.gson.Gson;
@@ -110,6 +113,8 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
     
     private Button places;  // 장소 목록 버튼
     private Button reviews; // 리뷰 목록 버튼
+    private Button regit_btn;
+    private String miid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,17 +123,23 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         TextView user = null;
         TextView review = null;
 
+        sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
+        String member = sharedPreferences.getString("MemberInfo", "null");
+        Gson gson = new Gson();
+        MemberLogInResults loginMember = gson.fromJson(member, MemberLogInResults.class);
+        miid = loginMember.getMemberInfo().get(0).getId();
+
+
         cname = (TextView) findViewById(R.id.course_name);
         cprice = (TextView) findViewById(R.id.textView8);
         cinfo = (TextView) findViewById(R.id.textView7);
         places = (Button) findViewById(R.id.places);
         reviews = (Button) findViewById(R.id.reviews);
+        regit_btn = (Button) findViewById(R.id.regit_btn);
 
         Intent intent = getIntent();
         String ciid = intent.getIntExtra("courseId", 0)+"";
-
-
-
+        CoFavChk(miid, ciid);
         try{
             String results = new GetDetail(ciid).execute().get();
             gson = new Gson();
@@ -141,21 +152,15 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         }
 
 
-
         // 즐겨찾기 버튼 (코스 저장)
         fav = (ImageButton)findViewById(R.id.add_btn);
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 회원 정보(아이디)를 받아온다.
-                sharedPreferences = getSharedPreferences("Member", MODE_PRIVATE);
-                String member = sharedPreferences.getString("MemberInfo", "null");
-                Gson gson = new Gson();
-                MemberLogInResults loginMember = gson.fromJson(member, MemberLogInResults.class);
-                member = loginMember.getMemberInfo().get(0).getId();
 
-                if(member != null){
-                    saveCourse(ciid, member);
+                if(miid != null){
+                    saveCourse(ciid, miid);
                 }
             }
         });
@@ -189,34 +194,14 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-//        cprice.setText(coursePlaces.get(0).getCi_price()+"");
-//        cinfo.setText(coursePlaces.get(0).getCi_info());
-        // gridview리스트로 보여준다
-//        CourseDetailGrid adapter = new CourseDetailGrid(CourseDetail.this, web, imageId, coursePlaces);
-//        grid=(GridView)findViewById(R.id.grid);
-//        grid.setAdapter(adapter);
-
-        //작성자 이름 클릭시 작성자가 지금까지 작성한 리뷰로 넘어감
-        /*
-        user.setOnClickListener(new View.OnClickListener() {
+        regit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ReviewDetail.class); //현재 액티비티, 이동하고 싶은 액티비티
-                startActivity(intent); //액티비티 이동
-
-            }
-        });
-        //리뷰 제목 클릭시 해당 코스 리뷰로 넘어감
-        review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Review.class); //현재 액티비티, 이동하고 싶은 액티비티
-                startActivity(intent); //액티비티 이동
-
+                Intent intent2 = new Intent(CourseDetail.this, MainCategory.class);
+                startActivity(intent2);
             }
         });
 
-         */
     }
 
 
@@ -226,14 +211,14 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
         this.navermap = naverMap;
         // 현재위치 추적
         // ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
-        // 첫번째 장소에서 두번째 장소까지의 경로, 지도에 polyline으로 보여주고있음
-     //    getRoute();
+
         // 장소 3개의 마커
         setMarkers();
         // 장소 3개를 이어주는 폴리라인
         setPolyLines();
         CameraUpdate cameraUpdate = CameraUpdate.scrollTo(
                 new LatLng(coursePlaces.get(0).getCp_lt(), coursePlaces.get(0).getCp_la()));
+
         naverMap.moveCamera(cameraUpdate);
     }
 
@@ -328,5 +313,75 @@ public class CourseDetail extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+    }
+
+    public void getRoute(){
+        // 시작 ,중간지점, 목적지 설정
+        String goal = coursePlaces.get(0).getCp_la() +"," + coursePlaces.get(0).getCp_lt();
+        String waypoint ="";
+        String start = coursePlaces.get(coursePlaces.size()-1).getCp_la() +"," + coursePlaces.get(coursePlaces.size()-1).getCp_lt();
+
+        for(int i=1; i<coursePlaces.size()-1; i++){
+            waypoint += "|"+coursePlaces.get(i).getCp_la() +"," + coursePlaces.get(i).getCp_lt();
+        }
+        if(!(waypoint.equals("")))  waypoint = waypoint.substring(1);
+        Log.d("TAG", waypoint +" = waypoint");
+
+        ApiInterface apiInterface = ApiClient2.getInstance().create(ApiInterface.class);
+        Call<ResultPath> call = apiInterface.getRoute("53o7d43lub", "kFF1Zm70tVyOZl2o2hpP1yyol1rxp3Hk51xhbIbr",
+                start, goal, waypoint);
+        call.enqueue(new Callback<ResultPath>() {
+            @Override
+            public void onResponse(Call<ResultPath> call, Response<ResultPath> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    resultPath = response.body();
+                    PathOverlay path = new PathOverlay();
+                    List<LatLng> latLngList = new ArrayList<LatLng>();
+                    for(int i=0; i<resultPath.getTrackOption().getTraoptimal().get(0).getPath().size(); i++){
+                        double a,b;
+                        a = resultPath.getTrackOption().getTraoptimal().get(0).getPath().get(i).get(0);
+                        b = resultPath.getTrackOption().getTraoptimal().get(0).getPath().get(i).get(1);
+                        latLngList.add(new LatLng(b,a));
+                    }
+                    // 폴리라인 찍어줔
+                    setPolyLines(latLngList);
+                }
+                else {
+                    Log.d("TAG", "실패 : " + response.code());
+                }
+            }
+            @Override
+            public void onFailure(Call<ResultPath> call, Throwable t) {
+                Log.d("TAG", "에러 : " + t.getMessage());
+            }
+        });
+    }
+
+    public void setPolyLines(List<LatLng> latLngList){
+        PathOverlay path = new PathOverlay();
+        path.setCoords(latLngList);
+        path.setWidth(35);
+        path.setColor(Color.YELLOW);
+        path.setMap(navermap);
+    }
+
+    // 즐겨찾기 여부 확인
+    public void CoFavChk(String miid, String ciid ) {
+        ApiInterface apiInterface = ApiClient3.getInstance().create(ApiInterface.class);
+        Call<String> call = apiInterface.isCoFav(ciid, miid);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && response.body().equals("1")) {
+                    fav.setImageResource(R.drawable.ic_heart_pressed);
+                    fav.setScaleType(ImageView.ScaleType.FIT_XY);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 }

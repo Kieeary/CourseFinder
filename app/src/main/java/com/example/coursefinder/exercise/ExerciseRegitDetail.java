@@ -9,8 +9,11 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.coursefinder.MainCategory;
 import com.example.coursefinder.R;
 import com.example.coursefinder.courseVo.ExerciseInfo;
 import com.example.coursefinder.courseVo.SelectExerciseFromView;
@@ -50,7 +53,7 @@ public class ExerciseRegitDetail extends AppCompatActivity implements OnMapReady
     private ArrayList<ExerciseInfo> exerciseInfos;
 
     private TextView ename, etime, einfo;
-
+    private Button goHome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +61,7 @@ public class ExerciseRegitDetail extends AppCompatActivity implements OnMapReady
 
         Intent intent = getIntent();
         String miid = intent.getStringExtra("miid");
-
+        goHome = (Button)findViewById(R.id.goHome);
 
         FragmentManager fm = getSupportFragmentManager();
         MapFragment mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
@@ -90,6 +93,14 @@ public class ExerciseRegitDetail extends AppCompatActivity implements OnMapReady
         ename.setText(exerciseInfos.get(0).getWi_name());
         etime.setText(exerciseInfos.get(0).getWi_time());
         einfo.setText(exerciseInfos.get(0).getWi_info());
+
+        goHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ExerciseRegitDetail.this, MainCategory.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // 지도를 띄워주는 과정

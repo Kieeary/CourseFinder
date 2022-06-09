@@ -32,21 +32,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="129dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_round"
-            android:text="별점만"
-            android:textColor="#FFFFFF" />
+
 
         <Button
             android:id="@+id/button2"
             android:layout_width="129dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="130dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/button_round"
             android:text="리뷰 작성"

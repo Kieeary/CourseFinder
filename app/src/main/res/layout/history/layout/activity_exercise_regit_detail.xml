@@ -42,7 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="410dp"
-            android:layout_weight="8">
+            >
 
             <fragment
                 android:id="@+id/map"
@@ -54,11 +54,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/textView8"
@@ -79,6 +80,13 @@
                 android:text="코스 간단 정보"
                 android:textAppearance="@style/text2"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/goHome"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="홈으로" />
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

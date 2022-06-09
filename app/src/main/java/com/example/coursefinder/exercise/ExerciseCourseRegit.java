@@ -6,14 +6,18 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PointF;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coursefinder.R;
@@ -70,6 +74,20 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
         etime = findViewById(R.id.etime);
         info = findViewById(R.id.info);
 
+        info.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (i == KeyEvent.KEYCODE_ENTER)) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(title.getWindowToken(), 0);    //hide keyboard
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+
 
         FragmentManager fm = getSupportFragmentManager();
         MapFragment mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
@@ -125,9 +143,9 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
                 Marker marker = new Marker();
                 marker.setPosition(latLng);
                 if(position != -1){
-                    Log.d("TAG", "중간에 삭제 한 경우");
-                    markers.set(position, marker);
-                    markers.get(position).setMap(navermap);
+             //       Log.d("TAG", "중간에 삭제 한 경우");
+              //      markers.set(position, marker);
+              //      markers.get(position).setMap(navermap);
                 }else {
                     // 중간에 삭제 안한경우
                     Log.d("TAG", "신규 등록인 경우");
@@ -158,10 +176,10 @@ public class ExerciseCourseRegit extends AppCompatActivity implements OnMapReady
             mark.setOnClickListener(new Overlay.OnClickListener() {
                 @Override
                 public boolean onClick(@NonNull Overlay overlay) {
-                    position = markers.indexOf(mark);
+           //         position = markers.indexOf(mark);
                     // Log.d("TAG", "pos = " + position);
                     mark.setMap(null);
-                    markers.set(position, null);
+           //         markers.set(position, null);
                     return false;
                 }
             });

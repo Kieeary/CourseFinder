@@ -62,7 +62,7 @@ public class ExListViewAdapter extends BaseAdapter {
         // TextView coursePlaceTv = convertView.findViewById(R.id.coursePlace);
         TextView courseScoreTv = convertView.findViewById(R.id.courseScore);
 
-        Glide.with(convertView).load("http:10.0.2.2/uploads/test5d1e705b1-32ae-4692-a3f5-6a60a2294418.png.jpg").
+        Glide.with(convertView).load("http:10.0.2.2/uploads/").
                 error(R.drawable.bakery)
                 .fallback(R.drawable.lens)
                 .into(courseimgIv);

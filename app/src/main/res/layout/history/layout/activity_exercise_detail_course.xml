@@ -82,7 +82,13 @@
 
         </LinearLayout>
 
-
+        <Button
+            android:id="@+id/trackmode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위치추적 켜기"
+            android:layout_gravity="center"
+            />
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"

@@ -17,8 +17,8 @@ public class CourseReviewDetail {
     String cr_grade;
     @SerializedName("cr_img")
     String cr_img;
-    @SerializedName("cr_title")
-    String cr_title;
+    @SerializedName("cr_name")
+    String cr_name;
 
     public String getCr_idx() {
         return cr_idx;
@@ -76,11 +76,11 @@ public class CourseReviewDetail {
         this.cr_img = cr_img;
     }
 
-    public String getCr_title() {
-        return cr_title;
+    public String getCr_name() {
+        return cr_name;
     }
 
-    public void setCr_title(String cr_title) {
-        this.cr_title = cr_title;
+    public void setCr_name(String cr_name) {
+        this.cr_name = cr_name;
     }
 }

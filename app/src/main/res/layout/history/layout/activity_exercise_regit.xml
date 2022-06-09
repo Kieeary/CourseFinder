@@ -19,7 +19,9 @@
             android:layout_height="wrap_content"
             android:text="장소의 이름"
             android:textAppearance="@style/text2"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:singleLine="true"
+            android:imeOptions="actionDone"/>
 
         <EditText
             android:id="@+id/etime"
@@ -27,7 +29,9 @@
             android:layout_height="wrap_content"
             android:text="예상 소요 시간"
             android:textAppearance="@style/text2"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:singleLine="true"
+            android:imeOptions="actionDone"/>
 
         <EditText
             android:id="@+id/info"
@@ -35,7 +39,9 @@
             android:layout_height="wrap_content"
             android:text="간략 설명"
             android:textAppearance="@style/text2"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:singleLine="true"
+            android:imeOptions="actionDone"/>
 
 
     </LinearLayout>
